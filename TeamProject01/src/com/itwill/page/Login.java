@@ -1,6 +1,7 @@
 package com.itwill.page;
 
 import com.itwill.utils.UserInputScanner;
+import com.itwill.crud.Userr_Select;
 
 public class Login {
 	private String EMAIL;
@@ -24,6 +25,9 @@ public class Login {
 		
 		EMAIL = UIS.scanEmail();
         PASSWORD = UIS.scanPassword();
+        
+        Userr_Select US = new Userr_Select();
+        US.SelectOne(EMAIL, PASSWORD);
 	}
 	
 	private void ResetValue() {

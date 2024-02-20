@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.itwill.page.ConsoleClear;
+import com.itwill.page.Login;
 import com.itwill.page.SignIn;
 import com.itwill.user.vo.UserVO;
 
@@ -36,6 +38,12 @@ public class Userr_Insert {
 			System.out.println("처리건수 : " + result);
 			if (result == 0) {
 				System.out.println("회원가입이 되지 않았습니다! 관리자에게 문의하세요!");
+			} else {
+				// ** 콘솔 화면을 지우고 로그인 페이지로 리디렉션 하는 코드입니다. **
+				ConsoleClear erase = new ConsoleClear();
+		        erase.clear();
+				Login login = new Login();
+	            login.login();
 			}
     
         } catch (SQLException e) {

@@ -44,7 +44,7 @@ public class Main {
 
     private static void processUserChoice(int choice) {
         ConsoleClear erase = new ConsoleClear();
-        erase.clear(); // 화면 지우기를 선택에 상관없이 한 번만 호출
+        erase.clear();
 
         if (choice == SIGN_UP) {
         	Userr_Insert regist = new Userr_Insert();
