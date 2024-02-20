@@ -1,8 +1,7 @@
 package com.itwill.page;
 
-import com.itwill.user.scanner.UserInputScanner;
-
 import com.itwill.user.vo.UserVO;
+import com.itwill.utils.UserInputScanner;
 
 public class SignIn {
 	private String EMAIL;

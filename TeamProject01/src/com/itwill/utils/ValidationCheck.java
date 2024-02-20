@@ -1,6 +1,6 @@
-package com.itwill.VC;
+package com.itwill.utils;
 
-public class VC {
+public class ValidationCheck {
 	// 입력값이 빈 값인지 확인합니다.
 	public boolean CheckEmpty(String value) {
 		boolean check = value.isEmpty();

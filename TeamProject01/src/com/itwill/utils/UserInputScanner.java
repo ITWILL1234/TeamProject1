@@ -1,11 +1,9 @@
-package com.itwill.user.scanner;
+package com.itwill.utils;
 
 import java.util.Scanner;
 
-import com.itwill.VC.VC;
-
 public class UserInputScanner {
-    private VC vc = new VC();
+    private ValidationCheck vc = new ValidationCheck();
     private Scanner scan;
 
     public UserInputScanner() {
@@ -64,31 +62,27 @@ public class UserInputScanner {
     public String scanGender() {
 	    System.out.println("성별을 입력해 주세요.");
 	    System.out.println("1. 남자 / 2. 여자");
-	    int GenderValue = scan.nextInt();
-	    scan.nextLine();
-
-	    while (GenderValue != 1 && GenderValue != 2) {
-	    	System.out.println();
-	        System.out.println("잘못된 정보를 입력하였습니다. 다시 입력해주새요.");
-	        System.out.println("1. 남자 / 2. 여자");
-	        GenderValue = scan.nextInt();
-	        scan.nextLine();
-	    }
 	    
-		if (GenderValue == 1) {
-			System.out.println();
-			return "Male";
-		}
-		else if (GenderValue == 2) {
-			System.out.println();
-			return "Female";
-		}
-		
-		System.out.println("코드에 문제가 생겼습니다 scanGender메소드를 확인해 주세요.");
-		return null;
+	    while(true) {
+	    	try {
+	    		String input = scan.nextLine();
+	    		int genderValue = Integer.parseInt(input);
+	    		
+	    		if (genderValue == 1) {
+	    			return "Male";
+	    		} else if(genderValue ==2) {
+	    			return "Female";
+	    		} else {
+	    			 System.out.println("\n1 또는 2를 입력해주세요. 다시 입력해주세요."); // 잘못된 숫자 입력 처리
+	    		}
+	    	} catch (NumberFormatException e) {
+	    		System.out.println("\n숫자로 입력해주세요."); // 숫자가 아닌 입력 처리
+	    	}
+	    }
 	}
     
     public String scanAddress() {
+    	System.out.println();
 		System.out.println("주소를 입력해 주세요.");
 		String address = scan.nextLine();
 		
