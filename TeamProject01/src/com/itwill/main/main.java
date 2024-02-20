@@ -2,11 +2,14 @@ package com.itwill.main;
 
 import java.util.Scanner;
 import com.itwill.crud.Userr_Insert;
+import com.itwill.page.ConsoleClear;
 
 
 public class main {
 
 	public static void main(String[] args) {
+		ConsoleClear erase = new ConsoleClear();
+		
 		int inputRL = 0;
 		Scanner scan = new Scanner(System.in);
 		System.out.println(""
@@ -33,9 +36,11 @@ public class main {
 		
 		if (inputRL == 1) {
 			Userr_Insert regist = new Userr_Insert();
+			erase.clear();
 			regist.start();
 			
 		} else if (inputRL == 2) {
+			erase.clear();
 			System.out.println("로그인 창으로 넘어갑니다.");
 		}
 
