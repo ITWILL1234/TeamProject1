@@ -34,7 +34,7 @@ public class Userr_Insert {
         	pstmt.setString(6, user.getADDRESS());
 		   
         	System.out.println("sql : " + sql);
-        	int result = pstmt.executeUpdate(sql);
+        	int result = pstmt.executeUpdate();
 			System.out.println("처리건수 : " + result);
 			if (result == 0) {
 				System.out.println("회원가입이 되지 않았습니다! 관리자에게 문의하세요!");
