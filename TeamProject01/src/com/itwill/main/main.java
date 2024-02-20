@@ -13,6 +13,9 @@ public class main {
 				+ "╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝\n"
 				+ "                                               \n"
 				+ "");
+		System.out.println();
+		System.out.println("1. 회원가입 2. 로그인");
+		System.out.println("");
 
 	}
 
