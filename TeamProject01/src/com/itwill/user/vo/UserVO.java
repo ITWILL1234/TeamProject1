@@ -12,18 +12,16 @@ public class UserVO {
 	public UserVO() {
 		this.EMAIL = null;
 		this.PASSWORD = null;
-		this.USERNAME = null;
 		this.FIRSTNAME = null;
 		this.LASTNAME = null;
 		this.GENDER = null;
 		this.ADDRESS = null;
 	}
 	
-	public UserVO(String email, String password, String UserName, String FirstName,
+	public UserVO(String email, String password, String FirstName,
 			String LastName, String Gender, String Address) {
 		this.EMAIL = email;
 		this.PASSWORD = password;
-		this.USERNAME = UserName;
 		this.FIRSTNAME = FirstName;
 		this.LASTNAME = LastName;
 		this.GENDER = Gender;
@@ -44,14 +42,6 @@ public class UserVO {
 
 	public void setPASSWORD(String pASSWORD) {
 		PASSWORD = pASSWORD;
-	}
-
-	public String getUSERNAME() {
-		return USERNAME;
-	}
-
-	public void setUSERNAME(String uSERNAME) {
-		USERNAME = uSERNAME;
 	}
 
 	public String getFIRSTNAME() {

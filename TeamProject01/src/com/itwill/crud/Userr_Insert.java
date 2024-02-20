@@ -16,7 +16,7 @@ public class Userr_Insert {
     	// ** ID : ADMIN, PW: admin **  ** 테이블명  USERR  **USE 예약어라 USERR로 설정 **
 		
 		String sql = "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) "
-				   + "VALUES ('?', '?', '?', '?', '?','?', SYSDATE)";
+				   + "VALUES (?, ?, ?, ?, ?, ?, SYSDATE)";
 		
 		userscanner uc = new userscanner();
 		UserVO user = uc.register();
@@ -25,13 +25,13 @@ public class Userr_Insert {
             Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "ADMIN", "admin");
             PreparedStatement pstmt = conn.prepareStatement(sql);
         ) {
-        	int i = 1;
-        	pstmt.setString(i++, user.getEMAIL());
-        	pstmt.setString(i++, user.getPASSWORD());
-        	pstmt.setString(i++, user.getGENDER());
-        	pstmt.setString(i++, user.getFIRSTNAME());
-        	pstmt.setString(i++, user.getLASTNAME());
-        	pstmt.setString(i++, user.getADDRESS());
+        	System.out.println(user.getEMAIL());
+        	pstmt.setString(1, user.getEMAIL());
+        	pstmt.setString(2, user.getPASSWORD());
+        	pstmt.setString(3, user.getGENDER());
+        	pstmt.setString(4, user.getFIRSTNAME());
+        	pstmt.setString(5, user.getLASTNAME());
+        	pstmt.setString(6, user.getADDRESS());
 		   
         	System.out.println("sql : " + sql);
         	int result = pstmt.executeUpdate(sql);

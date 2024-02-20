@@ -8,7 +8,6 @@ import com.itwill.user.vo.UserVO;
 public class userscanner {
 	private String EMAIL;
 	private String PASSWORD;
-	private String USERNAME;
 	private String FIRSTNAME;
 	private String LASTNAME;
 	private String GENDER;
@@ -34,14 +33,13 @@ public class userscanner {
 		
 		ScanEmail(scan);
 		ScanPassword(scan);
-		ScanUsername(scan);
 		ScanFirstName(scan);
 		ScanLastName(scan);
 		ScanGenderValue(scan);
 		JudgeGender(GenderValue);
 		ScanAddress(scan);
 		
-		UserVO newUser = new UserVO(EMAIL, PASSWORD, USERNAME, FIRSTNAME, LASTNAME, GENDER, ADDRESS);
+		UserVO newUser = new UserVO(EMAIL, PASSWORD, FIRSTNAME, LASTNAME, GENDER, ADDRESS);
 		
 		return newUser;
 	}	
@@ -63,18 +61,6 @@ public class userscanner {
 			System.out.println("비밀번호를 입력해 주세요.");
 			PASSWORD = scan.nextLine();
 		}
-	}
-	
-	private void ScanUsername(Scanner scan) {
-		System.out.println("닉네임을 입력해 주세요.");
-		USERNAME = scan.nextLine();
-		
-		while(vc.CheckHan(USERNAME) | vc.CheckEmpty(USERNAME)) {
-			System.out.println("닉네임을 입력해 주세요.");
-			USERNAME = scan.nextLine();
-		}
-		
-		System.out.println();
 	}
 	
 	private void ScanFirstName(Scanner scan) {
@@ -140,7 +126,6 @@ public class userscanner {
 	private void ResetValue() {
 		EMAIL = null;
 		PASSWORD = null;
-		USERNAME = null;
 		FIRSTNAME = null;
 		LASTNAME = null;
 		GENDER = null;
