@@ -27,6 +27,7 @@ public class SignIn {
 		System.out.println(">> 회원가입을 시작합니다.");
 		ResetValue();
 		
+		// 유저의 입력을 받는 코드입니다.
         EMAIL = UIS.scanEmail();
         PASSWORD = UIS.scanPassword();
         FIRSTNAME = UIS.scanFirstName();

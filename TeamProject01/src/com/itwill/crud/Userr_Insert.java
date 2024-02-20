@@ -18,9 +18,11 @@ public class Userr_Insert {
 		String sql = "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) "
 				   + "VALUES (?, ?, ?, ?, ?, ?, SYSDATE)";
 		
+		// 회원가입 창에서, 유저에게 email, password...와 같은 정볼르 입력받는 코드입니다.
 		SignIn signIn = new SignIn();
 		UserVO user = signIn.register();
 		
+		// 오라클에 연결하여, 유저 테이블에 인서트를 하기위한 코드입니다.
         try (
             Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "ADMIN", "admin");
             PreparedStatement pstmt = conn.prepareStatement(sql);
