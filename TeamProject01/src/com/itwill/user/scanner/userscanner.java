@@ -48,12 +48,20 @@ public class userscanner {
 		System.out.println("닉네임을 입력해 주세요.");
 		USERNAME = scan.nextLine();
 		
+		while(CheckHan(USERNAME)) {
+			USERNAME = scan.nextLine();
+		}
+		
 		System.out.println();
 	}
 	
 	private void ScanFirstName(Scanner scan) {
 		System.out.println("성을 입력해 주세요.");
 		FIRSTNAME = scan.nextLine();
+		
+		while(CheckNumber(FIRSTNAME)) {
+			FIRSTNAME = scan.nextLine();
+		}
 		
 		System.out.println();
 	}
@@ -62,20 +70,25 @@ public class userscanner {
 		System.out.println("이름을 입력해 주세요.");
 		LASTNAME = scan.nextLine();
 		
+		while(CheckNumber(LASTNAME)) {
+			LASTNAME = scan.nextLine();
+		}
+		
 		System.out.println();
 	}
 	
 	private void ScanGenderValue(Scanner scan) {
-		System.out.println("성별을 입력해 주세요.");
-		System.out.println("1. 남자 / 2. 여자");
-		GenderValue = scan.nextInt();
-		
-		System.out.println();
-		while (GenderValue != (1 | 2)) {
-			System.out.println("잘못된 정보를 입력하였습니다. 다시 입력해주새요.");
-			ScanGenderValue(scan);
-		}
-		
+	    System.out.println("성별을 입력해 주세요.");
+	    System.out.println("1. 남자 / 2. 여자");
+	    GenderValue = scan.nextInt();
+	    scan.nextLine();
+
+	    while (GenderValue != 1 && GenderValue != 2) {
+	        System.out.println("잘못된 정보를 입력하였습니다. 다시 입력해주새요.");
+	        System.out.println("1. 남자 / 2. 여자");
+	        GenderValue = scan.nextInt();
+	        scan.nextLine();
+	    }
 	}
 
 	private void ScanAddress(Scanner scan) {
@@ -92,6 +105,24 @@ public class userscanner {
 		else if (GenderValue == 2) {
 			GENDER = "Female";
 		}
+	}
+	
+	private boolean CheckNumber(String value) {
+		boolean check = value.matches("(.*)10(.*)");
+		if(check) {			
+			System.out.println();
+			System.out.println("숫자가 포함되어 있습니다. 다시 입력해주세요.");
+		}
+		return check;
+	}
+	
+	private boolean CheckHan(String value) {
+		boolean check = value.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*");
+		if (check) {			
+			System.out.println();
+			System.out.println("한글이 포함되어 있습니다. 다시 입력해주세요.");
+		}
+		return check;
 	}
 	
 	private void ResetValue() {

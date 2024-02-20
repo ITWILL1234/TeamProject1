@@ -87,7 +87,7 @@ public class UserVO {
 	}
 	
 	public String toString() {
-		return "Name = " + FIRSTNAME + LASTNAME + "\n"
+		return "Name = " + FIRSTNAME + " " + LASTNAME + "\n"
 				+ "Email = " + EMAIL + "\n"
 				+ "UserName = " + USERNAME + "\n"
 				+ "Gender = " + GENDER + "\n"
