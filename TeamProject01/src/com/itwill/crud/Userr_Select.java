@@ -40,7 +40,10 @@ public class Userr_Select {
             }
             
             if (PASSWORD.equals(password)) {
+            	System.out.println("로그인이 되었습니다.");
             	UserVO user = new UserVO(EMAIL, PASSWORD, FIRSTNAME, LASTNAME, GENDER, ADDRESS, CREATE_AT);
+            } else {
+            	System.out.println("로그인 실패!!!");
             }
             
         } catch (SQLException e) {
