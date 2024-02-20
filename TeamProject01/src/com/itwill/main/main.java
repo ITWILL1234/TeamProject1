@@ -1,6 +1,8 @@
 package com.itwill.main;
 
 import java.util.Scanner;
+import com.itwill.crud.Userr_Insert;
+
 
 public class main {
 
@@ -30,7 +32,8 @@ public class main {
 		}
 		
 		if (inputRL == 1) {
-			
+			Userr_Insert regist = new Userr_Insert();
+			regist.start();
 			
 		} else if (inputRL == 2) {
 			System.out.println("로그인 창으로 넘어갑니다.");

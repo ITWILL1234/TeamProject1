@@ -12,7 +12,7 @@ import com.itwill.user.scanner.userscanner;
 
 public class Userr_Insert {
 
-	public static void main(String[] args) {
+	public void start() {
     	// ** ID : ADMIN, PW: admin **  ** 테이블명  USERR  **USE 예약어라 USERR로 설정 **
 		
 		String sql = "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) "
