@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.itwill.page.SignIn;
 import com.itwill.user.vo.UserVO;
-import com.itwill.user.scanner.userscanner;
 
 public class Userr_Insert {
 
@@ -18,8 +18,8 @@ public class Userr_Insert {
 		String sql = "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) "
 				   + "VALUES (?, ?, ?, ?, ?, ?, SYSDATE)";
 		
-		userscanner uc = new userscanner();
-		UserVO user = uc.register();
+		SignIn signIn = new SignIn();
+		UserVO user = signIn.register();
 		
         try (
             Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "ADMIN", "admin");
