@@ -2,16 +2,20 @@ package com.itwill.user.scanner;
 
 import java.util.Scanner;
 
+import com.itwill.user.vo.UserVO;
+
 public class userscanner {
 	private String EMAIL;
 	private String PASSWORD;
 	private String USERNAME;
 	private String FIRSTNAME;
 	private String LASTNAME;
-	private int GENDER;
+	private String GENDER;
 	private String ADDRESS;
 	
-	public void register() {
+	private int GenderValue;
+	
+	public UserVO register() {
 		System.out.println("-------- 회원가입을 시작합니다. ---------");
 		ResetValue();
 		
@@ -22,8 +26,13 @@ public class userscanner {
 		ScanUsername(scan);
 		ScanFirstName(scan);
 		ScanLastName(scan);
-		ScanGender(scan);
+		ScanGenderValue(scan);
+		JudgeGender(GenderValue);
 		ScanAddress(scan);
+		
+		UserVO newUser = new UserVO(EMAIL, PASSWORD, USERNAME, FIRSTNAME, LASTNAME, GENDER, ADDRESS);
+		
+		return newUser;
 	}	
 	private void ScanEmail(Scanner scan) {
 		System.out.println("이메일을 입력해 주세요.");
@@ -56,16 +65,17 @@ public class userscanner {
 		System.out.println();
 	}
 	
-	private void ScanGender(Scanner scan) {
+	private void ScanGenderValue(Scanner scan) {
 		System.out.println("성별을 입력해 주세요.");
 		System.out.println("1. 남자 / 2. 여자");
-		GENDER = scan.nextInt();
+		GenderValue = scan.nextInt();
 		
 		System.out.println();
-		while (GENDER != (1 | 2)) {
+		while (GenderValue != (1 | 2)) {
 			System.out.println("잘못된 정보를 입력하였습니다. 다시 입력해주새요.");
-			ScanGender(scan);
+			ScanGenderValue(scan);
 		}
+		
 	}
 
 	private void ScanAddress(Scanner scan) {
@@ -75,13 +85,24 @@ public class userscanner {
 		System.out.println();
 	}
 	
+	private void JudgeGender(int GenderValue) {
+		if (GenderValue == 1) {
+			GENDER = "Male";
+		}
+		else if (GenderValue == 2) {
+			GENDER = "Female";
+		}
+	}
+	
 	private void ResetValue() {
 		EMAIL = null;
 		PASSWORD = null;
 		USERNAME = null;
 		FIRSTNAME = null;
 		LASTNAME = null;
-		GENDER = 0;
+		GENDER = null;
 		ADDRESS = null;
+		
+		GenderValue = 0;
 	}
 }
