@@ -2,7 +2,7 @@ package com.itwill.page;
 
 import java.util.Scanner;
 
-import com.itwill.user.vo.UserVO;
+import com.itwill.vo.UserVO;
 import com.itwill.crud.Userr_Update;
 
 public class EditProfile {

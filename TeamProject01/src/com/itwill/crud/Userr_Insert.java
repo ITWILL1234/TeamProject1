@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.itwill.page.*;
-import com.itwill.user.vo.UserVO;
+import com.itwill.vo.UserVO;
 
 public class Userr_Insert {
 

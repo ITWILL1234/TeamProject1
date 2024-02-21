@@ -2,7 +2,7 @@ package com.itwill.page;
 
 import java.util.Scanner;
 
-import com.itwill.user.vo.UserVO;
+import com.itwill.vo.UserVO;
 
 public class Homepage {
 	private static final int product = 1;
