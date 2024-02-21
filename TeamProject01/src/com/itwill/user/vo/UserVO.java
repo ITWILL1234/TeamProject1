@@ -1,33 +1,45 @@
 package com.itwill.user.vo;
+import java.sql.Timestamp;
 
 public class UserVO {
 	private String EMAIL;
 	private String PASSWORD;
-	private String USERNAME;
 	private String FIRSTNAME;
 	private String LASTNAME;
 	private String GENDER;
 	private String ADDRESS;
+	private Timestamp CREATE_AT;
 	
 	public UserVO() {
 		this.EMAIL = null;
 		this.PASSWORD = null;
-		this.USERNAME = null;
 		this.FIRSTNAME = null;
 		this.LASTNAME = null;
 		this.GENDER = null;
 		this.ADDRESS = null;
+		this.CREATE_AT = null;
 	}
 	
-	public UserVO(String email, String password, String UserName, String FirstName,
+	public UserVO(String email, String password, String FirstName,
 			String LastName, String Gender, String Address) {
 		this.EMAIL = email;
 		this.PASSWORD = password;
-		this.USERNAME = UserName;
 		this.FIRSTNAME = FirstName;
 		this.LASTNAME = LastName;
 		this.GENDER = Gender;
 		this.ADDRESS = Address;
+		this.CREATE_AT = null;
+	}
+	
+	public UserVO(String email, String password, String FirstName,
+			String LastName, String Gender, String Address, Timestamp Create_At) {
+		this.EMAIL = email;
+		this.PASSWORD = password;
+		this.FIRSTNAME = FirstName;
+		this.LASTNAME = LastName;
+		this.GENDER = Gender;
+		this.ADDRESS = Address;
+		this.CREATE_AT = Create_At;
 	}
 
 	public String getEMAIL() {
@@ -44,14 +56,6 @@ public class UserVO {
 
 	public void setPASSWORD(String pASSWORD) {
 		PASSWORD = pASSWORD;
-	}
-
-	public String getUSERNAME() {
-		return USERNAME;
-	}
-
-	public void setUSERNAME(String uSERNAME) {
-		USERNAME = uSERNAME;
 	}
 
 	public String getFIRSTNAME() {
@@ -89,9 +93,12 @@ public class UserVO {
 	public String toString() {
 		return "Name = " + FIRSTNAME + " " + LASTNAME + "\n"
 				+ "Email = " + EMAIL + "\n"
-				+ "UserName = " + USERNAME + "\n"
 				+ "Gender = " + GENDER + "\n"
 				+ "Address = " + ADDRESS + "\n";
+	}
+
+	public Timestamp getCREATE_AT() {
+		return CREATE_AT;
 	}
 	
 }
