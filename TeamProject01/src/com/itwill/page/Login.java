@@ -4,12 +4,12 @@ import com.itwill.utils.UserInputScanner;
 import com.itwill.crud.Userr_Select;
 
 public class Login {
-	private String EMAIL;
-	private String PASSWORD;
+	private static String EMAIL;
+	private static String PASSWORD;
 	
-	private UserInputScanner UIS = new UserInputScanner();
+	private static UserInputScanner UIS = new UserInputScanner();
 	
-	public void exe() {
+	public static void exe() {
 		System.out.println(""
 				+ "\n"
 				+ "██╗      ██████╗  ██████╗ ██╗███╗   ██╗\n"
@@ -35,7 +35,7 @@ public class Login {
         US.SelectOne(EMAIL, PASSWORD);
 	}
 	
-	private void ResetValue() {
+	private static void ResetValue() {
 		EMAIL = null;
 		PASSWORD = null;
 	}

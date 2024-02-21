@@ -55,15 +55,17 @@ public class Homepage {
 	}
 	
 	private static void processUserChoice(int choice) {
-		ConsoleClear erase = new ConsoleClear();
-		erase.clear();
+		ConsoleClear.clear();
 		
 		if (choice == product) {
 			System.out.println("상품목록 페이지입니다.");
+			// ProductList.exe(User);
 		} else if (choice == review) {
 			System.out.println("리뷰 페이지입니다.");
+			// Review.exe(User);
 		} else if (choice == qna) {
 			System.out.println("문의 페이지입니다.");
+			// QnA.exe(User);
 		} else if (choice == logout) {
 			System.out.println("로그아웃에 성공했습니다.");
 			System.out.println("메인 페이지입니다.");

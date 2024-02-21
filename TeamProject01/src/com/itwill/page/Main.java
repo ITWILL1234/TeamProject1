@@ -50,15 +50,13 @@ public class Main {
 
     // 유저의 입력값이 valid할 경우, 해당 입력에 맞는 페이지로 리다이렉트 하는 코드입니다.
     private static void processUserChoice(int choice) {
-        ConsoleClear erase = new ConsoleClear();
-        erase.clear();
+        ConsoleClear.clear();
 
         if (choice == SIGN_UP) {
         	Userr_Insert regist = new Userr_Insert();
             regist.start();
         } else if (choice == SIGN_IN) {
-            Login login = new Login();
-            login.exe();
+            Login.exe();
         }
     }
 }
