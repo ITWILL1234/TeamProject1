@@ -5,11 +5,12 @@ import java.util.Scanner;
 import com.itwill.user.vo.UserVO;
 
 public class Homepage {
-	private static int product = 1;
-	private static int review = 2;
-	private static int qna = 3;
-	private static int logout = 4;
-	private static int deleteAccount = 5;
+	private static final int product = 1;
+	private static final int review = 2;
+	private static final int qna = 3;
+	private static final int editProfile = 4; 
+	private static final int logout = 5;
+	private static final int deleteAccount = 6;
 	private static final Scanner scan = new Scanner(System.in);
 	
 	private static UserVO User;
@@ -32,7 +33,12 @@ public class Homepage {
 				+ "╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
 				+ "                                                                             \r\n"
 				+ "");
-		System.out.println("<> 1. 상품 2. 리뷰 3. 문의 4. 로그아웃 5. 회원탈퇴 <>");
+		System.out.println("<> 1.상품 <>\n"
+				+ "<> 2.리뷰 <>\n"
+				+ "<> 3. 문의 <>\n"
+				+ "<> 4.회원정보 수정 <>\n"
+				+ "<> 5.로그아웃 <>\n"
+				+ "<> 6.회원탈퇴 <>");
 		System.out.println("<> 페이지를 종료하려면 'q'를 입력하세요.<>");
 	}
 	
@@ -66,6 +72,9 @@ public class Homepage {
 		} else if (choice == qna) {
 			System.out.println("문의 페이지입니다.");
 			// QnA.exe(User);
+		} else if (choice == editProfile){
+			System.out.println("회원정보 수정 페이지입니다.");
+			EditProfile.exe(User);
 		} else if (choice == logout) {
 			System.out.println("로그아웃에 성공했습니다.");
 			System.out.println("메인 페이지입니다.");

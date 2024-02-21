@@ -3,14 +3,11 @@ package com.itwill.utils;
 import java.util.Scanner;
 
 public class UserInputScanner {
-    private ValidationCheck vc = new ValidationCheck();
-    private Scanner scan;
+    private static ValidationCheck vc = new ValidationCheck();
+    private static Scanner scan;
 
-    public UserInputScanner() {
-        this.scan = new Scanner(System.in);
-    }
 
-    public String scanEmail() {
+    public static String scanEmail() {
         System.out.println("이메일을 입력해 주세요.");
         String email = scan.nextLine();
         while(vc.CheckEmpty(email)) {
@@ -21,7 +18,7 @@ public class UserInputScanner {
         return email;
     }
     
-    public String scanPassword() {
+    public static String scanPassword() {
 		System.out.println("비밀번호를 입력해 주세요.");
 		String password = scan.nextLine();
 		
@@ -33,7 +30,7 @@ public class UserInputScanner {
 		return password;
     }
     
-    public String scanFirstName() {
+    public static String scanFirstName() {
 		System.out.println("성(FirstName)을 입력해 주세요.");
 		String firstName = scan.nextLine();
 		
@@ -46,7 +43,7 @@ public class UserInputScanner {
 		return firstName;
     }
     
-    public String scanLastName() {
+    public static String scanLastName() {
 		System.out.println("이름을 입력해 주세요.");
 		String lastName = scan.nextLine();
 		
@@ -59,7 +56,7 @@ public class UserInputScanner {
     	return lastName;
     }
     
-    public String scanGender() {
+    public static String scanGender() {
 	    System.out.println("성별을 입력해 주세요.");
 	    System.out.println("1. 남자 / 2. 여자");
 	    
@@ -81,7 +78,7 @@ public class UserInputScanner {
 	    }
 	}
     
-    public String scanAddress() {
+    public static String scanAddress() {
     	System.out.println();
 		System.out.println("주소를 입력해 주세요.");
 		String address = scan.nextLine();

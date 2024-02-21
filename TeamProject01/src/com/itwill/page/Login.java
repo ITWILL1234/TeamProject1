@@ -7,8 +7,6 @@ public class Login {
 	private static String EMAIL;
 	private static String PASSWORD;
 	
-	private static UserInputScanner UIS = new UserInputScanner();
-	
 	public static void exe() {
 		System.out.println(""
 				+ "\n"
@@ -25,8 +23,8 @@ public class Login {
 		
 		/* 이메일과 비밀번호를 입력받는 코드입니다. (Scanner 사용)
 		 */ 
-		EMAIL = UIS.scanEmail();
-        PASSWORD = UIS.scanPassword();
+		EMAIL = UserInputScanner.scanEmail();
+        PASSWORD = UserInputScanner.scanPassword();
         
         /* 오라클의 user테이블에서 WHERE EMAIL 조회를 하여,
          * 비밀번호가 맞는지 확인하는 코드입니다.

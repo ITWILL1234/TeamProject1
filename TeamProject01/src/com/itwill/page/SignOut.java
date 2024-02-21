@@ -6,9 +6,6 @@ import com.itwill.user.vo.UserVO;
 
 public class SignOut {
 	private static String PASSWORD;
-
-	private static UserInputScanner UIS = new UserInputScanner();
-	private static Userr_Delete UD = new Userr_Delete();
 	
 	public static void exe(UserVO user) {
 		System.out.println(""
@@ -25,7 +22,7 @@ public class SignOut {
 	    do {
 	        System.out.println("회원 탈퇴를 위하여 비밀번호를 입력해 주세요. (취소하려면 'q'를 입력하세요)");
 
-	        PASSWORD = UIS.scanPassword();
+	        PASSWORD = UserInputScanner.scanPassword();
 
 	        // 사용자가 'esc'를 입력했을 경우의 처리
 	        if ("q".equals(PASSWORD)) {
@@ -34,7 +31,7 @@ public class SignOut {
 	            return;
 	        }
 
-	        result = UD.deleteUser(user, PASSWORD);
+	        result = Userr_Delete.deleteUser(user, PASSWORD);
 	        ConsoleClear.clear();
 
 	        if (result == 1) {
