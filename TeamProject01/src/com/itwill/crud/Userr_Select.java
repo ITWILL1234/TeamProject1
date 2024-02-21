@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import com.itwill.page.Login;
 import com.itwill.user.vo.UserVO;
 
 public class Userr_Select {
@@ -17,6 +18,8 @@ public class Userr_Select {
 	private String GENDER;
 	private String ADDRESS;
 	private Timestamp CREATE_AT;
+	
+	private UserVO user;
 
     public void SelectOne(String email, String password) {
     	// ** ID : ADMIN, PW: admin **  ** 테이블명  USERR  **USE 예약어라 USERR로 설정 **
@@ -41,10 +44,13 @@ public class Userr_Select {
             
             if (PASSWORD.equals(password)) {
             	System.out.println("로그인이 되었습니다.");
-            	UserVO user = new UserVO(EMAIL, PASSWORD, FIRSTNAME, LASTNAME, GENDER, ADDRESS, CREATE_AT);
+            	user = new UserVO(EMAIL, PASSWORD, FIRSTNAME, LASTNAME, GENDER, ADDRESS, CREATE_AT);
             	System.out.println(user);
+            	// user를 HomePage에 파라미터로 넣는 작업을 한다.
             } else {
             	System.out.println("로그인 실패!!!");
+            	Login login = new Login();
+            	login.login();
             }
             
         } catch (SQLException e) {
