@@ -5,10 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.itwill.page.ConsoleClear;
-import com.itwill.page.Login;
-import com.itwill.page.SignIn;
-import com.itwill.vo.UserVO;
+import com.itwill.page.*;
+import com.itwill.user.vo.UserVO;
 
 public class Userr_Insert {
 
@@ -20,7 +18,7 @@ public class Userr_Insert {
 		
 		// 회원가입 창에서, 유저에게 email, password...와 같은 정볼르 입력받는 코드입니다.
 		SignIn signIn = new SignIn();
-		UserVO user = signIn.register();
+		UserVO user = signIn.exe();
 		
 		// 오라클에 연결하여, 유저 테이블에 인서트를 하기위한 코드입니다.
         try (
@@ -34,17 +32,14 @@ public class Userr_Insert {
         	pstmt.setString(5, user.getLASTNAME());
         	pstmt.setString(6, user.getADDRESS());
 		   
-        	System.out.println("sql : " + sql);
         	int result = pstmt.executeUpdate();
-			System.out.println("처리건수 : " + result);
 			if (result == 0) {
 				System.out.println("회원가입이 되지 않았습니다! 관리자에게 문의하세요!");
 			} else {
 				// ** 콘솔 화면을 지우고 로그인 페이지로 리디렉션 하는 코드입니다. **
-				ConsoleClear erase = new ConsoleClear();
-		        erase.clear();
-				Login login = new Login();
-	            login.login();
+				ConsoleClear.clear();
+				System.out.println("회원가입이 되었습니다! 로그인을 해주세요!");
+				Login.exe();
 			}
     
         } catch (SQLException e) {

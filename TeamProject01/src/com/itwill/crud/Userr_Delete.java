@@ -9,7 +9,6 @@ import com.itwill.page.ConsoleClear;
 import com.itwill.vo.UserVO;
 
 public class Userr_Delete {
-	private static ConsoleClear erase = new ConsoleClear();
 	
 	private static UserVO User;
 	private static String Password;
@@ -18,7 +17,7 @@ public class Userr_Delete {
 	private static final int BADREQUEST = 400;
 	private static final int NOTFOUND = 404;
 	
-	public int deleteUser(UserVO user, String password) {
+	public static int deleteUser(UserVO user, String password) {
 		// ** ID : ADMIN, PW: admin **  ** 테이블명  USERR  **USE 예약어라 USERR로 설정 **
 		resetValue();
 		User = user;
@@ -26,7 +25,7 @@ public class Userr_Delete {
 		if (Password.equals(user.getPASSWORD())) {
 			return connectDB();
 		} else {
-			erase.clear();
+			ConsoleClear.clear();
 			return BADREQUEST;
 		}
     }
