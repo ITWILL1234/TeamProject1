@@ -8,10 +8,12 @@ public class Main {
     private static final int SIGN_IN = 2;
     private static final Scanner scan = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void exe() {
         displayWelcomeScreen();
         int inputRL = getUserChoice();
         processUserChoice(inputRL);
+        
+        return;
     }
 
     private static void displayWelcomeScreen() {
@@ -56,7 +58,7 @@ public class Main {
             regist.start();
         } else if (choice == SIGN_IN) {
             Login login = new Login();
-            login.login();
+            login.exe();
         }
     }
 }

@@ -50,7 +50,7 @@ public class Userr_Select {
             } else {
             	System.out.println("로그인 실패!!!");
             	Login login = new Login();
-            	login.login();
+            	login.exe();
             }
             
         } catch (SQLException e) {

@@ -13,7 +13,7 @@ public class SignIn {
 	
 	private UserInputScanner UIS = new UserInputScanner();
 	
-	public UserVO register() {
+	public UserVO exe() {
 		System.out.println(""
 				+ "\n"
 				+ "██████╗ ███████╗ ██████╗ ██╗███████╗████████╗██████╗  █████╗ ████████╗██╗ ██████╗ ███╗   ██╗\n"

@@ -20,7 +20,7 @@ public class Userr_Insert {
 		
 		// 회원가입 창에서, 유저에게 email, password...와 같은 정볼르 입력받는 코드입니다.
 		SignIn signIn = new SignIn();
-		UserVO user = signIn.register();
+		UserVO user = signIn.exe();
 		
 		// 오라클에 연결하여, 유저 테이블에 인서트를 하기위한 코드입니다.
         try (
@@ -44,7 +44,7 @@ public class Userr_Insert {
 				ConsoleClear erase = new ConsoleClear();
 		        erase.clear();
 				Login login = new Login();
-	            login.login();
+	            login.exe();
 			}
     
         } catch (SQLException e) {

@@ -9,7 +9,7 @@ public class Login {
 	
 	private UserInputScanner UIS = new UserInputScanner();
 	
-	public void login() {
+	public void exe() {
 		System.out.println(""
 				+ "\n"
 				+ "██╗      ██████╗  ██████╗ ██╗███╗   ██╗\n"

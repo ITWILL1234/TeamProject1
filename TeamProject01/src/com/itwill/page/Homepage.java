@@ -2,6 +2,8 @@ package com.itwill.page;
 
 import java.util.Scanner;
 
+import com.itwill.user.vo.UserVO;
+
 public class Homepage {
 	private static int product = 1;
 	private static int review = 2;
@@ -9,8 +11,11 @@ public class Homepage {
 	private static int logout = 4;
 	private static int deleteAccount = 5;
 	private static final Scanner scan = new Scanner(System.in);
+	
+	private static UserVO User;
 
-	public static void main(String[] args) {
+	public static void exe(UserVO user) {
+		User = user;
 		displayHomeScreen();
 		int inputRL = getUesrChoice();
 		processUserChoice(inputRL);
@@ -27,7 +32,8 @@ public class Homepage {
 				+ "╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝\r\n"
 				+ "                                                                             \r\n"
 				+ "");
-		System.out.println("<> 1. 상품 2. 리뷰 3. 문의 4. 로그아웃 5. 회원탈퇴 6. 종료 <>");
+		System.out.println("<> 1. 상품 2. 리뷰 3. 문의 4. 로그아웃 5. 회원탈퇴 <>");
+		System.out.println("<> 페이지를 종료하려면 'q'를 입력하세요.<>");
 	}
 	
 	private static int getUesrChoice() {
@@ -40,10 +46,10 @@ public class Homepage {
 				if(inputRL == product || inputRL == review || inputRL == qna || inputRL == logout || inputRL == deleteAccount) {
 					return inputRL;
 				} else {
-					System.out.println("\n숫자 1 ~ 6 중 입력해주세요. 종료하려면 Q 를 입력하세요.");
+					System.out.println("\n숫자 1 ~ 5 중 입력해주세요. 종료하려면 q 를 입력하세요.");
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("\n숫자 또는 Q 를 입력해주세요.");
+				System.out.println("\n숫자 또는 q 를 입력해주세요.");
 			}
 		}
 	}
@@ -59,13 +65,16 @@ public class Homepage {
 		} else if (choice == qna) {
 			System.out.println("문의 페이지입니다.");
 		} else if (choice == logout) {
+			System.out.println("로그아웃에 성공했습니다.");
 			System.out.println("메인 페이지입니다.");
+			Main.exe();
 		} else if (choice == deleteAccount) {
 			System.out.println("회원탈퇴 페이지입니다.");
+			SignOut.exe(User);
 		} else if (choice == 0) {
 			System.out.println("페이지를 종료합니다.");
-			return;
 		}
+		return;
 		
 	}
 	
