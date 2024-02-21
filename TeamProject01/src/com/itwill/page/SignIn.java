@@ -11,9 +11,7 @@ public class SignIn {
 	private String GENDER;
 	private String ADDRESS;
 	
-	private UserInputScanner UIS = new UserInputScanner();
-	
-	public UserVO register() {
+	public UserVO exe() {
 		System.out.println(""
 				+ "\n"
 				+ "██████╗ ███████╗ ██████╗ ██╗███████╗████████╗██████╗  █████╗ ████████╗██╗ ██████╗ ███╗   ██╗\n"
@@ -28,12 +26,12 @@ public class SignIn {
 		ResetValue();
 		
 		// 유저의 입력을 받는 코드입니다.
-        EMAIL = UIS.scanEmail();
-        PASSWORD = UIS.scanPassword();
-        FIRSTNAME = UIS.scanFirstName();
-        LASTNAME = UIS.scanLastName();
-        GENDER = UIS.scanGender();
-		ADDRESS = UIS.scanAddress();
+        EMAIL = UserInputScanner.scanEmail();
+        PASSWORD = UserInputScanner.scanPassword();
+        FIRSTNAME = UserInputScanner.scanFirstName();
+        LASTNAME = UserInputScanner.scanLastName();
+        GENDER = UserInputScanner.scanGender();
+		ADDRESS = UserInputScanner.scanAddress();
 		
 		UserVO newUser = new UserVO(EMAIL, PASSWORD, FIRSTNAME, LASTNAME, GENDER, ADDRESS);
 		

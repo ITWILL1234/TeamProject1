@@ -8,10 +8,12 @@ public class Main {
     private static final int SIGN_IN = 2;
     private static final Scanner scan = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void exe() {
         displayWelcomeScreen();
         int inputRL = getUserChoice();
         processUserChoice(inputRL);
+        
+        return;
     }
 
     private static void displayWelcomeScreen() {
@@ -23,7 +25,8 @@ public class Main {
                 + "███████╗    ██║ ╚═╝ ██║██║  ██║███████╗███████╗\n"
                 + "╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝\n");
         System.out.println("<> 콘솔창에 원하는 메뉴를 입력해주세요! <>");
-        System.out.println("<> 1. 회원가입 2. 로그인 <>");
+        System.out.println("<> 1. 회원가입 <>\n"
+        		+ "<> 2. 로그인 <>");
     }
 
     // 유저의 입력을 Scanner로 받는 함수입니다.
@@ -48,15 +51,13 @@ public class Main {
 
     // 유저의 입력값이 valid할 경우, 해당 입력에 맞는 페이지로 리다이렉트 하는 코드입니다.
     private static void processUserChoice(int choice) {
-        ConsoleClear erase = new ConsoleClear();
-        erase.clear();
+        ConsoleClear.clear();
 
         if (choice == SIGN_UP) {
         	Userr_Insert regist = new Userr_Insert();
             regist.start();
         } else if (choice == SIGN_IN) {
-            Login login = new Login();
-            login.login();
+            Login.exe();
         }
     }
 }
