@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.itwill.user.vo.UserVO;
 import com.itwill.page.ConsoleClear;
+import com.itwill.vo.UserVO;
 
 public class Userr_Delete {
 	private static ConsoleClear erase = new ConsoleClear();

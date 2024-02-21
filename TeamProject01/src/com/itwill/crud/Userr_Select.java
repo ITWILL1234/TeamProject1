@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import com.itwill.page.Login;
-import com.itwill.user.vo.UserVO;
+import com.itwill.vo.UserVO;
 
 public class Userr_Select {
 	private String EMAIL;

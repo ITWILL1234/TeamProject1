@@ -1,8 +1,8 @@
 package com.itwill.page;
 
 import com.itwill.utils.UserInputScanner;
+import com.itwill.vo.UserVO;
 import com.itwill.crud.Userr_Delete;
-import com.itwill.user.vo.UserVO;
 
 public class SignOut {
 	private String PASSWORD;

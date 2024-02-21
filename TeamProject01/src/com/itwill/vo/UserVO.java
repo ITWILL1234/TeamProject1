@@ -1,4 +1,4 @@
-package com.itwill.user.vo;
+package com.itwill.vo;
 import java.sql.Timestamp;
 
 public class UserVO {

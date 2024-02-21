@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import com.itwill.page.ConsoleClear;
 import com.itwill.page.Login;
 import com.itwill.page.SignIn;
-import com.itwill.user.vo.UserVO;
+import com.itwill.vo.UserVO;
 
 public class Userr_Insert {
 
