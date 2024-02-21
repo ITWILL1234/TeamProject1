@@ -27,7 +27,6 @@ public class Userr_Insert {
             Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "ADMIN", "admin");
             PreparedStatement pstmt = conn.prepareStatement(sql);
         ) {
-        	System.out.println(user.getEMAIL());
         	pstmt.setString(1, user.getEMAIL());
         	pstmt.setString(2, user.getPASSWORD());
         	pstmt.setString(3, user.getGENDER());
