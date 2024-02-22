@@ -1,4 +1,4 @@
-package com.itwill.itemDEMO;
+package com.itwill.page.item;
 
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.ItemVO;
@@ -22,7 +22,7 @@ public class OrderPage {
 		
 		System.out.println("주문 페이지입니다.");
 		System.out.println("상품을 확인해주세요.");
-		System.out.println(Item.getProductNo() + ". " + Item.getProductName());
+		System.out.println(Item.getNum() + ". " + Item.Name());
 		System.out.println("상품금액 : " + Item.getPrice());
 		System.out.println("주문수량 : " + count);
 		System.out.println("결제금액 : " + (Item.getPrice() * count));
@@ -36,7 +36,7 @@ public class OrderPage {
 			e.printStackTrace();
 		}
 		
-		ItemCatalogue.exe(User, null);
+		ProductList.exe(User);
 		
 	}
 	
