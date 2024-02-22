@@ -32,6 +32,8 @@ public class CUD {
     	return false;
     }
     
+    // 아이템값이 INT로 바뀔 수 있는 숫자만 입력되어 있는 경우 문제를 일으킬 수 있음.
+    // **유의해서 사용**
     public static boolean exeItem(String sql, HashMap<Integer, String>pair) {
     	try (
     			Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
