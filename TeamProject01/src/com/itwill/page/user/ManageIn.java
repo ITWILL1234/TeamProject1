@@ -3,6 +3,7 @@ package com.itwill.page.user;
 import java.util.HashMap;
 
 import com.itwill.crud.CUD;
+import com.itwill.crud.Read;
 import com.itwill.utils.ManagerInputScanner;
 import com.itwill.utils.UserInputScanner;
 
@@ -10,9 +11,6 @@ public class ManageIn {
 	private static String EMAIL;
 	private static String PASSWORD;
 	private static String MANAGER;
-	
-	private static final String SQL = "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) "
-			   + "VALUES (?, ?, ?, ?, ?, ?, SYSDATE)";
 	
 	public static void exe() {
 		displayScreen();
@@ -49,6 +47,18 @@ public class ManageIn {
         //MANAGER = ManagerInputScanner.scanManager();
 	}
 	
+	private static void loadUserFromOracle() {
+		if ((User = Read.SelectUser(EMAIL, PASSWORD)) != null) {
+        	ConsoleClear.clear();
+        	System.out.println("로그인에 성공하였습니다!");
+        	System.out.println("홈페이지로 이동합니다.");
+        	Homepage.exe(User);
+        } else {
+        	ConsoleClear.clear();
+        	System.out.println("로그인에 실패하였습니다.");
+        	exe();
+        }
+	}
 	
 	
 }
