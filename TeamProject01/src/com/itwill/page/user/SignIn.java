@@ -1,4 +1,4 @@
-package com.itwill.page;
+package com.itwill.page.user;
 
 import java.util.HashMap;
 
@@ -17,6 +17,15 @@ public class SignIn {
 			   + "VALUES (?, ?, ?, ?, ?, ?, SYSDATE)";
 	
 	public static void exe() {
+		displayScreen();
+		resetValue();
+		scanUserInput();
+		proceedInsertOracle();
+		
+		return;
+	}
+	
+	private static void displayScreen() {
 		System.out.println(""
 				+ "\n"
 				+ "██████╗ ███████╗ ██████╗ ██╗███████╗████████╗██████╗  █████╗ ████████╗██╗ ██████╗ ███╗   ██╗\n"
@@ -28,22 +37,9 @@ public class SignIn {
 				+ "                                                                                            \n"
 				+ "");
 		System.out.println(">> 회원가입을 시작합니다.");
-		ResetValue();
-		
-		// 유저의 입력을 받는 코드입니다.
-        EMAIL = UserInputScanner.scanEmail();
-        PASSWORD = UserInputScanner.scanPassword();
-        FIRSTNAME = UserInputScanner.scanFirstName();
-        LASTNAME = UserInputScanner.scanLastName();
-        GENDER = UserInputScanner.scanGender();
-		ADDRESS = UserInputScanner.scanAddress();
-		
-		ProceedInsertOracle();
-		
-		return;
-	}	
+	}
 	
-	private static void ResetValue() {
+	private static void resetValue() {
 		EMAIL = null;
 		PASSWORD = null;
 		FIRSTNAME = null;
@@ -52,7 +48,16 @@ public class SignIn {
 		ADDRESS = null;
 	}
 	
-	private static HashMap<Integer, String>CreateSqlPair() {
+	private static void scanUserInput() {
+		EMAIL = UserInputScanner.scanEmail();
+        PASSWORD = UserInputScanner.scanPassword();
+        FIRSTNAME = UserInputScanner.scanFirstName();
+        LASTNAME = UserInputScanner.scanLastName();
+        GENDER = UserInputScanner.scanGender();
+		ADDRESS = UserInputScanner.scanAddress();
+	}
+	
+	private static HashMap<Integer, String>createSqlPair() {
 		HashMap<Integer, String> pair = new HashMap<Integer, String>();
 		pair.put(1, EMAIL);
 		pair.put(2, PASSWORD);
@@ -63,8 +68,8 @@ public class SignIn {
 		return pair;
 	}
 	
-	private static void ProceedInsertOracle() {
-		if (CUD.exe(SQL, CreateSqlPair())) {
+	private static void proceedInsertOracle() {
+		if (CUD.exe(SQL, createSqlPair())) {
 			ConsoleClear.clear();
 			System.out.println("회원가입에 성공했습니다. 로그인페이지로 리디렉션 합니다.");
 			System.out.println();

@@ -1,39 +1,36 @@
 package com.itwill.vo;
 
 public class ItemVO {
-	private int productNo;
-	private	String productName;
+	private int Num;
+	private	String Name;
 	private int price;
-	private int orderCnt;
 	
 	public ItemVO() {
-		this.productNo = 0;
-		this.productName = null;
+		this.Num = 0;
+		this.Name = null;
 		this.price = 0;
-		this.orderCnt = 0;
 	}
 	
-	public ItemVO(int productNo, String productName, int price, int orderCnt) {
-		this.productNo = productNo;
-		this.productName = productName;
+	public ItemVO(int Num, String Name, int price) {
+		this.Num = Num;
+		this.Name = Name;
 		this.price = price;
-		this.orderCnt = orderCnt;
 	}
 
-	public int getProductNo() {
-		return productNo;
+	public int getNum() {
+		return Num;
 	}
 
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
+	public void setNum(int Num) {
+		this.Num = Num;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String Name() {
+		return Name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String Name) {
+		this.Name = Name;
 	}
 
 	public int getPrice() {
@@ -44,18 +41,9 @@ public class ItemVO {
 		this.price = price;
 	}
 
-	public int getOrderCnt() {
-		return orderCnt;
-	}
-
-	public void setOrderCnt(int orderCnt) {
-		this.orderCnt = orderCnt;
-	}
-
 	@Override
 	public String toString() {
-		return "ItemVO [productNo=" + productNo + ", productName=" + productName + ", price=" + price + ", orderCnt="
-				+ orderCnt + "]";
+		return "제품번호 : " + Num + ", 제품 이름=" + Name + ", 제품 가격 : " + price ; 
 	}
 	
 	

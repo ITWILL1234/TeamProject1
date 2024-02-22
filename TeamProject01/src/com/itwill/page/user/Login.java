@@ -1,4 +1,4 @@
-package com.itwill.page;
+package com.itwill.page.user;
 
 import com.itwill.crud.Read;
 import com.itwill.utils.UserInputScanner;

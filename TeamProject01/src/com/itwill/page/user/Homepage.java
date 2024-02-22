@@ -1,7 +1,8 @@
-package com.itwill.page;
+package com.itwill.page.user;
 
 import java.util.Scanner;
 
+import com.itwill.page.item.ProductList;
 import com.itwill.vo.UserVO;
 
 public class Homepage {
@@ -18,8 +19,7 @@ public class Homepage {
 	public static void exe(UserVO user) {
 		User = user;
 		displayHomeScreen();
-		int inputRL = getUesrChoice();
-		processUserChoice(inputRL);
+		processUserChoice(getUesrChoice());
 	}
 
 	private static void displayHomeScreen() {
@@ -65,7 +65,7 @@ public class Homepage {
 		
 		if (choice == product) {
 			System.out.println("상품목록 페이지입니다.");
-			// ProductList.exe(User);
+			ProductList.exe(User);
 		} else if (choice == review) {
 			System.out.println("리뷰 페이지입니다.");
 			// Review.exe(User);

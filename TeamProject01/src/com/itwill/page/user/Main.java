@@ -1,4 +1,4 @@
-package com.itwill.page;
+package com.itwill.page.user;
 
 import java.util.Scanner;
 
@@ -9,8 +9,7 @@ public class Main {
 
     public static void exe() {
         displayWelcomeScreen();
-        int inputRL = getUserChoice();
-        processUserChoice(inputRL);
+        processUserChoice(getUserChoice());
         
         return;
     }

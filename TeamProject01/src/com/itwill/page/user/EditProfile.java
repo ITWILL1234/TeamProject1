@@ -1,4 +1,4 @@
-package com.itwill.page;
+package com.itwill.page.user;
 
 import java.util.HashMap;
 import java.util.Scanner;
