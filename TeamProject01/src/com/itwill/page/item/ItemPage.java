@@ -1,4 +1,4 @@
-package com.itwill.itemDEMO;
+package com.itwill.page.item;
 
 import java.util.Scanner;
 
@@ -14,8 +14,6 @@ public class ItemPage {
 	public static void exe(UserVO user, ItemVO item) {
 		User = user;
 		Item = item;
-		System.out.println(User);
-		System.out.println(Item);
 		
 		displayItemPage();
 		int inputRL = getUserChoice();
@@ -26,10 +24,9 @@ public class ItemPage {
 		
 		System.out.println("상품의 상세정보입니다.");
 		System.out.println();
-		System.out.println("상품번호 : " + Item.getProductNo() + ". \n"
-						 + "상품이름 : " + Item.getProductName() + "\n"
-						 + "가격 : " + Item.getPrice() + "\n" 
-						 + "수량 : " + Item.getOrderCnt());
+		System.out.println("상품번호 : " + Item.getNum() + " \n"
+						 + "상품이름 : " + Item.Name() + "\n"
+						 + "가격 : " + Item.getPrice() + "\n") ;
 		
 		System.out.println("원하는 메뉴를 입력하세요.");
 		System.out.println("1. 상품구매 2. 카탈로그");
@@ -57,7 +54,7 @@ public class ItemPage {
 	private static void processUserChoice(int choice) {
 		
 		if (choice == CATALOGUE) {
-			ItemCatalogue.exe(User, null);
+			ProductList.exe(User);
 		}
 			
 	}

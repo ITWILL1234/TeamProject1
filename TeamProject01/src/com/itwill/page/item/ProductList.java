@@ -1,22 +1,24 @@
-package com.itwill.itemDEMO;
+package com.itwill.page.item;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.itwill.page.ConsoleClear;
+import com.itwill.crud.ProductDAO;
+import com.itwill.page.user.ConsoleClear;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
-public class ItemCatalogue {
+public class ProductList {
 	private static Scanner scan = new Scanner(System.in);
 	private static ArrayList<ItemVO> Item;
 	private static UserVO User;
 	
-	public static void exe(UserVO user, ArrayList<ItemVO> item) {
+	public static void exe(UserVO user) {
 		User = user;
-		Item = item;
+		Item = ProductDAO.getProductList();
 		
 		displayItemScreen();
+		productMenu();
 		getUeserChoice();
 		return;
 	}
@@ -32,15 +34,16 @@ public class ItemCatalogue {
 				+ "                                                                            \r\n"
 				+ ""
 				);
-		System.out.println("상품번호를 입력해주세요.");
-		for (ItemVO vo : Item) {
-			System.out.println(vo.getProductNo() + ". " + vo.getProductName());
-		}
+		System.out.println(" 구매하실 상품번호를 입력해주세요.");
+//		for (ItemVO vo : Item) {
+//			System.out.println(vo.getNum() + ". " + vo.getPrice());
+//		}
 	}
 	
 	private static void getUeserChoice() {
 		while (true) {
 			try {
+				System.out.println("getUeserChoice() 실행");
 				String input = scan.nextLine();
 				if (input.equalsIgnoreCase("Q")) return;
 				int inputRL = Integer.parseInt(input);
@@ -57,6 +60,12 @@ public class ItemCatalogue {
 		
 	} 
 	
+	private static void productMenu() {
+	    for (ItemVO product : Item) {
+	        System.out.println("상품번호: " + product.getNum() + ", 상품명: " + product.Name() + ", 가격: " + product.getPrice());
+	    }
+	}
+
 	private static void processUserChoice(ItemVO choice) {
 		ConsoleClear.clear();
 		System.out.println("상품페이지로 이동합니다.");

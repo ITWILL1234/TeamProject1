@@ -55,30 +55,3 @@ public class Read {
         return null;
     }
 }
-    
-
-//    public static void updateLocalUser(String email) {
-//        try (
-//        	Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "ADMIN", "admin");
-//        	PreparedStatement pstmt = conn.prepareStatement(SQL);
-//        ) {
-//            // 결과 처리
-//        	pstmt.setString(1, email);
-//        	ResultSet rs = pstmt.executeQuery();
-//            while (rs.next()) {
-//                EMAIL = rs.getString("EMAIL");
-//                PASSWORD = rs.getString("PASSWORD");
-//                GENDER = rs.getString("GENDER");
-//                FIRSTNAME = rs.getString("FIRST_NAME");
-//                LASTNAME = rs.getString("LAST_NAME");
-//                ADDRESS = rs.getString("ADDRESS");
-//                CREATE_AT = rs.getTimestamp("CREATE_AT"); // 작성시간
-//            }
-//            
-//            EditProfile.exe(new UserVO(EMAIL, PASSWORD, FIRSTNAME, LASTNAME, GENDER, ADDRESS, CREATE_AT));
-//        } catch (SQLException e) {
-//        	e.printStackTrace();
-//        }
-//        return;
-//    }
-//}

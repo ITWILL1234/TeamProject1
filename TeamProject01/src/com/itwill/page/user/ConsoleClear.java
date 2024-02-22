@@ -1,4 +1,4 @@
-package com.itwill.page;
+package com.itwill.page.user;
 
 /*
  * 콘솔창을 깨끗히 만들어주는 코드입니다.
