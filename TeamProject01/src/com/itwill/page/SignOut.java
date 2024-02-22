@@ -12,17 +12,32 @@ public class SignOut {
 	private static final String SQL = "DELETE FROM USERR WHERE EMAIL = ? ";
 	
 	public static void exe(UserVO user) {
-		USER = null;
 		USER = user;
 		displayScreen();
+		userInput();
+	}
+	
+	public static void displayScreen() {
+		System.out.println(""
+				+ "███████╗ ██████╗ ██╗███╗   ██╗     ██████╗ ██╗   ██╗████████╗    \n"
+				+ "██╔════╝██╔════╝ ██║████╗  ██║    ██╔═══██╗██║   ██║╚══██╔══╝    \n"
+				+ "███████╗██║  ███╗██║██╔██╗ ██║    ██║   ██║██║   ██║   ██║       \n"
+				+ "╚════██║██║   ██║██║██║╚██╗██║    ██║   ██║██║   ██║   ██║       \n"
+				+ "███████║╚██████╔╝██║██║ ╚████║    ╚██████╔╝╚██████╔╝   ██║       \n"
+				+ "╚══════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝     ╚═════╝  ╚═════╝    ╚═╝       \n"
+				+ "                                                                 "
+				+ "");
 		
-	    while(true) {
+	}
+	
+	public static void userInput() {
+		while(true) {
 	        System.out.println("회원 탈퇴를 위하여 비밀번호를 입력해 주세요. (취소하려면 'q'를 입력하세요)");
 
 	        PASSWORD = UserInputScanner.scanPassword();
 
-	        // 사용자가 'esc'를 입력했을 경우의 처리
-	        if ("q".equals(PASSWORD)) {
+	        // 사용자가 'q'를 입력했을 경우의 처리
+	        if ("q".equalsIgnoreCase(PASSWORD)) {
 	            System.out.println("취소되었습니다. 홈페이지로 이동합니다.");
 	            Homepage.exe(USER);
 	            return;
@@ -45,18 +60,5 @@ public class SignOut {
 	    
 	        return;
 	    }
-	}
-	
-	public static void displayScreen() {
-		System.out.println(""
-				+ "███████╗ ██████╗ ██╗███╗   ██╗     ██████╗ ██╗   ██╗████████╗    \n"
-				+ "██╔════╝██╔════╝ ██║████╗  ██║    ██╔═══██╗██║   ██║╚══██╔══╝    \n"
-				+ "███████╗██║  ███╗██║██╔██╗ ██║    ██║   ██║██║   ██║   ██║       \n"
-				+ "╚════██║██║   ██║██║██║╚██╗██║    ██║   ██║██║   ██║   ██║       \n"
-				+ "███████║╚██████╔╝██║██║ ╚████║    ╚██████╔╝╚██████╔╝   ██║       \n"
-				+ "╚══════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝     ╚═════╝  ╚═════╝    ╚═╝       \n"
-				+ "                                                                 "
-				+ "");
-		
 	}
 }

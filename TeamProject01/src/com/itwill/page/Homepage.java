@@ -18,8 +18,7 @@ public class Homepage {
 	public static void exe(UserVO user) {
 		User = user;
 		displayHomeScreen();
-		int inputRL = getUesrChoice();
-		processUserChoice(inputRL);
+		processUserChoice(getUesrChoice());
 	}
 
 	private static void displayHomeScreen() {

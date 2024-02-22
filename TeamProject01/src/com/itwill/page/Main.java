@@ -9,8 +9,7 @@ public class Main {
 
     public static void exe() {
         displayWelcomeScreen();
-        int inputRL = getUserChoice();
-        processUserChoice(inputRL);
+        processUserChoice(getUserChoice());
         
         return;
     }
