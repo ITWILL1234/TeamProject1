@@ -91,7 +91,7 @@ public class EditProfile {
 		String newData;
 		if (choice == CHANGE_PASSWORD) {
 			newData = UserInputScanner.scanPassword();
-			if (CUD.exe(PASSWORD_SQL, createPair(newData))) {
+			if (CUD.exeUser(PASSWORD_SQL, createPair(newData))) {
 				ConsoleClear.clear();
 				User.setPASSWORD(newData);
 				System.out.println("데이터가 성공적으로 업데이트 되었습니다!");
@@ -100,7 +100,7 @@ public class EditProfile {
 			}
 		} else if(choice == CHANGE_ADDRESS) {
 			newData = UserInputScanner.scanAddress();
-			if (CUD.exe(ADDRESS_SQL, createPair(newData))) {
+			if (CUD.exeUser(ADDRESS_SQL, createPair(newData))) {
 				ConsoleClear.clear();
 				User.setADDRESS(newData);
 				System.out.println("데이터가 성공적으로 업데이트 되었습니다!");
