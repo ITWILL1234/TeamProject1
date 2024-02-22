@@ -57,5 +57,6 @@ public class Main {
         } else if (choice == SIGN_IN) {
             Login.exe();
         }
+        return;
     }
 }

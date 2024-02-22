@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UserInputScanner {
     private static ValidationCheck vc = new ValidationCheck();
-    private static Scanner scan;
+    private static Scanner scan = new Scanner(System.in);
 
 
     public static String scanEmail() {
