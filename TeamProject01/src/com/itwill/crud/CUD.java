@@ -39,10 +39,15 @@ public class CUD {
     			) {
     		
     		for (Map.Entry<Integer, String> entry : pair.entrySet()) {
-    			entry.getKey();
-    			entry.getValue();
-    			pstmt.setString(entry.getKey(), entry.getValue());
+    			String value = entry.getValue();
+    			try {
+    				int intValue = Integer.parseInt(value);
+    				pstmt.setInt(entry.getKey(), intValue);
+    			} catch(NumberFormatException e) {
+    				pstmt.setString(entry.getKey(), value);
+    			}
     		}
+    		
     		// 요청 처리가 잘 되었을 경우, 해당 값이 1이상이 나오므로 성공 처리.
     		if (pstmt.executeUpdate() > 0) return true;
     	} catch (SQLException e) {
