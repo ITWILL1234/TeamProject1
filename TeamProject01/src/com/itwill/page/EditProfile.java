@@ -1,15 +1,20 @@
 package com.itwill.page;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
+import com.itwill.crud.CUD;
+import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.UserVO;
-import com.itwill.crud.Userr_Update;
 
 public class EditProfile {
 	private static final int CHANGE_PASSWORD = 1;
 	private static final int CHANGE_ADDRESS = 2;
 	private static final int GO_HOME = 3;
 	private static final int QUIT = 4;
+	
+	private static final String PASSWORD_SQL = "UPDATE USERR SET PASSWORD = ? WHERE EMAIL = ?";
+    private static final String ADDRESS_SQL = "UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ?";
 	
 	private static UserVO User;
 	
@@ -60,10 +65,9 @@ public class EditProfile {
 		}
 	}
 	private static void processUserChoice(int choice) {
-		ConsoleClear.clear();
-		
 		if (choice == CHANGE_PASSWORD || choice == CHANGE_ADDRESS) {
-			Userr_Update.edit(User, choice);
+			processUserUpdate(choice);
+			exe(User);
 		} else if (choice == GO_HOME) {
 			System.out.println("홈페이지로 이동합니다.");
 			Homepage.exe(User);
@@ -75,4 +79,34 @@ public class EditProfile {
 		return;
 	}
 	
+	// CUD에 넣을 HashMap데이터 생성.
+	private static HashMap<Integer, String> createPair(String newData) {
+		HashMap<Integer, String> pair = new HashMap<Integer, String>();
+		pair.put(1, newData);
+		pair.put(2, User.getEMAIL());
+		return pair;
+	}
+	
+	private static void processUserUpdate(int choice) {
+		String newData;
+		if (choice == CHANGE_PASSWORD) {
+			newData = UserInputScanner.scanPassword();
+			if (CUD.exe(PASSWORD_SQL, createPair(newData))) {
+				ConsoleClear.clear();
+				User.setPASSWORD(newData);
+				System.out.println("데이터가 성공적으로 업데이트 되었습니다!");
+			} else {
+				System.out.println("데이터 업로드에 실패하였습니다!");
+			}
+		} else if(choice == CHANGE_ADDRESS) {
+			newData = UserInputScanner.scanAddress();
+			if (CUD.exe(ADDRESS_SQL, createPair(newData))) {
+				ConsoleClear.clear();
+				User.setADDRESS(newData);
+				System.out.println("데이터가 성공적으로 업데이트 되었습니다!");
+			} else {
+				System.out.println("데이터 업로드에 실패하였습니다!");
+			}
+		}
+	}
 }

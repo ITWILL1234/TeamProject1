@@ -49,7 +49,7 @@ public class Homepage {
 				if (input.equalsIgnoreCase("Q")) return 0;
 				int inputRL = Integer.parseInt(input);
 				
-				if(inputRL == product || inputRL == review || inputRL == qna || inputRL == logout || inputRL == deleteAccount) {
+				if(inputRL == product || inputRL == review || inputRL == qna || inputRL == editProfile || inputRL == logout || inputRL == deleteAccount) {
 					return inputRL;
 				} else {
 					System.out.println("\n숫자 1 ~ 5 중 입력해주세요. 종료하려면 q 를 입력하세요.");
