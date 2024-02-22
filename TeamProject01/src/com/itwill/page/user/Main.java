@@ -6,6 +6,7 @@ public class Main {
     private static final int SIGN_UP = 1;
     private static final int SIGN_IN = 2;
     private static final Scanner scan = new Scanner(System.in);
+	private static final int MANAGE_IN = 3;
 
     public static void exe() {
         displayWelcomeScreen();
@@ -24,7 +25,8 @@ public class Main {
                 + "╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝\n");
         System.out.println("<> 콘솔창에 원하는 메뉴를 입력해주세요! <>");
         System.out.println("<> 1. 회원가입 <>\n"
-        		+ "<> 2. 로그인 <>");
+        		+ "<> 2. 로그인 <>\n"
+        		+ "<> 3. 관리자 모드 <>");
     }
 
     // 유저의 입력을 Scanner로 받는 함수입니다.
@@ -36,10 +38,10 @@ public class Main {
                 String input = scan.nextLine();
                 int inputRL = Integer.parseInt(input);
 
-                if (inputRL == SIGN_UP || inputRL == SIGN_IN) {
+                if (inputRL == SIGN_UP || inputRL == SIGN_IN || inputRL == MANAGE_IN) {
                     return inputRL;
                 } else {
-                    System.out.println("\n1 또는 2를 입력해주세요. 다시 입력해주세요."); // 잘못된 숫자 입력 처리
+                    System.out.println("\n1 이나 2 또는 3을 입력해주세요. 다시 입력해주세요."); // 잘못된 숫자 입력 처리
                 }
             } catch (NumberFormatException e) {
                 System.out.println("\n숫자로 입력해주세요."); // 숫자가 아닌 입력 처리
@@ -55,7 +57,9 @@ public class Main {
         	SignIn.exe();
         } else if (choice == SIGN_IN) {
             Login.exe();
-        }
+        }else if (choice == MANAGE_IN) {
+            ManageIn.exe();
         return;
+    }
     }
 }
