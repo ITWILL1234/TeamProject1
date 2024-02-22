@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.itwill.utils.DBConfig;
 import com.itwill.vo.ItemVO;
@@ -51,23 +51,24 @@ public class Read {
         return null;
     }
     
-    public static ArrayList<ItemVO> getProductList() {
-        ArrayList<ItemVO> productList = new ArrayList<>();
+    public static HashMap<Integer, ItemVO> getProductList() {
+        HashMap<Integer, ItemVO> productList = new HashMap<>();
         String sql = SQL_PRODUCT_LIST;
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                productList.add(new ItemVO(
-                    rs.getInt("NUM"),
-                    rs.getString("NAME"),
-                    rs.getInt("PRICE")
-                ));
+            	ItemVO item = new ItemVO(rs.getInt("NUM"), rs.getString("NAME"), rs.getInt("PRICE"));
+            	productList.put(item.getNum(), item);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return productList;
+    }
+    
+    public static ItemVO getItem(int ItemNumber) {
+    	return null;
     }
 }
