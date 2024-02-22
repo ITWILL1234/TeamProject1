@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.itwill.crud.Read;
-import com.itwill.page.user.ConsoleClear;
+import com.itwill.page.utils.ConsoleClear;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 

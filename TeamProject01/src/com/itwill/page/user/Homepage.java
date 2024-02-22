@@ -3,6 +3,7 @@ package com.itwill.page.user;
 import java.util.Scanner;
 
 import com.itwill.page.item.ProductList;
+import com.itwill.page.utils.ConsoleClear;
 import com.itwill.vo.UserVO;
 
 public class Homepage {

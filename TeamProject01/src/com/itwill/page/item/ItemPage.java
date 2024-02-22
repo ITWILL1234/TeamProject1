@@ -2,7 +2,7 @@ package com.itwill.page.item;
 
 import java.util.Scanner;
 
-import com.itwill.page.user.ConsoleClear;
+import com.itwill.page.utils.ConsoleClear;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 

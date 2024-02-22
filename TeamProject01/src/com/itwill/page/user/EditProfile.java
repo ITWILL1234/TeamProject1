@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.itwill.crud.CUD;
+import com.itwill.page.utils.ConsoleClear;
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.UserVO;
 

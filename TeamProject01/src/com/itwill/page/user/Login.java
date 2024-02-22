@@ -1,6 +1,7 @@
 package com.itwill.page.user;
 
 import com.itwill.crud.Read;
+import com.itwill.page.utils.ConsoleClear;
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.UserVO;
 

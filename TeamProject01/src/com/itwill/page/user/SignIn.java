@@ -3,6 +3,7 @@ package com.itwill.page.user;
 import java.util.HashMap;
 
 import com.itwill.crud.CUD;
+import com.itwill.page.utils.ConsoleClear;
 import com.itwill.utils.UserInputScanner;
 
 public class SignIn {
