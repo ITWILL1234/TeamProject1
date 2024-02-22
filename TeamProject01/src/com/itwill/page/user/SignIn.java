@@ -69,7 +69,7 @@ public class SignIn {
 	}
 	
 	private static void proceedInsertOracle() {
-		if (CUD.exe(SQL, createSqlPair())) {
+		if (CUD.exeUser(SQL, createSqlPair())) {
 			ConsoleClear.clear();
 			System.out.println("회원가입에 성공했습니다. 로그인페이지로 리디렉션 합니다.");
 			System.out.println();

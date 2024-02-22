@@ -46,7 +46,7 @@ public class SignOut {
 	        if(PASSWORD.equals(USER.getPASSWORD())) {
 	        	HashMap<Integer, String> map = new HashMap<Integer, String>();
 	        	map.put(1, USER.getEMAIL());
-	        	if(CUD.exe(SQL, map)) {
+	        	if(CUD.exeUser(SQL, map)) {
 	        		ConsoleClear.clear();
 	        		System.out.println("회원탈퇴에 성공하였습니다. 메인 페이지로 이동합니다.");
 	        		Main.exe();
