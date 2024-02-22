@@ -68,7 +68,7 @@ public class ProductList {
 
 	private static void processUserChoice(ItemVO choice) {
 		ConsoleClear.clear();
-		System.out.println("상품페이지로 이동합니다.");
+		System.out.println("상품 페이지로 이동합니다.");
 		ItemPage.exe(User, choice);
 		
 	}

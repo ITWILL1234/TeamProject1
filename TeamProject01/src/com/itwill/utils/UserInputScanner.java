@@ -92,5 +92,19 @@ public class UserInputScanner {
 		return address;
 	}
     
+    public static int scanNumber() {
+    	System.out.println();
+    	System.out.println("숫자를 입력해주세요.");
+    	System.out.print("수량 : ");
+    	String number = scan.nextLine();
+    	
+    	while (vc.isNumber(number)) {
+    		number = scan.nextLine();
+    	}
+    	
+    	System.out.println();
+    	return Integer.parseInt(number);
+    }
+    
     
 }

@@ -40,4 +40,17 @@ public class ValidationCheck {
 		}
 		return check;
 	}
+	
+	// 입력값이 숫자타입으로 변환될 수 있는지 확인합니다.
+	public boolean isNumber(String value) {
+		boolean check = true;
+		try {
+			Integer.parseInt(value);
+			check = false;
+		} catch (NumberFormatException e) {
+			System.out.println("유효한 숫자가 아닙니다. 다시 입력해주세요.");
+			check = true;
+		}
+		return check;
+	}
 }
