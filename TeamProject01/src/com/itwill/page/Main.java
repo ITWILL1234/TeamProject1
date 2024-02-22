@@ -1,7 +1,6 @@
 package com.itwill.page;
 
 import java.util.Scanner;
-import com.itwill.crud.Userr_Insert;
 
 public class Main {
     private static final int SIGN_UP = 1;
@@ -54,8 +53,7 @@ public class Main {
         ConsoleClear.clear();
 
         if (choice == SIGN_UP) {
-        	Userr_Insert regist = new Userr_Insert();
-            regist.start();
+        	SignIn.exe();
         } else if (choice == SIGN_IN) {
             Login.exe();
         }

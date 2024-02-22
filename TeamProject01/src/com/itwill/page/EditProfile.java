@@ -11,6 +11,9 @@ public class EditProfile {
 	private static final int GO_HOME = 3;
 	private static final int QUIT = 4;
 	
+	private static final String PASSWORD_SQL = "UPDATE USERR SET PASSWORD = ? WHERE EMAIL = ?";
+    private static final String ADDRESS_SQL = "UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ?";
+	
 	private static UserVO User;
 	
 	private static final Scanner scan = new Scanner(System.in);
@@ -73,6 +76,10 @@ public class EditProfile {
 			System.out.println("문제가 발생했습니다. 관리자에게 문의해주세요!!");
 		}
 		return;
+	}
+	
+	private static boolean processUpdateProfile() {
+		return false;
 	}
 	
 }

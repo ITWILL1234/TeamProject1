@@ -58,8 +58,7 @@ public class ItemCatalogue {
 	} 
 	
 	private static void processUserChoice(ItemVO choice) {
-		ConsoleClear erase = new ConsoleClear();
-		erase.clear();
+		ConsoleClear.clear();
 		System.out.println("상품페이지로 이동합니다.");
 		ItemPage.exe(User, choice);
 		
