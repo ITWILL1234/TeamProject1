@@ -51,8 +51,8 @@ public class Login {
 	private static void loadUserFromOracle() {
 		ClientLogin clientLogin = new ClientLogin();
 		clientLogin.start(EMAIL, PASSWORD);
-	
-		if (clientLogin.getData() != null) {
+		User = clientLogin.getData();
+		if (User != null) {
         	ConsoleClear.clear();
         	System.out.println("로그인에 성공하였습니다!");
         	System.out.println("홈페이지로 이동합니다.");
