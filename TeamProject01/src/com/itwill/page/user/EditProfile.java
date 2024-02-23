@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import com.itwill.crud.CUD;
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.socket.client.ClientEditAddress;
+import com.itwill.socket.client.ClientEditPassword;
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.UserVO;
 
@@ -13,9 +15,6 @@ public class EditProfile {
 	private static final int CHANGE_ADDRESS = 2;
 	private static final int GO_HOME = 3;
 	private static final int QUIT = 4;
-	
-	private static final String PASSWORD_SQL = "UPDATE USERR SET PASSWORD = ? WHERE EMAIL = ?";
-    private static final String ADDRESS_SQL = "UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ?";
 	
 	private static UserVO User;
 	
@@ -92,7 +91,9 @@ public class EditProfile {
 		String newData;
 		if (choice == CHANGE_PASSWORD) {
 			newData = UserInputScanner.scanPassword();
-			if (CUD.exeUser(PASSWORD_SQL, createPair(newData))) {
+			ClientEditPassword clientEditPassword = new ClientEditPassword();
+			clientEditPassword.start(createPair(newData));
+			if (clientEditPassword.getResult()) {
 				ConsoleClear.clear();
 				User.setPASSWORD(newData);
 				System.out.println("데이터가 성공적으로 업데이트 되었습니다!");
@@ -101,7 +102,9 @@ public class EditProfile {
 			}
 		} else if(choice == CHANGE_ADDRESS) {
 			newData = UserInputScanner.scanAddress();
-			if (CUD.exeUser(ADDRESS_SQL, createPair(newData))) {
+			ClientEditAddress clientEditAddress = new ClientEditAddress();
+			clientEditAddress.start(createPair(newData));
+			if (clientEditAddress.getResult()) {
 				ConsoleClear.clear();
 				User.setADDRESS(newData);
 				System.out.println("데이터가 성공적으로 업데이트 되었습니다!");
