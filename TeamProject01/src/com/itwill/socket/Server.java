@@ -153,6 +153,7 @@ public class Server {
                 try {
                     // 해당 클라이언트에게만 메시지를 전송합니다.
                     out.writeBoolean(result);
+                    System.out.println(result);
                     
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());
