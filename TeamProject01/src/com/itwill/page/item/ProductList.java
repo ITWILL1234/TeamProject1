@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.itwill.crud.Read;
 import com.itwill.page.utils.ConsoleClear;
 import com.itwill.socket.client.ClientProductList;
 import com.itwill.vo.ItemVO;

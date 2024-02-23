@@ -3,7 +3,6 @@ package com.itwill.page.user;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.itwill.crud.CUD;
 import com.itwill.page.utils.ConsoleClear;
 import com.itwill.socket.client.ClientEditAddress;
 import com.itwill.socket.client.ClientEditPassword;
