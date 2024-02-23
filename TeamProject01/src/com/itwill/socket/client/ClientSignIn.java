@@ -1,4 +1,4 @@
-package com.itwill.socket;
+package com.itwill.socket.client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,22 +7,31 @@ import java.net.Socket;
 import java.util.HashMap;
 
 import com.itwill.utils.Config;
-import com.itwill.vo.ItemVO;
-
+import com.itwill.vo.UserVO;
 
 // 내부클래스를 사용한 읽기, 쓰기 쓰레드 생성해서 사용
 // 쓰기쓰레드 : 메시지 작성 및 전송을 독립적으로 처리(언제든지 메시지 보내기-쓰기전용)
 // 읽기쓰레드 : 서버쪽에서 보내온 메시지를 받아서 화면 표시(언제든지 메시지 읽기-읽기전용)
-public class Client {
-	
+public class ClientSignIn {
+	private static final String SIGN_IN = "SIGN_IN";
 	private static final String IP_ADDRESS = Config.getIpAddress();
+	private static HashMap<Integer, String> sqlPair;
+	
+	private boolean resultValue;
 
-	public void start() {
+	public boolean getData() {
+        return this.resultValue;
+    }
+
+	public void start(HashMap<Integer, String> pair) {
+		sqlPair = null;
+		resultValue = false;
+		sqlPair = pair;
+		
 		Socket socket = null;
 		try  {
 			socket = new Socket(IP_ADDRESS, 10000);
-			//socket = new Socket("192.168.18.31", 10000);
-			//내 아이피
+			
 			System.out.println(">> 서버 접속 완료");
 			
 			//Output 전용 : 메시지 보내기 전용 쓰레드 생성(쓰기전용)
@@ -55,28 +64,13 @@ public class Client {
 	            System.out.println(":: 출력객체가 없어서 작업종료");
 	            return;
 	        }
-
-	        // 서버에 데이터 보내기
-	        ItemVO item1 = new ItemVO(1, "one", 10);
-	        ItemVO item2 = new ItemVO(2, "two", 20);
-	        ItemVO item3 = new ItemVO(3, "three", 30);
-	        
-	        HashMap<Integer, ItemVO> map = new HashMap<Integer, ItemVO>();
-	        
-	        map.put(1, item1);
-	        map.put(2, item2);
-	        map.put(3, item3);
 	        try {
-	            outData.writeObject(map);
+	            outData.writeUTF(SIGN_IN);
 	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
-	            System.out.println("객체의 데이터를 내보냈습니다!");
 	            
-	            outData.writeUTF("HashMap<Integer, ItemVO>"); // 문자열 전송
+	            outData.writeObject(sqlPair);
 	            outData.flush(); // 데이터 전송 후 버퍼 비우기
 	            
-	            outData.writeUTF("CUD");
-	            outData.flush();
-	            System.out.println("스트링 타입의 데이터를 내보냈습니다.");
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -103,13 +97,7 @@ public class Client {
 			//메시지 받아서 화면 출력
 			try {
 				while (true) {
-					try {
-						HashMap<Integer, ItemVO> itemMap = (HashMap<Integer, ItemVO>) in.readObject();
-						System.out.println(itemMap + " ------ 클라이언트가 아이템을 읽어옵니다.");
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					resultValue = in.readBoolean();
 					break;
 				}
 			} catch (IOException e) {

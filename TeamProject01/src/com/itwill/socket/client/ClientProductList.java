@@ -14,9 +14,6 @@ import com.itwill.vo.ItemVO;
 // 쓰기쓰레드 : 메시지 작성 및 전송을 독립적으로 처리(언제든지 메시지 보내기-쓰기전용)
 // 읽기쓰레드 : 서버쪽에서 보내온 메시지를 받아서 화면 표시(언제든지 메시지 읽기-읽기전용)
 public class ClientProductList {
-	private static final String LOGIN = "LOGIN";
-	private static final String EDIT_PASSWORD = "EDIT_PASSWORD";
-	private static final String EDIT_ADDRESS = "EDIT_ADDRESS";
 	private static final String PRODUCT_LIST = "PRODUCT_LIST";
 	private static final String IP_ADDRESS = Config.getIpAddress();
 	private HashMap<Integer, ItemVO> result;

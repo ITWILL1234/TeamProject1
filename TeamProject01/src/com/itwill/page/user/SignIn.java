@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.itwill.crud.CUD;
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.socket.client.ClientSignIn;
 import com.itwill.utils.UserInputScanner;
 
 public class SignIn {
@@ -13,9 +14,6 @@ public class SignIn {
 	private static String LASTNAME;
 	private static String GENDER;
 	private static String ADDRESS;
-	
-	private static final String SQL = "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) "
-			   + "VALUES (?, ?, ?, ?, ?, ?, SYSDATE)";
 	
 	public static void exe() {
 		displayScreen();
@@ -70,7 +68,9 @@ public class SignIn {
 	}
 	
 	private static void proceedInsertOracle() {
-		if (CUD.exeUser(SQL, createSqlPair())) {
+		ClientSignIn clientSignIn = new ClientSignIn();
+		clientSignIn.start(createSqlPair());
+		if (clientSignIn.getData()) {
 			ConsoleClear.clear();
 			System.out.println("회원가입에 성공했습니다. 로그인페이지로 리디렉션 합니다.");
 			System.out.println();

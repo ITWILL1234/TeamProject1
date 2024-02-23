@@ -97,7 +97,11 @@ public class Server {
         		String password = inData.readUTF();
         		sendToClientLoginResult(name, Read.selectUser(email, password));
         	} else if (req.equals(REGISTRATION)) { 
-        		// 추후 구현;
+        		Object inObject = inData.readObject();
+        		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
+        		Boolean result = CUD.exeUser("INSERT INTO USERR (EMAIL, PASSWORD, GENDER, "
+        				+ "FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) VALUES (?, ?, ?, ?, ?, ?, SYSDATE)", pstmtPair);
+        		sendToClientCUDResult(name, result);
         	} else if (req.equals(EDIT_PASSWORD)) {
         		Object inObject = inData.readObject();
         		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
