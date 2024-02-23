@@ -1,10 +1,9 @@
-package test.socket;
+package com.itwill.socket;
 
-public class TCPClientMultiChatTest {
+public class ClientExe {
 
 	public static void main(String[] args) {
-		new TCPClientMultiChat().start();
-
+		new Client().start();
 	}
 
 }

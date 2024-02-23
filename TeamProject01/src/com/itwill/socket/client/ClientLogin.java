@@ -1,4 +1,4 @@
-package com.itwill.socket;
+package com.itwill.socket.client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,7 +13,7 @@ import com.itwill.vo.ItemVO;
 // 내부클래스를 사용한 읽기, 쓰기 쓰레드 생성해서 사용
 // 쓰기쓰레드 : 메시지 작성 및 전송을 독립적으로 처리(언제든지 메시지 보내기-쓰기전용)
 // 읽기쓰레드 : 서버쪽에서 보내온 메시지를 받아서 화면 표시(언제든지 메시지 읽기-읽기전용)
-public class Client {
+public class ClientLogin {
 	
 	private static final String IP_ADDRESS = Config.getIpAddress();
 
