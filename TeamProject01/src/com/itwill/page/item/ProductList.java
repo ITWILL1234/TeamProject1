@@ -1,21 +1,24 @@
 package com.itwill.page.item;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-import com.itwill.crud.ProductDAO;
-import com.itwill.page.user.ConsoleClear;
+import com.itwill.page.utils.ConsoleClear;
+import com.itwill.socket.client.ClientProductList;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
 public class ProductList {
 	private static Scanner scan = new Scanner(System.in);
-	private static ArrayList<ItemVO> Item;
+	private static HashMap<Integer, ItemVO> Item;
 	private static UserVO User;
 	
 	public static void exe(UserVO user) {
+		ClientProductList clientProductList = new ClientProductList();
+		clientProductList.start();
 		User = user;
-		Item = ProductDAO.getProductList();
+		Item = clientProductList.getData();
 		
 		displayItemScreen();
 		productMenu();
@@ -35,25 +38,20 @@ public class ProductList {
 				+ ""
 				);
 		System.out.println(" 구매하실 상품번호를 입력해주세요.");
-//		for (ItemVO vo : Item) {
-//			System.out.println(vo.getNum() + ". " + vo.getPrice());
-//		}
 	}
 	
 	private static void getUeserChoice() {
 		while (true) {
 			try {
-				System.out.println("getUeserChoice() 실행");
 				String input = scan.nextLine();
 				if (input.equalsIgnoreCase("Q")) return;
 				int inputRL = Integer.parseInt(input);
 				
-				processUserChoice(Item.get(inputRL - 1));
+				ItemVO selectItem = Item.get(inputRL);
+				if (selectItem != null) processUserChoice(selectItem);
 				
 			} catch (NumberFormatException e) {
-				System.out.println("\n숫자 또는 Q 를 입력해주세요.");
-			} catch (IndexOutOfBoundsException e) {
-				System.out.println("\n존재하지 않는 상품번호입니다.");
+				System.out.println("\n상품번호 또는 q 를 입력해주세요.");
 			}
 			
 		}
@@ -61,9 +59,11 @@ public class ProductList {
 	} 
 	
 	private static void productMenu() {
-	    for (ItemVO product : Item) {
-	        System.out.println("상품번호: " + product.getNum() + ", 상품명: " + product.Name() + ", 가격: " + product.getPrice());
+	    for (Map.Entry<Integer, ItemVO> entry : Item.entrySet()) {
+	        System.out.println("상품번호: " + entry.getValue().getNum() + ", 상품명: " + entry.getValue().Name() + ", 가격: " + entry.getValue().getPrice());
 	    }
+	    System.out.println();
+	    System.out.println("종료하려면 q를 입력해주세요.");
 	}
 
 	private static void processUserChoice(ItemVO choice) {

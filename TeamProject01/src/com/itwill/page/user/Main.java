@@ -2,6 +2,8 @@ package com.itwill.page.user;
 
 import java.util.Scanner;
 
+import com.itwill.page.utils.ConsoleClear;
+
 public class Main {
     private static final int SIGN_UP = 1;
     private static final int SIGN_IN = 2;
