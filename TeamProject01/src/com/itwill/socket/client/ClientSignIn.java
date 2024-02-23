@@ -17,15 +17,15 @@ public class ClientSignIn {
 	private static final String IP_ADDRESS = Config.getIpAddress();
 	private static HashMap<Integer, String> sqlPair;
 	
-	private boolean resultValue;
+	private ObjectInputStream resultValue;
 
-	public boolean getData() {
+	public ObjectInputStream getData() {
         return this.resultValue;
     }
 
 	public void start(HashMap<Integer, String> pair) {
 		sqlPair = null;
-		resultValue = false;
+		resultValue = null;
 		sqlPair = pair;
 		
 		Socket socket = null;
@@ -95,13 +95,7 @@ public class ClientSignIn {
 		
 		@Override
 		public void run() {
-			//메시지 받아서 화면 출력
-			try {
-				resultValue = in.readBoolean();
-			} catch (IOException e) {
-				//e.printStackTrace();
-				System.out.println("[예외발생] " + e.getMessage());
-			}
+			resultValue = in;
 		}
 		
 	}

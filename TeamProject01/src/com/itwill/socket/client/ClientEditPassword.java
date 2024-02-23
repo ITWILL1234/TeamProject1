@@ -36,9 +36,8 @@ public class ClientEditPassword {
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
 			clientReceiver.start();
-			clientReceiver.join();
 			
-		} catch (InterruptedException | IOException e) {
+		} catch ( IOException e) {
 			e.printStackTrace();
 		}
 	}
