@@ -1,6 +1,9 @@
 package com.itwill.vo;
 
-public class ItemVO {
+import java.io.Serializable;
+
+public class ItemVO implements Serializable {
+	private static final long serialVersionUID = 1L;	
 	private int Num;
 	private	String Name;
 	private int price;
