@@ -20,16 +20,19 @@ public class ClientLogin {
 	private static final String EDIT_ADDRESS = "EDIT_ADDRESS";
 	private static final String PRODUCT_LIST = "PRODUCT_LIST";
 	private static final String IP_ADDRESS = Config.getIpAddress();
-	private static HashMap<Integer, String> sqlPair;
+	private static String Email;
+	private static String Password;
 	private UserVO result;
 	
 	public UserVO getData() {
 		return result;
 	}
 	
-	public void start(HashMap<Integer, String> pair) {
-		sqlPair = null;
-		sqlPair = pair;
+	public void start(String email, String password) {
+		Email = null;
+		Password = null;
+		Email = email;
+		Password = password;
 		Socket socket = null;
 		try  {
 			socket = new Socket(IP_ADDRESS, 10000);
@@ -73,15 +76,12 @@ public class ClientLogin {
 	        
 	        try {
 	        	outData.writeUTF(LOGIN); // 문자열 전송
-	            outData.writeObject(sqlPair);
-	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
-	            System.out.println("객체의 데이터를 내보냈습니다!");
-	            
-	            outData.flush(); // 데이터 전송 후 버퍼 비우기
-	            
-	            outData.writeUTF("CUD");
+	        	outData.flush();
+	            outData.writeUTF(Email);
 	            outData.flush();
-	            System.out.println("스트링 타입의 데이터를 내보냈습니다.");
+	            outData.writeUTF(Password);
+	            outData.flush(); 
+	            System.out.println("데이터 내보내기 성공");
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }

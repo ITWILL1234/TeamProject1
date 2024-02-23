@@ -2,6 +2,7 @@ package com.itwill.page.user;
 
 import com.itwill.crud.Read;
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.socket.client.ClientLogin;
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.UserVO;
 
@@ -48,7 +49,10 @@ public class Login {
      * 비밀번호가 맞는지 확인하는 코드입니다.
      */
 	private static void loadUserFromOracle() {
-		if ((User = Read.selectUser(EMAIL, PASSWORD)) != null) {
+		ClientLogin clientLogin = new ClientLogin();
+		clientLogin.start(EMAIL, PASSWORD);
+	
+		if (clientLogin.getData() != null) {
         	ConsoleClear.clear();
         	System.out.println("로그인에 성공하였습니다!");
         	System.out.println("홈페이지로 이동합니다.");
