@@ -13,7 +13,7 @@ import com.itwill.vo.UserVO;
 // 쓰기쓰레드 : 메시지 작성 및 전송을 독립적으로 처리(언제든지 메시지 보내기-쓰기전용)
 // 읽기쓰레드 : 서버쪽에서 보내온 메시지를 받아서 화면 표시(언제든지 메시지 읽기-읽기전용)
 public class ClientSignIn {
-	private static final String SIGN_IN = "SIGN_IN";
+	private static final String REGISTRATION = "REGISTRATION";
 	private static final String IP_ADDRESS = Config.getIpAddress();
 	private static HashMap<Integer, String> sqlPair;
 	
@@ -65,7 +65,7 @@ public class ClientSignIn {
 	            return;
 	        }
 	        try {
-	            outData.writeUTF(SIGN_IN);
+	            outData.writeUTF(REGISTRATION);
 	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
 	            
 	            outData.writeObject(sqlPair);
