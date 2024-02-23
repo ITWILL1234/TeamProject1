@@ -39,8 +39,9 @@ public class ClientSignIn {
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
 			clientReceiver.start();
+			clientReceiver.join();
 			
-		} catch (IOException e) {
+		} catch (InterruptedException | IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -96,10 +97,7 @@ public class ClientSignIn {
 		public void run() {
 			//메시지 받아서 화면 출력
 			try {
-				while (true) {
-					resultValue = in.readBoolean();
-					break;
-				}
+				resultValue = in.readBoolean();
 			} catch (IOException e) {
 				//e.printStackTrace();
 				System.out.println("[예외발생] " + e.getMessage());

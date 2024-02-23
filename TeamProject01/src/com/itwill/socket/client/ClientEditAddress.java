@@ -38,8 +38,9 @@ public class ClientEditAddress {
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
 			clientReceiver.start();
+			clientReceiver.join();
 			
-		} catch (IOException e) {
+		} catch (InterruptedException | IOException e) {
 			e.printStackTrace();
 		}
 	}
