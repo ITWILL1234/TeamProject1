@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.itwill.crud.Read;
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.socket.client.ClientProductList;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
@@ -15,8 +16,10 @@ public class ProductList {
 	private static UserVO User;
 	
 	public static void exe(UserVO user) {
+		ClientProductList clientProductList = new ClientProductList();
+		clientProductList.start();
 		User = user;
-		Item = Read.getProductList();
+		Item = clientProductList.getData();
 		
 		displayItemScreen();
 		productMenu();

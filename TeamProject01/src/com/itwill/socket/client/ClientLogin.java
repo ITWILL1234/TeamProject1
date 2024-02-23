@@ -8,16 +8,28 @@ import java.util.HashMap;
 
 import com.itwill.utils.Config;
 import com.itwill.vo.ItemVO;
+import com.itwill.vo.UserVO;
 
 
 // 내부클래스를 사용한 읽기, 쓰기 쓰레드 생성해서 사용
 // 쓰기쓰레드 : 메시지 작성 및 전송을 독립적으로 처리(언제든지 메시지 보내기-쓰기전용)
 // 읽기쓰레드 : 서버쪽에서 보내온 메시지를 받아서 화면 표시(언제든지 메시지 읽기-읽기전용)
 public class ClientLogin {
-	
+	private static final String LOGIN = "LOGIN";
+	private static final String EDIT_PASSWORD = "EDIT_PASSWORD";
+	private static final String EDIT_ADDRESS = "EDIT_ADDRESS";
+	private static final String PRODUCT_LIST = "PRODUCT_LIST";
 	private static final String IP_ADDRESS = Config.getIpAddress();
-
-	public void start() {
+	private static HashMap<Integer, String> sqlPair;
+	private UserVO result;
+	
+	public UserVO getData() {
+		return result;
+	}
+	
+	public void start(HashMap<Integer, String> pair) {
+		sqlPair = null;
+		sqlPair = pair;
 		Socket socket = null;
 		try  {
 			socket = new Socket(IP_ADDRESS, 10000);
@@ -30,8 +42,9 @@ public class ClientLogin {
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
 			clientReceiver.start();
+			clientReceiver.join();
 			
-		} catch (IOException e) {
+		} catch (InterruptedException | IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -57,21 +70,13 @@ public class ClientLogin {
 	        }
 
 	        // 서버에 데이터 보내기
-	        ItemVO item1 = new ItemVO(1, "one", 10);
-	        ItemVO item2 = new ItemVO(2, "two", 20);
-	        ItemVO item3 = new ItemVO(3, "three", 30);
 	        
-	        HashMap<Integer, ItemVO> map = new HashMap<Integer, ItemVO>();
-	        
-	        map.put(1, item1);
-	        map.put(2, item2);
-	        map.put(3, item3);
 	        try {
-	            outData.writeObject(map);
+	        	outData.writeUTF(LOGIN); // 문자열 전송
+	            outData.writeObject(sqlPair);
 	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
 	            System.out.println("객체의 데이터를 내보냈습니다!");
 	            
-	            outData.writeUTF("HashMap<Integer, ItemVO>"); // 문자열 전송
 	            outData.flush(); // 데이터 전송 후 버퍼 비우기
 	            
 	            outData.writeUTF("CUD");
@@ -104,8 +109,7 @@ public class ClientLogin {
 			try {
 				while (true) {
 					try {
-						HashMap<Integer, ItemVO> itemMap = (HashMap<Integer, ItemVO>) in.readObject();
-						System.out.println(itemMap + " ------ 클라이언트가 아이템을 읽어옵니다.");
+						result = (UserVO) in.readObject();
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
