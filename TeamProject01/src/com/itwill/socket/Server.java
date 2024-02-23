@@ -109,9 +109,7 @@ public class Server {
         		Boolean result = CUD.exeUser("UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ?", pstmtPair);
         		sendToClientCUDResult(name, result);
         	} else if (req.equals(PRODUCT_LIST)) {
-        		Object inObject = inData.readObject();
-        		HashMap<Integer, ItemVO> productList = (HashMap<Integer, ItemVO>) inObject;
-        		sendToClientItemVOHashMap(name, productList);
+        		sendToClientItemVOHashMap(name, Read.getProductList());
         	}
         }
         
