@@ -2,6 +2,7 @@ package com.itwill.vo;
 import java.sql.Timestamp;
 
 public class UserVO {
+	private static final long serialVersionUID = 1L; // 직렬화 버전 관리용
 	private String EMAIL;
 	private String PASSWORD;
 	private String FIRSTNAME;

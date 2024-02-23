@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import com.itwill.utils.DBConfig;
+import com.itwill.utils.Config;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
@@ -18,7 +18,7 @@ public class Read {
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
-        return DriverManager.getConnection(DBConfig.getDbUrl(), DBConfig.getDbUser(), DBConfig.getDbPassword());
+        return DriverManager.getConnection(Config.getDbUrl(), Config.getDbUser(), Config.getDbPassword());
     }
 
     public static UserVO selectUser(String email, String password) {

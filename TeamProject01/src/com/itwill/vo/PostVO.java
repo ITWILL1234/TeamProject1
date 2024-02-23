@@ -3,6 +3,7 @@ package com.itwill.vo;
 import java.sql.Timestamp;
 
 public class PostVO {
+	private static final long serialVersionUID = 1L; // 직렬화 버전 관리용
 	private String title;
 	private String description;
 	private Timestamp createdAt;

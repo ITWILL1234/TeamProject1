@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.itwill.utils.DBConfig;
+import com.itwill.utils.Config;
 
 public class CUD {
-    private static final String DB_URL = DBConfig.getDbUrl();
-    private static final String DB_USER = DBConfig.getDbUser();
-    private static final String DB_PASS = DBConfig.getDbPassword();
+    private static final String DB_URL = Config.getDbUrl();
+    private static final String DB_USER = Config.getDbUser();
+    private static final String DB_PASS = Config.getDbPassword();
 
     // DB 작업 수행 공통 로직
     private static boolean exeCUD(String sql, HashMap<Integer, String> pair, boolean useIntForNumbers) {
@@ -51,6 +51,10 @@ public class CUD {
 
     public static boolean exeItem(String sql, HashMap<Integer, String> pair) {
         return exeCUD(sql, pair, true);
+    }
+    
+    public static boolean exeOrder(String sql, HashMap<Integer, String> pair) {
+    	return exeCUD(sql, pair, true);
     }
     
     public static boolean exePost(String sql, HashMap<Integer, String> pair) {
