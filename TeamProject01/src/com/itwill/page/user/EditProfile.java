@@ -43,6 +43,7 @@ public class EditProfile {
 				+ "<> h. 홈페이지로 이동 <>\n"
 				+ "<> q. 종료 <>");
 	}
+	
 	private static int getUserChoice() {
 		while (true) {
 			try {
@@ -63,6 +64,7 @@ public class EditProfile {
 			}
 		}
 	}
+	
 	private static void processUserChoice(int choice) {
 		if (choice == CHANGE_PASSWORD || choice == CHANGE_ADDRESS) {
 			processUserUpdate(choice);

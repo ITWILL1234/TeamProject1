@@ -1,8 +1,10 @@
 package com.itwill.socket;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,10 +23,10 @@ public class Server {
 	private static final String EDIT_ADDRESS = "EDIT_ADDRESS";
 	private static final String PRODUCT_LIST = "PRODUCT_LIST";
 	
-    private HashMap<String, ObjectOutputStream> clients;
+    private HashMap<String, OutputStream> clients;
 
     public Server() {
-        clients = new HashMap<String, ObjectOutputStream>();
+        clients = new HashMap<String, OutputStream>();
     }
 
     public void startServer() {
@@ -54,7 +56,7 @@ public class Server {
     private class ServerReveiver extends Thread {
         private Socket socket;
         private ObjectInputStream inData;
-        private ObjectOutputStream out;
+        private OutputStream out;
         private String name; // 클라이언트의 이름(별칭)
 
         public ServerReveiver(Socket socket) {
@@ -98,20 +100,29 @@ public class Server {
         		sendToClientLoginResult(name, Read.selectUser(email, password));
         	} else if (req.equals(REGISTRATION)) { 
         		Object inObject = inData.readObject();
-        		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
-        		Boolean result = CUD.exeUser("INSERT INTO USERR (EMAIL, PASSWORD, GENDER, "
-        				+ "FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) VALUES (?, ?, ?, ?, ?, ?, SYSDATE)", pstmtPair);
-        		sendToClientCUDResult(name, result);
+        		if (inObject instanceof HashMap) {
+        		    @SuppressWarnings("unchecked")
+        		    HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
+        		    Boolean result = CUD.exeUser("INSERT INTO USERR (EMAIL, PASSWORD, GENDER, "
+        		    		+ "FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) VALUES (?, ?, ?, ?, ?, ?, SYSDATE)", pstmtPair);
+        		    sendToClientCUDResult(name, result);
+        		}
         	} else if (req.equals(EDIT_PASSWORD)) {
         		Object inObject = inData.readObject();
-        		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
-        		Boolean result = CUD.exeUser("UPDATE USERR SET PASSWORD = ? WHERE EMAIL = ?", pstmtPair);
-        		sendToClientCUDResult(name, result);
+        		if (inObject instanceof HashMap) {
+        		    @SuppressWarnings("unchecked")
+        		    HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
+        		    Boolean result = CUD.exeUser("UPDATE USERR SET PASSWORD = ? WHERE EMAIL = ?", pstmtPair);
+        		    sendToClientCUDResult(name, result);
+        		}
         	} else if (req.equals(EDIT_ADDRESS)) {
         		Object inObject = inData.readObject();
-        		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
-        		Boolean result = CUD.exeUser("UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ?", pstmtPair);
-        		sendToClientCUDResult(name, result);
+        		if (inObject instanceof HashMap) {
+        		    @SuppressWarnings("unchecked")
+        		    HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
+        		    Boolean result = CUD.exeUser("UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ?", pstmtPair);
+        		    sendToClientCUDResult(name, result);
+        		}
         	} else if (req.equals(PRODUCT_LIST)) {
         		sendToClientItemVOHashMap(name, Read.getProductList());
         	}
@@ -134,7 +145,7 @@ public class Server {
 //        }
         
         private void sendToClientLoginResult(String clientName, UserVO user) {
-            ObjectOutputStream out = clients.get(clientName);
+            ObjectOutputStream out = (ObjectOutputStream) clients.get(clientName);
             if (out != null) {
                 try {
                     // 해당 클라이언트에게만 메시지를 전송합니다.
@@ -148,7 +159,7 @@ public class Server {
         }
         
         private void sendToClientCUDResult(String clientName, boolean result) {
-        	ObjectOutputStream out = clients.get(clientName);
+        	DataOutputStream out = (DataOutputStream) clients.get(clientName);
         	if (out != null) {
                 try {
                     // 해당 클라이언트에게만 메시지를 전송합니다.
@@ -163,7 +174,7 @@ public class Server {
         }
         
         private void sendToClientItemVOHashMap(String clientName, HashMap<Integer, ItemVO>map) {
-        	ObjectOutputStream out = clients.get(clientName);
+        	ObjectOutputStream out = (ObjectOutputStream) clients.get(clientName);
         	if (out != null) {
                 try {
                     // 해당 클라이언트에게만 메시지를 전송합니다.
@@ -178,13 +189,3 @@ public class Server {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
