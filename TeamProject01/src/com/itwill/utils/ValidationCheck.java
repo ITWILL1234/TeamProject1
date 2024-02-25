@@ -11,6 +11,15 @@ public class ValidationCheck {
 		return check;
 	}
 	
+	public boolean CheckAtSign(String value) {
+		boolean check = !value.contains("@");
+		if (check) {
+			System.out.println();
+			System.out.println("이메일 형식이 아닙니다.");
+		}
+		return check;
+	}
+	
 	// 입력값에 숫자가 포함되어 있는지 확인합니다.
 	public boolean CheckNumber(String value) {
 		boolean check = value.matches(".*\\d+.*");

@@ -2,13 +2,11 @@ package com.itwill.socket.client;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
 import com.itwill.utils.Config;
-import com.itwill.vo.UserVO;
 
 public class ClientSignIn {
 	private static final String REGISTRATION = "REGISTRATION";
@@ -17,7 +15,7 @@ public class ClientSignIn {
 	
 	private boolean resultValue;
 
-	public boolean getData() {
+	public boolean getResult() {
         return this.resultValue;
     }
 

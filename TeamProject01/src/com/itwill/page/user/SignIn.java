@@ -70,7 +70,7 @@ public class SignIn {
 	private static void proceedInsertOracle() {
 		ClientSignIn clientSignIn = new ClientSignIn();
 		clientSignIn.start(createSqlPair());
-		if (clientSignIn.getData()) {
+		if (clientSignIn.getResult()) {
 			ConsoleClear.clear();
 			System.out.println("회원가입에 성공했습니다. 로그인페이지로 리디렉션 합니다.");
 			System.out.println();

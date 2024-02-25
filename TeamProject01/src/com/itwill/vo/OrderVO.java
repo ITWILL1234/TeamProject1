@@ -8,25 +8,40 @@ public class OrderVO implements Serializable {
     private int Num;
     private int ProductNum;
     private String CustomerEmail;
+    private String Address;
     private int Count;
+    private int Price;
     private Timestamp OrderAT;
     
     public OrderVO() {
     	this.Num = 0;
     	this.ProductNum = 0;
     	this.CustomerEmail = null;
+    	this.Address = null;
     	this.Count = 0;
     	this.OrderAT = null;
     }
     
-    public OrderVO(int Num, int ProductNum, String CustomerEmail, int Count, Timestamp OrderAt) {
+    public OrderVO(int Num, int ProductNum, String CustomerEmail, String Address, int Count, int Price) {
     	this.Num = Num;
     	this.ProductNum = ProductNum;
     	this.CustomerEmail = CustomerEmail;
+    	this.Address = Address;
     	this.Count = Count;
+    	this.Price = Price;
+    	this.OrderAT = null;
+    }
+    
+
+	public OrderVO(int Num, int ProductNum, String CustomerEmail, String Address, int Count, int Price, Timestamp OrderAt) {
+    	this.Num = Num;
+    	this.ProductNum = ProductNum;
+    	this.CustomerEmail = CustomerEmail;
+    	this.Address = Address;
+    	this.Count = Count;
+    	this.Price = Price;
     	this.OrderAT = OrderAt;
     }
-
 
 	public int getNum() {
 		return Num;
@@ -51,6 +66,14 @@ public class OrderVO implements Serializable {
 	public void setCustomerEmail(String customerEmail) {
 		CustomerEmail = customerEmail;
 	}
+	
+	public String getAddress() {
+		return Address;
+	}
+	
+	public void setAddress(String address) {
+		Address = address;
+	}
 
 	public int getCount() {
 		return Count;
@@ -58,6 +81,14 @@ public class OrderVO implements Serializable {
 
 	public void setCount(int count) {
 		Count = count;
+	}
+	
+	public int getPrice() {
+		return Price;
+	}
+	
+	public void setPrice(int price) {
+		Price = price;
 	}
 
 	public Timestamp getOrderAT() {

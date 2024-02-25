@@ -10,7 +10,7 @@ public class UserInputScanner {
     public static String scanEmail() {
         System.out.println("이메일을 입력해 주세요.");
         String email = scan.nextLine();
-        while(vc.CheckEmpty(email)) {
+        while(vc.CheckEmpty(email) || vc.CheckAtSign(email)) {
             System.out.println("이메일을 입력해 주세요.");
             email = scan.nextLine();
         }
@@ -34,7 +34,7 @@ public class UserInputScanner {
 		System.out.println("성(FirstName)을 입력해 주세요.");
 		String firstName = scan.nextLine();
 		
-		while(vc.CheckNumber(firstName) | vc.CheckEmpty(firstName)) {
+		while(vc.CheckNumber(firstName) || vc.CheckEmpty(firstName)) {
 			System.out.println("성(FirstName)을 입력해 주세요.");
 			firstName = scan.nextLine();
 		}
@@ -47,7 +47,7 @@ public class UserInputScanner {
 		System.out.println("이름을 입력해 주세요.");
 		String lastName = scan.nextLine();
 		
-		while(vc.CheckNumber(lastName)) {
+		while(vc.CheckNumber(lastName) || vc.CheckEmpty(lastName)) {
 			System.out.println("이름을 입력해 주세요.");
 			lastName = scan.nextLine();
 		}

@@ -64,8 +64,8 @@ public class ManagerMain {
 			System.out.println("상품 관리 페이지입니다.");
 			ProductManagement.exe(User);
 		} else if (choice == POST_MANAGEMENT) {
-			System.out.println("게시물 관리 페이지입니다.");
-			// 게시물관리 페이지로 이동
+			System.out.println("리뷰 관리 페이지입니다.");
+			// 관리 페이지 이동
 		} else if (choice == GO_HOMEPAGE){
 			System.out.println("홈페이지로 이동합니다..");
 		} else if (choice == LOGOUT) {

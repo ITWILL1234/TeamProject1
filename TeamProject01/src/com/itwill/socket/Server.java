@@ -30,6 +30,7 @@ public class Server {
 	private static final String DELETE_PRODUCT = "DELETE_PRODUCT";
 	private static final String REGISTERING_PRODUCT = "REGISTERING_PRODUCT";
 	private static final String GET_ITEM = "GET_ITEM";
+	private static final String ORDER = "ORDER";
 	
     private HashMap<String, OutputStream> clients;
 
@@ -108,44 +109,69 @@ public class Server {
         		sendToClientLoginResult(name, Read.selectUser(email, password));
         	} else if (req.equals(REGISTRATION)) { 
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) VALUES (?, ?, ?, ?, ?, ?, SYSDATE)");
+        		processUserCUD(inObject, "INSERT INTO USERR (EMAIL, PASSWORD, GENDER, FIRST_NAME, LAST_NAME, ADDRESS, CREATE_AT) VALUES (?, ?, ?, ?, ?, ?, SYSDATE) ");
         	} else if (req.equals(EDIT_PASSWORD)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "UPDATE USERR SET PASSWORD = ? WHERE EMAIL = ?");
+        		processUserCUD(inObject, "UPDATE USERR SET PASSWORD = ? WHERE EMAIL = ? ");
         	} else if (req.equals(EDIT_ADDRESS)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ?");
+        		processUserCUD(inObject, "UPDATE USERR SET ADDRESS = ? WHERE EMAIL = ? ");
         	} else if (req.equals(SIGN_OUT)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "DELETE FROM USERR WHERE EMAIL = ? ");
+        		processUserCUD(inObject, "DELETE FROM USERR WHERE EMAIL = ? ");
         	} else if (req.equals(PRODUCT_LIST)) {
         		sendToClientItemVOHashMap(name, Read.getProductList());
         	} else if (req.equals(EDIT_PRODUCT_NAME)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "UPDATE PRODUCT SET NAME = ? WHERE NUM = ? ");
+        		processItemCUD(inObject, "UPDATE PRODUCT SET NAME = ? WHERE NUM = ? ");
         	} else if (req.equals(EDIT_PRODUCT_PRICE)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "UPDATE PRODUCT SET PRICE = ? WHERE NUM = ? ");
+        		processItemCUD(inObject, "UPDATE PRODUCT SET PRICE = ? WHERE NUM = ? ");
         	} else if (req.equals(EDIT_PRODUCT_IMAGE)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "UPDATE PRODUCT SET IMAGE = ? WHERE NUM = ? ");
+        		processItemCUD(inObject, "UPDATE PRODUCT SET IMAGE = ? WHERE NUM = ? ");
         	} else if (req.equals(DELETE_PRODUCT)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "DELETE FROM PRODUCT WHERE NUM = ? ");
+        		processItemCUD(inObject, "DELETE FROM PRODUCT WHERE NUM = ? ");
         	} else if (req.equals(REGISTERING_PRODUCT)) {
         		Object inObject = inData.readObject();
-        		processCUD(inObject, "INSERT INTO PRODUCT (NAME, PRICE, IMAGE) VALUES (?, ?, ?) ");
+        		processItemCUD(inObject, "INSERT INTO PRODUCT (NAME, PRICE, IMAGE) VALUES (?, ?, ?) ");
         	} else if (req.equals(GET_ITEM)) {
         		int itemNum = inData.readInt();
         		sendToClientItemVO(name, Read.selectItem(itemNum));
+        	} else if (req.equals(ORDER)) {
+        		Object inObject = inData.readObject();
+        		processOrderCUD(inObject, "INSER INTO ORDER (ITEMNUM, EMAIL, ADDRESS, COUNT, PRICE) VALUES (?, ?, ?, ? ,?) ");
         	}
         }
         
-        private void processCUD(Object inObject, String sql) {
+        private void processUserCUD(Object inObject, String sql) {
         	if (inObject instanceof HashMap) {
         		@SuppressWarnings("unchecked")
         		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
         		Boolean result = CUD.exeUser(sql, pstmtPair);
+        		sendToClientCUDResult(name, result);
+        	} else {
+        		sendToClientCUDResult(name, false);
+        	}
+        }
+        
+        private void processItemCUD(Object inObject, String sql) {
+        	if (inObject instanceof HashMap) {
+        		@SuppressWarnings("unchecked")
+        		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
+        		Boolean result = CUD.exeItem(sql, pstmtPair);
+        		sendToClientCUDResult(name, result);
+        	} else {
+        		sendToClientCUDResult(name, false);
+        	}
+        }
+        
+        private void processOrderCUD(Object inObject, String sql) {
+        	if (inObject instanceof HashMap) {
+        		@SuppressWarnings("unchecked")
+        		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
+        		Boolean result = CUD.exeOrder(sql, pstmtPair);
         		sendToClientCUDResult(name, result);
         	} else {
         		sendToClientCUDResult(name, false);
