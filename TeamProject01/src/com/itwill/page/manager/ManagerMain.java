@@ -12,10 +12,13 @@ public class ManagerMain {
 	private static final int GO_HOMEPAGE = 3;
 	private static final int LOGOUT = 4;
 	private static final Scanner scan = new Scanner(System.in);
+	private static UserVO User;
 	public static void exe(UserVO user) {
-		 displayScreen();
-		 processManagerChoice(getChoice());
+		User = user;
+		displayScreen();
+		processManagerChoice(getChoice());
 	}
+	
 	private static void displayScreen() {
 		System.out.println(""
 				+ "\n"
@@ -59,7 +62,7 @@ public class ManagerMain {
 		
 		if (choice == PRODUCT_MANAGEMENT) {
 			System.out.println("상품 관리 페이지입니다.");
-			// 상품관리 페이지로 이동
+			ProductManagement.exe(User);
 		} else if (choice == POST_MANAGEMENT) {
 			System.out.println("게시물 관리 페이지입니다.");
 			// 게시물관리 페이지로 이동

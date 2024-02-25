@@ -2,29 +2,25 @@ package com.itwill.socket.client;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
 import com.itwill.utils.Config;
 
-public class ClientSignOut {
-	private static final String SIGN_OUT = "SIGN_OUT";
+public class ClientRegisteringProduct {
+	private static final String REGISTERING_PRODUCT = "REGISTERING_PRODUCT";
 	private static final String IP_ADDRESS = Config.getIpAddress();
 	private static HashMap<Integer, String> sqlPair;
-	
 	private boolean resultValue;
-
+	
 	public boolean getResult() {
         return this.resultValue;
     }
 
-	public void start(HashMap<Integer, String> pair) {
-		sqlPair = null;
+	public void start(HashMap<Integer, String> Pair) {
 		resultValue = false;
-		sqlPair = pair;
-		
+		sqlPair = Pair;
 		Socket socket = null;
 		try  {
 			socket = new Socket(IP_ADDRESS, 10000);
@@ -36,9 +32,8 @@ public class ClientSignOut {
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
 			clientReceiver.start();
-			clientReceiver.join();
 			
-		} catch (InterruptedException | IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -63,7 +58,7 @@ public class ClientSignOut {
 	            return;
 	        }
 	        try {
-	            outData.writeUTF(SIGN_OUT);
+	            outData.writeUTF(REGISTERING_PRODUCT);
 	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
 	            
 	            outData.writeObject(sqlPair);
@@ -85,7 +80,6 @@ public class ClientSignOut {
 			
 			try {
 				in = new DataInputStream(socket.getInputStream());
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -93,11 +87,15 @@ public class ClientSignOut {
 		
 		@Override
 		public void run() {
+			//메시지 받아서 화면 출력
 			try {
-				resultValue = in.readBoolean();
+				while (true) {
+					resultValue = in.readBoolean();
+					break;
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("[예외발생] " + e.getMessage());
 			}
 		}
 		

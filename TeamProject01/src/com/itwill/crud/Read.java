@@ -15,6 +15,7 @@ public class Read {
 
     private static final String SQL_USER = "SELECT * FROM USERR WHERE EMAIL = ?";
     private static final String SQL_PRODUCT_LIST = "SELECT NUM, NAME, PRICE FROM PRODUCT";
+    private static final String SQL_ITEM = "SELECT * FROM PRODUCT WHERE NUM = ?";
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -69,7 +70,25 @@ public class Read {
         return productList;
     }
     
-    public static ItemVO getItem(int ItemNumber) {
-    	return null;
+    public static ItemVO selectItem(int itemNum) {
+    	String sql = SQL_ITEM;
+        try (Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+               pstmt.setInt(1, itemNum);
+               try (ResultSet rs = pstmt.executeQuery()) {
+               
+		           while (rs.next()) {
+		        	   return new ItemVO(
+		        			   rs.getInt("NUM"),
+		        			   rs.getString("NAME"),
+		        			   rs.getInt("PRICE"),		   
+		        			   rs.getString("IMAGE"));
+		           }
+               }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+		return null;
     }
 }

@@ -1,42 +1,37 @@
 package com.itwill.socket.client;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.HashMap;
 
 import com.itwill.utils.Config;
+import com.itwill.vo.ItemVO;
 
-public class ClientSignOut {
-	private static final String SIGN_OUT = "SIGN_OUT";
+public class ClientGetProductVO {
+	private static final String GET_ITEM = "GET_ITEM";
 	private static final String IP_ADDRESS = Config.getIpAddress();
-	private static HashMap<Integer, String> sqlPair;
+	private ItemVO result;
+	private int ItemNum;
 	
-	private boolean resultValue;
+	public ItemVO getData() {
+		return this.result;
+	}
 
-	public boolean getResult() {
-        return this.resultValue;
-    }
-
-	public void start(HashMap<Integer, String> pair) {
-		sqlPair = null;
-		resultValue = false;
-		sqlPair = pair;
-		
+	public void start(int itemNum) {
 		Socket socket = null;
+		ItemNum = itemNum;
+		result = null;
 		try  {
 			socket = new Socket(IP_ADDRESS, 10000);
-			
 			System.out.println(">> 서버 접속 완료");
 			
-			//Output 전용 : 메시지 보내기 전용 쓰레드 생성(쓰기전용)
 			ClientSender clientSender = new ClientSender(socket);
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
-			clientSender.start();
-			clientReceiver.start();
-			clientReceiver.join();
+		    clientSender.start();
+		    clientReceiver.start();
+		    clientReceiver.join(); // ClientReceiver 작업이 끝날 때까지 대기
+
 			
 		} catch (InterruptedException | IOException e) {
 			e.printStackTrace();
@@ -62,13 +57,13 @@ public class ClientSignOut {
 	            System.out.println(":: 출력객체가 없어서 작업종료");
 	            return;
 	        }
+
 	        try {
-	            outData.writeUTF(SIGN_OUT);
-	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
+	            outData.writeUTF(GET_ITEM);
+	            outData.flush();
 	            
-	            outData.writeObject(sqlPair);
-	            outData.flush(); // 데이터 전송 후 버퍼 비우기
-	            
+	            outData.writeInt(ItemNum);
+	            outData.flush();
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -78,14 +73,13 @@ public class ClientSignOut {
 	//메시지 읽기 전용 쓰레드
 	private class ClientReceiver extends Thread {
 		private Socket socket;
-		private DataInputStream in;
+		private ObjectInputStream in;
 
 		public ClientReceiver(Socket socket) {
 			this.socket = socket;
 			
 			try {
-				in = new DataInputStream(socket.getInputStream());
-				
+				in = new ObjectInputStream(socket.getInputStream());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -93,14 +87,24 @@ public class ClientSignOut {
 		
 		@Override
 		public void run() {
+			//메시지 받아서 화면 출력
 			try {
-				resultValue = in.readBoolean();
+				while (true) {
+					try {
+						result = (ItemVO) in.readObject();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("[예외발생] " + e.getMessage());
 			}
 		}
 		
 	}
 	
 }
+

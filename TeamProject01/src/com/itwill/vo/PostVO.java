@@ -1,8 +1,9 @@
 package com.itwill.vo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class PostVO {
+public class PostVO implements Serializable {
 	private static final long serialVersionUID = 1L; // 직렬화 버전 관리용
 	private String title;
 	private String description;

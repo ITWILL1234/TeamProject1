@@ -7,7 +7,7 @@ package com.itwill.page.utils;
 
 public class ConsoleClear {
 	public static void clear() {
-		for(int i = 0; i < 100; i++) {
+		for(int i = 0; i < 150; i++) {
 		    System.out.println();
 		}
 	}

@@ -2,15 +2,14 @@ package com.itwill.page.user;
 
 import java.util.HashMap;
 
-import com.itwill.crud.CUD;
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.socket.client.ClientSignOut;
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.UserVO;
 
 public class SignOut {
 	private static String PASSWORD;
 	private static UserVO User;
-	private static final String SQL = "DELETE FROM USERR WHERE EMAIL = ? ";
 	
 	public static void exe(UserVO user) {
 		User = user;
@@ -59,7 +58,9 @@ public class SignOut {
 	public static void processDeleteUser() {
 		HashMap<Integer, String> map = new HashMap<Integer, String>();
     	map.put(1, User.getEMAIL());
-    	if(CUD.exeUser(SQL, map)) {
+    	ClientSignOut clientSignOut = new ClientSignOut();
+    	clientSignOut.start(map);
+    	if(clientSignOut.getResult()) {
     		ConsoleClear.clear();
     		System.out.println("회원탈퇴에 성공하였습니다. 메인 페이지로 이동합니다.");
     		Main.exe();

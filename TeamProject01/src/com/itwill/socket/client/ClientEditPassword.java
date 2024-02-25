@@ -1,7 +1,7 @@
 package com.itwill.socket.client;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
@@ -77,13 +77,13 @@ public class ClientEditPassword {
 	//메시지 읽기 전용 쓰레드
 	private class ClientReceiver extends Thread {
 		private Socket socket;
-		private ObjectInputStream in;
+		private DataInputStream in;
 
 		public ClientReceiver(Socket socket) {
 			this.socket = socket;
 			
 			try {
-				in = new ObjectInputStream(socket.getInputStream());
+				in = new DataInputStream(socket.getInputStream());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

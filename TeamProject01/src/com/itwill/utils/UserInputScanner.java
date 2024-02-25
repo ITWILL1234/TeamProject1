@@ -70,7 +70,7 @@ public class UserInputScanner {
 	    		} else if(genderValue ==2) {
 	    			return "Female";
 	    		} else {
-	    			 System.out.println("\n1 또는 2를 입력해주세요. 다시 입력해주세요."); // 잘못된 숫자 입력 처리
+	    			 System.out.println("\n1 또는 2를 입력해주세요."); // 잘못된 숫자 입력 처리
 	    		}
 	    	} catch (NumberFormatException e) {
 	    		System.out.println("\n숫자로 입력해주세요."); // 숫자가 아닌 입력 처리
@@ -106,5 +106,40 @@ public class UserInputScanner {
     	return Integer.parseInt(number);
     }
     
+    public static String scanProductName() {
+    	System.out.println();
+    	System.out.println("상품명을 입력해주세요.");
+    	String productName = scan.nextLine();
+    	
+    	while(vc.CheckNumber(productName) || vc.CheckEmpty(productName)) {
+    		System.out.println("상품명을 입력해주세요.");
+    		productName = scan.nextLine();
+    	}
+    	return productName;
+    }
+    
+    public static int scanProductPrice() {
+    	System.out.println();
+    	System.out.println("상품 가격을 입력해주세요.");
+    	String productPrice = scan.nextLine();
+    	
+    	while(vc.CheckMoreThanZero(productPrice)) {
+    		System.out.println("0이상의 숫자를 입력해주세요.");
+    		productPrice = scan.nextLine();
+    	}
+    	return Integer.parseInt(productPrice);
+    }
+    
+    public static String scanProductImage() {
+    	System.out.println();
+    	System.out.println("상품의 이미지를 입력해주세요.");
+    	String productImage = scan.nextLine();
+    	
+    	while(vc.CheckEmpty(productImage) || vc.CheckNumber(productImage)) {
+    		System.out.println("상품의 이미지를 입력해주세요.");
+    	}
+    	
+    	return productImage;
+    }
     
 }

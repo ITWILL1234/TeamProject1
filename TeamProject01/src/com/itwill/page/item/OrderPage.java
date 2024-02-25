@@ -28,7 +28,7 @@ public class OrderPage {
 		System.out.println("주문수량 : " + count);
 		System.out.println("결제금액 : " + (Item.getPrice() * count));
 		
-		PrintImage.bitCoin();
+		PrintImage.printBitCoin();
 		
 		System.out.println("\n결제를 완료하였습니다.");
 		System.out.println("3초 뒤 상품목록 페이지로 이동합니다.");

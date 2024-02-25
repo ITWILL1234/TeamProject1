@@ -1,7 +1,35 @@
 package com.itwill.page.utils;
 
 public class PrintImage {
-		
+	
+	public static void exe(String image) {
+		if (image.equalsIgnoreCase("APPLE")) {
+			printApple();
+		} else if (image.equalsIgnoreCase("WATERMELON")) {
+			printWaterMelon();
+		} else if (image.equalsIgnoreCase("ORANGE")) {
+			printOrange();
+		} else if (image.equalsIgnoreCase("GRAPE")) {
+			printGrape();
+		} else if (image.equalsIgnoreCase("PINEAPPLE")) {
+			printPineapple();
+		} else if (image.equalsIgnoreCase("BANANA")) {
+			printBanana();
+		} else if (image.equalsIgnoreCase("PIKACHU")) {
+			printPikachu();
+		} else if (image.equalsIgnoreCase("AMONGUS")) {
+			printAmongUs();
+		} else if (image.equalsIgnoreCase("SADFROG")) {
+			printSadFrog();
+		} else if (image.equalsIgnoreCase("BIGBUNNY")) {
+			printBigBunny();
+		} else if (image.equalsIgnoreCase("TEDDYBEAR")) {
+			printTeddyBear();
+		} else if (image.equalsIgnoreCase("BITCOIN")) {
+			printBitCoin();
+		}
+	}
+	
 //		printApple();
 //		printWaterMelon();	
 //		printOrange();
@@ -15,7 +43,7 @@ public class PrintImage {
 //		printTeddyBear();
 //		bitCoin();
 
-	public static void apple() {
+	public static void printApple() {
 		System.out.println(""
 				+ "\n"
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⣀⣀⡀⡀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -74,7 +102,7 @@ public class PrintImage {
 				+ "");
 	}
 	
-	public static void orange() {
+	public static void printOrange() {
 		System.out.println(""
 				+ "\n"
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -105,7 +133,7 @@ public class PrintImage {
 				+ "");
 	}
 	
-	public static void grape() {
+	public static void printGrape() {
 		System.out.println(""
 				+ "\n"
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -129,7 +157,7 @@ public class PrintImage {
 				+ "");
 	}
 	
-	public static void pineApple() {
+	public static void printPineapple() {
 		System.out.println(""
 				+ "\n"
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -160,7 +188,7 @@ public class PrintImage {
 				+ "");
 	}
 	
-	public static void banana() {
+	public static void printBanana() {
 		
 		System.out.println(""
 				+ "\n"
@@ -183,7 +211,7 @@ public class PrintImage {
 				+ "");
 	}
 	
-	public static void pikachu() {
+	public static void printPikachu() {
 		
 		System.out.println(""
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀\n"
@@ -211,7 +239,7 @@ public class PrintImage {
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⣿⡟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠒⠾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
 	}
 	
-	public static void amongUs() {
+	public static void printAmongUs() {
 		System.out.println(""
 				+ "⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀\n"
 				+ "⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀⠀⠀⠀⠀⠀\n"
@@ -230,7 +258,7 @@ public class PrintImage {
 				+ "⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
 	}
 	
-	public static void sadFrog() {
+	public static void printSadFrog() {
 		System.out.println(""
 				+ "⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠋⠉⠉⠉⠙⠛⢿⠿⠛⠛⠛⠛⠛⠿⣿⣿⣿⣿⣿⣿\n"
 				+ "⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⢀⡀⠤⠤⢄⣀⠐⡄⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿\n"
@@ -257,7 +285,7 @@ public class PrintImage {
 		
 	}
 
-	public static void bigBunny() {
+	public static void printBigBunny() {
 		System.out.println(""
 				+ "⠀⠀⠀⠀ ⠀⠀⠀⣀⠤⠔⠒⠒⡄⢀⣠⠤⠤⠦⡄⠀\n"
 				+ "⠀⠀⠀⠀⠀⢀⡴⠋⠀⠀⠀⣀⠴⠊⣡⣴⣾⡿⣣⠃⠀⠀\n"
@@ -278,7 +306,7 @@ public class PrintImage {
 				+ "⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
 	}
 	
-	public static void teddyBear() {
+	public static void printTeddyBear() {
 		System.out.println(""
 				+ "⠀⠀⠀⠀⠀⠀⢀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀\n"
 				+ "⠀⠀⠀⠀⢠⡾⠛⠉⠙⢻⣦⣤⣴⠶⠶⢶⣤⣴⡿⠋⠉⠙⢿⣆⠀⠀⠀⠀⠀\n"
@@ -301,7 +329,7 @@ public class PrintImage {
 				+ "⠀⠀⠀⠀⠀⠈⠉⣉⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢉⡉⠉⠀⠀⠀⠀⠀⠀");	
 	}
 	
-	public static void bitCoin() {
+	public static void printBitCoin() {
 		System.out.println(""
 				+ "⠄⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣴⣶⣶⣶⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
 				+ "⠀⠀⠀⠀⠀⠀⣀⣤⣾⣿⡿⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣦⣄⠀⠀⠀⠀⠀⠀\n"

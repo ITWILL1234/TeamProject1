@@ -22,7 +22,6 @@ public class ProductManagement {
 		displayScreen();
 		productMenu();
 		getManagerChoice();
-		
 	}
 	
 	private static void displayScreen() {
@@ -46,6 +45,10 @@ public class ProductManagement {
 				if (input.equalsIgnoreCase("Q")) return;
 				int inputRL = Integer.parseInt(input);
 				
+				// 상품 등록으로 이동
+				if (inputRL == 0) ManagementFunction.RegisteringProduct(User);
+				
+				// 해당 값에 맞는 페이지를 찾아감.
 				ItemVO selectItem = Item.get(inputRL);
 				if (selectItem != null) processManagerChoice(selectItem);
 				
@@ -60,13 +63,14 @@ public class ProductManagement {
 	        System.out.println("상품번호: " + entry.getValue().getNum() + ", 상품명: " + entry.getValue().Name() + ", 가격: " + entry.getValue().getPrice());
 	    }
 	    System.out.println();
+	    System.out.println("상품을 추가하시려면 0을 눌러주세요.");
 	    System.out.println("종료하려면 q를 입력해주세요.");
 	}
 	
 	private static void processManagerChoice(ItemVO choice) {
 		ConsoleClear.clear();
 		System.out.println("상품 페이지로 이동합니다.");
-		// 해당 아이템 페이지 관리 페이지로 넘어간다.
+		ItemManagement.exe(User, choice);
 	}
 	
 }

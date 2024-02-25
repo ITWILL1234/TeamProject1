@@ -7,18 +7,36 @@ public class ItemVO implements Serializable {
 	private int Num;
 	private	String Name;
 	private int price;
+	private String Image;
 	
+	public ItemVO(int Num, String Name, int price) {
+		this.Num = Num;
+		this.Name = Name;
+		this.price = price;
+		this.Image = null;
+	}
+	
+	public ItemVO(int Num, String Name, int price, String Image) {
+		this.Num = Num;
+		this.Name = Name;
+		this.price = price;
+		this.Image = Image;
+	}
+	
+	public String getImage() {
+		return Image;
+	}
+
+	public void setImage(String image) {
+		Image = image;
+	}
+
 	public ItemVO() {
 		this.Num = 0;
 		this.Name = null;
 		this.price = 0;
 	}
 	
-	public ItemVO(int Num, String Name, int price) {
-		this.Num = Num;
-		this.Name = Name;
-		this.price = price;
-	}
 
 	public int getNum() {
 		return Num;

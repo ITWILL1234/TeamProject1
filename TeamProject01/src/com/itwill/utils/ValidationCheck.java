@@ -21,6 +21,13 @@ public class ValidationCheck {
 		return check;
 	}
 	
+	// 0 이상인지 체크
+	public boolean CheckMoreThanZero(String value) {
+		if (CheckNumber(value) == false) return false;
+		if (Integer.parseInt(value) < 0) return false;
+		return true;
+	}
+	
 	// 입력값에 한글이 포함되어 있는지 확인합니다.
 	public boolean CheckHan(String value) {
 		boolean check = value.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*");
