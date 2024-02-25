@@ -38,7 +38,8 @@ public class Read {
                             rs.getString("LAST_NAME"),
                             rs.getString("GENDER"),
                             rs.getString("ADDRESS"),
-                            rs.getTimestamp("CREATE_AT")
+                            rs.getTimestamp("CREATE_AT"),
+                            rs.getString("MANAGER")
                         );
                     } else {
                         System.out.println("비밀번호가 일치하지 않습니다.");

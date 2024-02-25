@@ -53,7 +53,6 @@ public class ProductList {
 			} catch (NumberFormatException e) {
 				System.out.println("\n상품번호 또는 q 를 입력해주세요.");
 			}
-			
 		}
 		
 	} 

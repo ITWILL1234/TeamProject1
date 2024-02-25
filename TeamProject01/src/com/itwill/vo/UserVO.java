@@ -10,6 +10,7 @@ public class UserVO implements Serializable {
 	private String LASTNAME;
 	private String GENDER;
 	private String ADDRESS;
+	private String MANAGER;
 	private Timestamp CREATE_AT;
 	
 	public UserVO() {
@@ -31,6 +32,7 @@ public class UserVO implements Serializable {
 		this.GENDER = Gender;
 		this.ADDRESS = Address;
 		this.CREATE_AT = null;
+		this.MANAGER = null;
 	}
 	
 	public UserVO(String email, String password, String FirstName,
@@ -42,6 +44,19 @@ public class UserVO implements Serializable {
 		this.GENDER = Gender;
 		this.ADDRESS = Address;
 		this.CREATE_AT = Create_At;
+		this.MANAGER = null;
+	}
+	
+	public UserVO(String email, String password, String FirstName,
+			String LastName, String Gender, String Address, Timestamp Create_At, String Manager) {
+		this.EMAIL = email;
+		this.PASSWORD = password;
+		this.FIRSTNAME = FirstName;
+		this.LASTNAME = LastName;
+		this.GENDER = Gender;
+		this.ADDRESS = Address;
+		this.CREATE_AT = Create_At;
+		this.MANAGER = Manager;
 	}
 
 	public String getEMAIL() {
@@ -92,6 +107,14 @@ public class UserVO implements Serializable {
 		ADDRESS = aDDRESS;
 	}
 	
+	public String getMANAGER() {
+		return MANAGER;
+	}
+
+	public void setMANAGER(String mANAGER) {
+		MANAGER = mANAGER;
+	}
+
 	public String toString() {
 		return "Name = " + FIRSTNAME + " " + LASTNAME + "\n"
 				+ "Email = " + EMAIL + "\n"
