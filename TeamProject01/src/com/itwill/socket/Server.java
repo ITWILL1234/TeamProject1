@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.itwill.crud.CUD;
@@ -243,13 +244,15 @@ public class Server {
             }
         }
         
-        private void sendToClientOrderHistory(String clientName, boolean result) {
-        	DataOutputStream out = (DataOutputStream) clients.get(clientName);
+        private void sendToClientOrderHistory(String clientName, String result) {
+        	ArrayList<String> list = new ArrayList<String>();
+        	list.add(result);
+        	ObjectOutputStream out = (ObjectOutputStream) clients.get(clientName);
         	if (out != null) {
                 try {
                     // 해당 클라이언트에게만 메시지를 전송합니다.
-                    out.writeBoolean(result);
-                    
+                    out.writeObject(list);
+                    System.out.println("데이터 보내기");
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());
                 }
