@@ -14,7 +14,7 @@ import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
 public class ManagementFunction {
-	
+	private static int waitTime = 1000000;
 	public static void RegisteringProduct(UserVO user) {
 		String name = UserInputScanner.scanProductName();
 		int price = UserInputScanner.scanProductPrice();
@@ -126,7 +126,7 @@ public class ManagementFunction {
 		int i = 0;
 		while(clientGetProductVO.getData() == null) {
 			i++;
-			if (i > 100000) return;
+			if (i > waitTime) return;
 		}
 		return;
 	}
@@ -135,7 +135,7 @@ public class ManagementFunction {
 		int i = 0;
 		while(clientDeleteProduct.getResult() == false) {
 			i++;
-			if (i > 100000) return;
+			if (i > waitTime) return;
 		}
 		return;
 	}
@@ -144,7 +144,7 @@ public class ManagementFunction {
 		int i = 0;
 		while(clientEditProductPrice.getResult() == false) {
 			i++;
-			if (i > 100000) return;
+			if (i > waitTime) return;
 		}
 		return;
 	}
@@ -153,7 +153,7 @@ public class ManagementFunction {
 		int i = 0;
 		while(clientEditProductName.getResult() == false) {
 			i++;
-			if (i > 100000) return;
+			if (i > waitTime) return;
 		}
 		return;
 	}
@@ -162,7 +162,7 @@ public class ManagementFunction {
 		int i = 0;
 		while(clientEditProductImage.getResult() == false) {
 			i++;
-			if (i > 100000) return;
+			if (i > waitTime) return;
 		}
 		return;
 	}
@@ -171,14 +171,14 @@ public class ManagementFunction {
 		int i = 0;
 		while(clientRegisteringProduct.getResult() == false) {
 			i++;
-			if (i > 100000) return;
+			if (i > waitTime) return;
 		}
 		return;
 	}
 	
 	private static void waitSecond() {
 		int i = 0;
-		while (i < 100000) {
+		while (i < waitTime) {
 			i++;
 		}
 		return;

@@ -29,6 +29,7 @@ public class ClientEditProductName {
 			socket = new Socket(IP_ADDRESS, 10000);
 			
 			System.out.println(">> 서버 접속 완료");
+			System.out.println(resultValue);
 			
 			//Output 전용 : 메시지 보내기 전용 쓰레드 생성(쓰기전용)
 			ClientSender clientSender = new ClientSender(socket);
@@ -78,20 +79,15 @@ public class ClientEditProductName {
 	        try {
 	            outData.writeUTF(EDIT_PRODUCT_NAME);
 	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
-	            
 	            outData.writeObject(sqlPair);
 	            outData.flush(); // 데이터 전송 후 버퍼 비우기
+	            ClientSender.sleep(2500);
 	            
-	        } catch (IOException e) {
+	        } catch (IOException | InterruptedException e) {
 	            e.printStackTrace();
 	        } finally {
-	        	try {
-	        		outData.close();
-	        	} catch(IOException e) {
-	        		e.printStackTrace();
-	        	}
+	        	senderFlag = true;
 	        }
-	        senderFlag = true;
 	    }
 	}
 	
@@ -117,29 +113,17 @@ public class ClientEditProductName {
 			try {
 				while (true) {
 					resultValue = in.readBoolean();
+					System.out.println(resultValue);
 					break;
 				}
 			} catch (IOException e) {
 				//e.printStackTrace();
 				System.out.println("[예외발생] " + e.getMessage());
 			} finally {
-				try {
-					in.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				receiverFlag = true;
 			}
-			receiverFlag = true;
 		}
 		
-	}
-	
-	private void waitSecond() {
-		int i = 0;
-		while (i < 1000000) {
-			i++;
-		}
-		return;
 	}
 	
 	private void resetValue() {

@@ -13,13 +13,15 @@ public class ClientDeleteProduct {
 	private static final String IP_ADDRESS = Config.getIpAddress();
 	private static HashMap<Integer, String> sqlPair;
 	private boolean resultValue;
+	private boolean senderFlag = false;
+	private boolean receiverFlag = false;
 	
 	public boolean getResult() {
         return this.resultValue;
     }
 
 	public void start(HashMap<Integer, String> Pair) {
-		resultValue = false;
+		resetValue();
 		sqlPair = Pair;
 		Socket socket = null;
 		try  {
@@ -31,10 +33,24 @@ public class ClientDeleteProduct {
 			ClientSender clientSender = new ClientSender(socket);
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
-			clientReceiver.start();
+			clientSender.join();
 			
-		} catch (IOException e) {
+			clientReceiver.start();
+			clientReceiver.join();
+			
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				while (true) {
+					if (senderFlag && receiverFlag) {						
+						socket.close();
+						break;
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -64,8 +80,12 @@ public class ClientDeleteProduct {
 	            outData.writeObject(sqlPair);
 	            outData.flush(); // 데이터 전송 후 버퍼 비우기
 	            
-	        } catch (IOException e) {
+	            ClientSender.sleep(2500);
+	            
+	        } catch (IOException | InterruptedException e) {
 	            e.printStackTrace();
+	        } finally {
+	        	senderFlag = true;
 	        }
 	    }
 	}
@@ -96,9 +116,16 @@ public class ClientDeleteProduct {
 			} catch (IOException e) {
 				//e.printStackTrace();
 				System.out.println("[예외발생] " + e.getMessage());
+			} finally {
+				receiverFlag = true;
 			}
 		}
 		
 	}
 	
+	private void resetValue() {
+		resultValue = false;
+		senderFlag = false;
+		receiverFlag = false;
+	}
 }
