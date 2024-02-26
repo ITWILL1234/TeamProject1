@@ -57,7 +57,7 @@ public class ItemManagement {
 						|| inputRL == BACK_MANAGEMENT_PAGE || inputRL == DELETE_PRODUCT || inputRL == LOGOUT || inputRL == HOMEPAGE) {
 					return inputRL;
 				} else {
-					System.out.println("\n1 또는 2를 입력해주세요.");
+					System.out.println("\n1 ~ 7 또는 Q를 입력해 주세요.");
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("\n숫자로 입력해주세요.");

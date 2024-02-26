@@ -17,6 +17,7 @@ public class Main {
     }
 
     private static void displayWelcomeScreen() {
+    	ConsoleClear.clear();
         System.out.println("\n"
                 + "███████╗    ███╗   ███╗ █████╗ ██╗     ██╗     \n"
                 + "██╔════╝    ████╗ ████║██╔══██╗██║     ██║     \n"

@@ -13,16 +13,19 @@ public class ClientEditProductName {
 	private static final String IP_ADDRESS = Config.getIpAddress();
 	private static HashMap<Integer, String> sqlPair;
 	private boolean resultValue;
+	private boolean senderFlag = false;
+	private boolean receiverFlag = false;
 	
 	public boolean getResult() {
         return this.resultValue;
     }
 	
 	public void start(HashMap<Integer, String> Pair) {
-		resultValue = false;
+		resetValue();
 		sqlPair = Pair;
 		Socket socket = null;
 		try  {
+			socket = null;
 			socket = new Socket(IP_ADDRESS, 10000);
 			
 			System.out.println(">> 서버 접속 완료");
@@ -31,10 +34,24 @@ public class ClientEditProductName {
 			ClientSender clientSender = new ClientSender(socket);
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
+			clientSender.join();
+
 			clientReceiver.start();
+			clientReceiver.join();
 			
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				while (true) {
+					if (senderFlag && receiverFlag) {						
+						socket.close();
+						break;
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -43,6 +60,7 @@ public class ClientEditProductName {
 	    private ObjectOutputStream outData;
 
 	    public ClientSender(Socket socket) {
+	    	System.out.println(socket + "샌더");
 	        this.socket = socket;
 	        try {
 	            outData = new ObjectOutputStream(socket.getOutputStream());
@@ -66,7 +84,14 @@ public class ClientEditProductName {
 	            
 	        } catch (IOException e) {
 	            e.printStackTrace();
+	        } finally {
+	        	try {
+	        		outData.close();
+	        	} catch(IOException e) {
+	        		e.printStackTrace();
+	        	}
 	        }
+	        senderFlag = true;
 	    }
 	}
 	
@@ -76,6 +101,7 @@ public class ClientEditProductName {
 		private DataInputStream in;
 
 		public ClientReceiver(Socket socket) {
+			System.out.println(socket + "리시버");
 			this.socket = socket;
 			
 			try {
@@ -96,9 +122,29 @@ public class ClientEditProductName {
 			} catch (IOException e) {
 				//e.printStackTrace();
 				System.out.println("[예외발생] " + e.getMessage());
+			} finally {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+			receiverFlag = true;
 		}
 		
 	}
 	
+	private void waitSecond() {
+		int i = 0;
+		while (i < 1000000) {
+			i++;
+		}
+		return;
+	}
+	
+	private void resetValue() {
+		resultValue = false;
+		senderFlag = false;
+		receiverFlag = false;
+	}	
 }

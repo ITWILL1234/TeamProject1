@@ -97,8 +97,16 @@ public class Server {
             } catch (ClassNotFoundException | IOException e) {
                 System.out.println("[예외발생] " + e.getMessage());
             } finally {
-                // 클라이언트 연결이 종료되면, clients 명단에서 제거하고 모두에게 알립니다.
+                // 클라이언트와의 연결을 종료합니다.
+                try {
+                    if (inData != null) inData.close();
+                    if (out != null) out.close();
+                    if (socket != null && !socket.isClosed()) socket.close();
+                } catch (IOException e) {
+                    System.out.println("자원 해제 중 오류 발생: " + e.getMessage());
+                }
                 clients.remove(name);
+                System.out.println(name + " 클라이언트와의 연결이 종료되었습니다.");
             }
         }
         
@@ -188,7 +196,6 @@ public class Server {
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());
                 }
-                clients.remove(clientName);
             }
         }
         
@@ -201,7 +208,6 @@ public class Server {
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());
                 }
-                clients.remove(clientName);
             }
         }
         
@@ -215,7 +221,6 @@ public class Server {
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());
                 }
-                clients.remove(clientName);
             }
         }
         
@@ -229,7 +234,6 @@ public class Server {
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());
                 }
-                clients.remove(clientName);
             }
         }
     }
