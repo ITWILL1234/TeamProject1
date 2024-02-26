@@ -10,24 +10,28 @@ public class PostVO implements Serializable {
 	private String description;
 	private Timestamp createdAt;
 	private String eMail;
+	private int itemnum;
 	
-	public PostVO() {
+	public PostVO(int i, String string, String string2, String string3, Timestamp timestamp) {
 		this.num = 0;
 		this.title = null;
 		this.description = null;
 		this.createdAt = null;
 		this.eMail = null;
+		this.itemnum = 0;
 	}
 	
-	public PostVO(int num, String title, String description, Timestamp createdAt, String eMail) {
-		this.num = num;
+	public PostVO(String title, String description, Timestamp createdAt, String eMail ,int itemnum) {
 		this.title = title;
 		this.description = description;
 		this.createdAt = createdAt;
 		this.eMail = eMail;
+		this.itemnum = itemnum;
 	}
 
 	
+	
+
 	public int getNum() {
 		return num;
 	}
@@ -68,11 +72,19 @@ public class PostVO implements Serializable {
 		this.eMail = eMail;
 	}
 
-	@Override
-	public String toString() {
-		return "PostVO [num=" + num + ", title=" + title + ", description=" + description + ", createdAt=" + createdAt
-				+ ", eMail=" + eMail + "]";
+	
+	public int getItemnum() {
+		return itemnum;
 	}
 
-	
+	public void setItemnum(int itemnum) {
+		this.itemnum = itemnum;
+	}
+
+	@Override
+	public String toString() {
+		return "PostVO [title=" + title + ", description=" + description + ", createdAt=" + createdAt
+				+ ", eMail=" + eMail + ", itemnum=" + itemnum + "]";
+	}
+
 }

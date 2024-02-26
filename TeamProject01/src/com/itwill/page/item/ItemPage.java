@@ -67,6 +67,7 @@ public class ItemPage {
 		} else if (choice == REVIEW) {
 			ConsoleClear.clear();
 			System.out.println("리뷰 페이지입니다.");
+			Post.exe(User, Item.getNum());
 			
 	 	} else if (choice == BACK) {
 			System.out.println("상품 페이지입니다.");

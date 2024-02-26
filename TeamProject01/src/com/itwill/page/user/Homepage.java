@@ -2,6 +2,7 @@ package com.itwill.page.user;
 
 import java.util.Scanner;
 
+import com.itwill.page.item.Post;
 import com.itwill.page.item.ProductList;
 import com.itwill.page.manager.ManagerMain;
 import com.itwill.page.utils.ConsoleClear;
@@ -74,8 +75,7 @@ public class Homepage {
 			System.out.println("상품목록 페이지입니다.");
 			ProductList.exe(User);
 		} else if (choice == qna) {
-			System.out.println("문의 페이지입니다. 추후 구현");
-			// QnA.exe(User);
+			System.out.println("상품 리뷰페이지 입니다.");
 		} else if (choice == editProfile){
 			System.out.println("회원정보 수정 페이지입니다.");
 			EditProfile.exe(User);
