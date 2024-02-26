@@ -1,7 +1,6 @@
 package com.itwill.page.item;
 
 import com.itwill.crud.Read;
-import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
 public class Post {
@@ -14,10 +13,11 @@ public class Post {
 		User = user;
 		ItemNum = item;
 		
-		postpage();
+		PostPage();
 	
 	}
-	private static void postpage() {
+	
+	private static void PostPage() {
 		System.out.println("\n * 사용자들의 리뷰 *");
 		System.out.println(Read.getPost(ItemNum));
 	}

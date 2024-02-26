@@ -37,6 +37,13 @@ public class PostVO implements Serializable {
 		this.eMail = EMail;
 		this.createdAt = CreatedAt;
 	}
+	
+	public PostVO(int ItemNum, String Title, String Description, String EMail) {
+		this.itemnum = ItemNum;
+		this.title = Title;
+		this.description = Description;
+		this.eMail = EMail;
+	}
 
 	public int getNum() {
 		return num;

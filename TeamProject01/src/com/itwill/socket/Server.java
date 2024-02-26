@@ -30,7 +30,9 @@ public class Server {
 	private static final String DELETE_PRODUCT = "DELETE_PRODUCT";
 	private static final String REGISTERING_PRODUCT = "REGISTERING_PRODUCT";
 	private static final String GET_ITEM = "GET_ITEM";
+	
 	private static final String ORDER = "ORDER";
+	private static final String CHECK_ORDER_HISTORY = "CHECK_ORDER_HISTORY";
 	
     private HashMap<String, OutputStream> clients;
 
@@ -150,6 +152,10 @@ public class Server {
         	} else if (req.equals(ORDER)) {
         		Object inObject = inData.readObject();
         		processOrderCUD(inObject, "INSERT INTO ORDERS (PRODUCTNUM, CUSTOMEREMAIL, ADDRESS, COUNT, PRICE, ORDERAT) VALUES (?, ?, ?, ? ,?, sysdate) ");
+        	} else if (req.equals(CHECK_ORDER_HISTORY)) {
+        		String email = inData.readUTF();
+        		int itemNum = inData.readInt();
+        		sendToClientOrderHistory(name, Read.checkOrderHistory(email, itemNum));
         	}
         }
         
@@ -230,6 +236,19 @@ public class Server {
                 try {
                     // 해당 클라이언트에게만 메시지를 전송합니다.
                     out.writeObject(map);
+                    
+                } catch (IOException e) {
+                    System.out.println("[예외발생] " + e.getMessage());
+                }
+            }
+        }
+        
+        private void sendToClientOrderHistory(String clientName, boolean result) {
+        	DataOutputStream out = (DataOutputStream) clients.get(clientName);
+        	if (out != null) {
+                try {
+                    // 해당 클라이언트에게만 메시지를 전송합니다.
+                    out.writeBoolean(result);
                     
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());

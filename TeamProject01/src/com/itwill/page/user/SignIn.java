@@ -2,7 +2,6 @@ package com.itwill.page.user;
 
 import java.util.HashMap;
 
-import com.itwill.crud.CUD;
 import com.itwill.page.utils.ConsoleClear;
 import com.itwill.socket.client.ClientSignIn;
 import com.itwill.utils.UserInputScanner;

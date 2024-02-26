@@ -137,9 +137,34 @@ public class UserInputScanner {
     	
     	while(vc.CheckEmpty(productImage) || vc.checkIsNumber(productImage)) {
     		System.out.println("상품의 이미지를 입력해주세요.");
+    		productImage = scan.nextLine();
     	}
     	
     	return productImage;
+    }
+    
+    public static String scanTitle() {
+    	System.out.println();
+    	System.out.println("제목을 입력해주세요");
+    	String title = scan.nextLine();
+    	
+    	while(vc.CheckEmpty(title) || vc.checkIsNumber(title)) {
+    		System.out.println("제목을 입력해주세요.");
+    		title = scan.nextLine();
+    	}
+    	return title;
+    }
+    
+    public static String scanDescription() {
+    	System.out.println();
+    	System.out.println("본문을 입력해주세요.");
+    	String description = scan.nextLine();
+    	
+    	while(vc.CheckEmpty(description) || vc.checkIsNumber(description)) {
+    		System.out.println("본문을 입력해주세요.");
+    		description = scan.nextLine();
+    	}
+    	return description;
     }
     
 }

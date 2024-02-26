@@ -2,7 +2,6 @@ package com.itwill.page.user;
 
 import java.util.Scanner;
 
-import com.itwill.page.item.Post;
 import com.itwill.page.item.ProductList;
 import com.itwill.page.manager.ManagerMain;
 import com.itwill.page.utils.ConsoleClear;

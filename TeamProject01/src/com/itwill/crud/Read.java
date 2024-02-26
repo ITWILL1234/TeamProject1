@@ -19,6 +19,7 @@ public class Read {
     private static final String SQL_PRODUCT_LIST = "SELECT NUM, NAME, PRICE, IMAGE FROM PRODUCT ";
     private static final String SQL_ITEM = "SELECT * FROM PRODUCT WHERE NUM = ? ";
     private static final String SQL_POST = "SELECT * FROM POST WHERE ITEMNUM = ? ";
+    private static final String SQL_CHECK_ORDER_HISTORY = "SELECT COUNT(*) ORDERS WHERE CUSTOMEREMAIL = ? AND PRODUCTNUM = ? ";
     
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -117,5 +118,23 @@ public class Read {
         return postList;
     }
 
+    public static boolean checkOrderHistory(String email, int itemNum) {
+    	String sql = SQL_CHECK_ORDER_HISTORY;
+    	
+        try (Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        	
+        	pstmt.setString(1, email);
+        	pstmt.setInt(2, itemNum);
+        	ResultSet rs = pstmt.executeQuery();
+           
+        	while (rs.next()) {
+        		return rs.getInt("COUNT(*)") > 0;
+        	}
 
+           } catch (ClassNotFoundException | SQLException e) {
+               e.printStackTrace();
+           }
+           return false;
+       }
 }
