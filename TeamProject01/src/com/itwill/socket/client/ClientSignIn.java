@@ -1,31 +1,27 @@
 package com.itwill.socket.client;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
 import com.itwill.utils.Config;
-import com.itwill.vo.UserVO;
 
-// 내부클래스를 사용한 읽기, 쓰기 쓰레드 생성해서 사용
-// 쓰기쓰레드 : 메시지 작성 및 전송을 독립적으로 처리(언제든지 메시지 보내기-쓰기전용)
-// 읽기쓰레드 : 서버쪽에서 보내온 메시지를 받아서 화면 표시(언제든지 메시지 읽기-읽기전용)
 public class ClientSignIn {
 	private static final String REGISTRATION = "REGISTRATION";
 	private static final String IP_ADDRESS = Config.getIpAddress();
 	private static HashMap<Integer, String> sqlPair;
 	
-	private ObjectInputStream resultValue;
+	private boolean resultValue;
 
-	public ObjectInputStream getData() {
+	public boolean getResult() {
         return this.resultValue;
     }
 
 	public void start(HashMap<Integer, String> pair) {
 		sqlPair = null;
-		resultValue = null;
+		resultValue = false;
 		sqlPair = pair;
 		
 		Socket socket = null;
@@ -81,13 +77,14 @@ public class ClientSignIn {
 	//메시지 읽기 전용 쓰레드
 	private class ClientReceiver extends Thread {
 		private Socket socket;
-		private ObjectInputStream in;
+		private DataInputStream in;
 
 		public ClientReceiver(Socket socket) {
 			this.socket = socket;
 			
 			try {
-				in = new ObjectInputStream(socket.getInputStream());
+				in = new DataInputStream(socket.getInputStream());
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -95,7 +92,12 @@ public class ClientSignIn {
 		
 		@Override
 		public void run() {
-			resultValue = in;
+			try {
+				resultValue = in.readBoolean();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}

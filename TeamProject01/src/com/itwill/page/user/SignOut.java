@@ -2,20 +2,21 @@ package com.itwill.page.user;
 
 import java.util.HashMap;
 
-import com.itwill.crud.CUD;
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.socket.client.ClientSignOut;
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.UserVO;
 
 public class SignOut {
 	private static String PASSWORD;
-	private static UserVO USER;
-	private static final String SQL = "DELETE FROM USERR WHERE EMAIL = ? ";
+	private static UserVO User;
 	
 	public static void exe(UserVO user) {
-		USER = user;
+		User = user;
 		displayScreen();
-		userInput();
+		if (userInput()) {
+			processDeleteUser();
+		};
 	}
 	
 	public static void displayScreen() {
@@ -31,7 +32,7 @@ public class SignOut {
 		
 	}
 	
-	public static void userInput() {
+	public static boolean userInput() {
 		while(true) {
 	        System.out.println("회원 탈퇴를 위하여 비밀번호를 입력해 주세요. (취소하려면 'q'를 입력하세요)");
 
@@ -40,26 +41,34 @@ public class SignOut {
 	        // 사용자가 'q'를 입력했을 경우의 처리
 	        if ("q".equalsIgnoreCase(PASSWORD)) {
 	            System.out.println("취소되었습니다. 홈페이지로 이동합니다.");
-	            Homepage.exe(USER);
-	            return;
+	            Homepage.exe(User);
+	            return false;
 	        }
 	        
-	        if(PASSWORD.equals(USER.getPASSWORD())) {
-	        	HashMap<Integer, String> map = new HashMap<Integer, String>();
-	        	map.put(1, USER.getEMAIL());
-	        	if(CUD.exeUser(SQL, map)) {
-	        		ConsoleClear.clear();
-	        		System.out.println("회원탈퇴에 성공하였습니다. 메인 페이지로 이동합니다.");
-	        		Main.exe();
-	        		break;
-	        	} else {
-	        		System.out.println("회원탈퇴에 실패했습니다. 관리자에게 문의해주세요.");
-	        	}
+	        if(PASSWORD.equals(User.getPASSWORD())) {
+	        	// 추후 소켓 오라클 연동.
+	        	return true;
 	        } else {
 	        	System.out.println("비밀번호가 올바르지 않습니다. 다시 입력해주세요.");
 	        }
-	    
-	        return;
+	        return false;
 	    }
 	}
+	
+	public static void processDeleteUser() {
+		HashMap<Integer, String> map = new HashMap<Integer, String>();
+    	map.put(1, User.getEMAIL());
+    	ClientSignOut clientSignOut = new ClientSignOut();
+    	clientSignOut.start(map);
+    	if(clientSignOut.getResult()) {
+    		ConsoleClear.clear();
+    		System.out.println("회원탈퇴에 성공하였습니다. 메인 페이지로 이동합니다.");
+    		Main.exe();
+    	} else {
+    		System.out.println("회원탈퇴에 실패했습니다. 관리자에게 문의해주세요.");
+    		exe(User);
+    	}
+	}
+	
+	
 }

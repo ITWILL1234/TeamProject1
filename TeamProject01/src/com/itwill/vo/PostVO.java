@@ -1,30 +1,56 @@
 package com.itwill.vo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class PostVO {
+public class PostVO implements Serializable {
 	private static final long serialVersionUID = 1L; // 직렬화 버전 관리용
+	private int num;
 	private String title;
 	private String description;
 	private Timestamp createdAt;
-	private Timestamp modifiedAt;
 	private String eMail;
+	private int itemnum;
 	
 	public PostVO() {
+		this.num = 0;
 		this.title = null;
 		this.description = null;
 		this.createdAt = null;
-		this.modifiedAt = null;
 		this.eMail = null;
+		this.itemnum = 0;
 	}
 	
-	public PostVO(String title, String description, Timestamp createdAt,
-			Timestamp modifiedAt, String eMail) {
-		this.title = title;
-		this.description = description;
-		this.createdAt = createdAt;
-		this.modifiedAt = modifiedAt;
-		this.eMail = eMail;
+	public PostVO(int Num, int ItemNum, String Title, String Description, String EMail) {
+		this.num = Num;
+		this.itemnum = ItemNum;
+		this.title = Title;
+		this.description = Description;
+		this.eMail = EMail;
+	}
+	
+	public PostVO(int Num, int ItemNum, String Title, String Description, String EMail, Timestamp CreatedAt) {
+		this.num = Num;
+		this.itemnum = ItemNum;
+		this.title = Title;
+		this.description = Description;
+		this.eMail = EMail;
+		this.createdAt = CreatedAt;
+	}
+	
+	public PostVO(int ItemNum, String Title, String Description, String EMail) {
+		this.itemnum = ItemNum;
+		this.title = Title;
+		this.description = Description;
+		this.eMail = EMail;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getTitle() {
@@ -51,14 +77,6 @@ public class PostVO {
 		this.createdAt = createdAt;
 	}
 
-	public Timestamp getModifiedAt() {
-		return modifiedAt;
-	}
-
-	public void setModifiedAt(Timestamp modifiedAt) {
-		this.modifiedAt = modifiedAt;
-	}
-
 	public String getEMail() {
 		return eMail;
 	}
@@ -67,11 +85,19 @@ public class PostVO {
 		this.eMail = eMail;
 	}
 
+	
+	public int getItemnum() {
+		return itemnum;
+	}
+
+	public void setItemnum(int itemnum) {
+		this.itemnum = itemnum;
+	}
+
 	@Override
 	public String toString() {
-		return "PostVO [title=" + title + ", description=" + description + ", createdAt=" + createdAt + ", modifiedAt="
-				+ modifiedAt + ", author=" + eMail + "]";
+		return "PostVO [title=" + title + ", description=" + description + ", createdAt=" + createdAt
+				+ ", eMail=" + eMail + ", itemnum=" + itemnum + "]";
 	}
-	
-	
+
 }

@@ -110,6 +110,7 @@ public class ClientLogin {
 				while (true) {
 					try {
 						result = (UserVO) in.readObject();
+						System.out.println(result);
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -1,6 +1,5 @@
 package com.itwill.page.user;
 
-import com.itwill.crud.Read;
 import com.itwill.page.utils.ConsoleClear;
 import com.itwill.socket.client.ClientLogin;
 import com.itwill.utils.UserInputScanner;

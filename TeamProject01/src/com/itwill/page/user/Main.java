@@ -17,6 +17,7 @@ public class Main {
     }
 
     private static void displayWelcomeScreen() {
+    	ConsoleClear.clear();
         System.out.println("\n"
                 + "███████╗    ███╗   ███╗ █████╗ ██╗     ██╗     \n"
                 + "██╔════╝    ████╗ ████║██╔══██╗██║     ██║     \n"
@@ -25,8 +26,8 @@ public class Main {
                 + "███████╗    ██║ ╚═╝ ██║██║  ██║███████╗███████╗\n"
                 + "╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝\n");
         System.out.println("<> 콘솔창에 원하는 메뉴를 입력해주세요! <>");
-        System.out.println("<> 1. 회원가입 <>\n"
-        		+ "<> 2. 로그인 <>");
+        System.out.println("<> 1. 회원가입 <>");
+        System.out.println("<> 2. 로그인 <>");
     }
 
     // 유저의 입력을 Scanner로 받는 함수입니다.
