@@ -12,7 +12,7 @@ public class PostVO implements Serializable {
 	private String eMail;
 	private int itemnum;
 	
-	public PostVO(int i, String string, String string2, String string3, Timestamp timestamp) {
+	public PostVO() {
 		this.num = 0;
 		this.title = null;
 		this.description = null;
@@ -21,16 +21,22 @@ public class PostVO implements Serializable {
 		this.itemnum = 0;
 	}
 	
-	public PostVO(String title, String description, Timestamp createdAt, String eMail ,int itemnum) {
-		this.title = title;
-		this.description = description;
-		this.createdAt = createdAt;
-		this.eMail = eMail;
-		this.itemnum = itemnum;
+	public PostVO(int Num, int ItemNum, String Title, String Description, String EMail) {
+		this.num = Num;
+		this.itemnum = ItemNum;
+		this.title = Title;
+		this.description = Description;
+		this.eMail = EMail;
 	}
-
 	
-	
+	public PostVO(int Num, int ItemNum, String Title, String Description, String EMail, Timestamp CreatedAt) {
+		this.num = Num;
+		this.itemnum = ItemNum;
+		this.title = Title;
+		this.description = Description;
+		this.eMail = EMail;
+		this.createdAt = CreatedAt;
+	}
 
 	public int getNum() {
 		return num;
