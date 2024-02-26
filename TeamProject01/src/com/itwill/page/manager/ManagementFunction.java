@@ -28,7 +28,7 @@ public class ManagementFunction {
 		
 		ClientRegisteringProduct clientRegisteringProduct = new ClientRegisteringProduct();
 		clientRegisteringProduct.start(sqlPair);
-		
+		waitRegisteringProduct(clientRegisteringProduct);
 		printResult(clientRegisteringProduct.getResult());
 		ProductManagement.exe(user);		
 	}
@@ -42,6 +42,7 @@ public class ManagementFunction {
 		sqlPair.put(2, item.getNum() + "");
 		
 		clientEditProductName.start(sqlPair);
+		waitEditProductName(clientEditProductName);
 		printResult(clientEditProductName.getResult());
 		
 		ItemVO updatedItem = getUpdatedItemVO(item);
@@ -57,6 +58,7 @@ public class ManagementFunction {
 		sqlPair.put(2, item.getNum() + "");
 		
 		clientEditProductPrice.start(sqlPair);
+		waitEditProductPrice(clientEditProductPrice);
 		printResult(clientEditProductPrice.getResult());
 		
 		ItemVO updatedItem = getUpdatedItemVO(item);
@@ -72,6 +74,7 @@ public class ManagementFunction {
 		sqlPair.put(2, item.getNum() + "");
 		
 		clientEditProductImage.start(sqlPair);
+		waitEditProductImage(clientEditProductImage);
 		printResult(clientEditProductImage.getResult());
 		
 		ItemVO updatedItem = getUpdatedItemVO(item);
@@ -85,7 +88,7 @@ public class ManagementFunction {
 		
 		ClientDeleteProduct clientDeleteProduct = new ClientDeleteProduct();
 		clientDeleteProduct.start(sqlPair);
-		
+		waitDeleteProduct(clientDeleteProduct);
 		printResult(clientDeleteProduct.getResult());
 		
 		ProductManagement.exe(user);
@@ -103,8 +106,63 @@ public class ManagementFunction {
 	private static ItemVO getUpdatedItemVO(ItemVO item) {
 		ClientGetProductVO clientGetProductVO = new ClientGetProductVO();
 		clientGetProductVO.start(item.getNum());
+		waitGetUpdatedItemVO(clientGetProductVO);
 		ItemVO updatedItem = clientGetProductVO.getData();
 		return updatedItem;
+	}
+	
+	private static void waitGetUpdatedItemVO(ClientGetProductVO clientGetProductVO) {
+		int i = 0;
+		while(clientGetProductVO.getData() == null) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
+	}
+	
+	private static void waitDeleteProduct(ClientDeleteProduct clientDeleteProduct) {
+		int i = 0;
+		while(clientDeleteProduct.getResult() == false) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
+	}
+	
+	private static void waitEditProductPrice(ClientEditProductPrice clientEditProductPrice) {
+		int i = 0;
+		while(clientEditProductPrice.getResult() == false) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
+	}
+	
+	private static void waitEditProductName(ClientEditProductName clientEditProductName) {
+		int i = 0;
+		while(clientEditProductName.getResult() == false) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
+	}
+	
+	private static void waitEditProductImage(ClientEditProductImage clientEditProductImage) {
+		int i = 0;
+		while(clientEditProductImage.getResult() == false) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
+	}
+	
+	private static void waitRegisteringProduct(ClientRegisteringProduct clientRegisteringProduct) {
+		int i = 0;
+		while(clientRegisteringProduct.getResult() == false) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
 	}
 	
 }

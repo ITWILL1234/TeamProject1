@@ -71,6 +71,7 @@ public class EditProfile {
 			processUserUpdate(choice);
 			exe(User);
 		} else if (choice == GO_HOME) {
+			ConsoleClear.clear();
 			System.out.println("홈페이지로 이동합니다.");
 			Homepage.exe(User);
 		} else if (choice == QUIT) {

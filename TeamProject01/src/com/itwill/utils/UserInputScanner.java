@@ -83,7 +83,7 @@ public class UserInputScanner {
 		System.out.println("주소를 입력해 주세요.");
 		String address = scan.nextLine();
 		
-		while (vc.CheckEmpty(address)) {
+		while (vc.CheckEmpty(address) || vc.checkIsNumber(address)) {
 			System.out.println("주소를 입력해 주세요.");
 			address = scan.nextLine();
 		}
@@ -111,7 +111,7 @@ public class UserInputScanner {
     	System.out.println("상품명을 입력해주세요.");
     	String productName = scan.nextLine();
     	
-    	while(vc.CheckNumber(productName) || vc.CheckEmpty(productName)) {
+    	while(vc.checkIsNumber(productName) || vc.CheckEmpty(productName)) {
     		System.out.println("상품명을 입력해주세요.");
     		productName = scan.nextLine();
     	}
@@ -135,7 +135,7 @@ public class UserInputScanner {
     	System.out.println("상품의 이미지를 입력해주세요.");
     	String productImage = scan.nextLine();
     	
-    	while(vc.CheckEmpty(productImage) || vc.CheckNumber(productImage)) {
+    	while(vc.CheckEmpty(productImage) || vc.checkIsNumber(productImage)) {
     		System.out.println("상품의 이미지를 입력해주세요.");
     	}
     	

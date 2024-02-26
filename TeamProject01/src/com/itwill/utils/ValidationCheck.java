@@ -32,7 +32,7 @@ public class ValidationCheck {
 	
 	// 0 이상인지 체크
 	public boolean CheckMoreThanZero(String value) {
-		if (CheckNumber(value) == false) return false;
+		if (isNumber(value) == false) return false;
 		if (Integer.parseInt(value) < 0) return false;
 		return true;
 	}
@@ -66,6 +66,18 @@ public class ValidationCheck {
 		} catch (NumberFormatException e) {
 			System.out.println("유효한 숫자가 아닙니다. 다시 입력해주세요.");
 			check = true;
+		}
+		return check;
+	}
+	
+	public boolean checkIsNumber(String value) {
+		boolean check = false;
+		try {
+			System.out.println("숫자타입의 데이터를 넣을 수 없습니다.");
+			Integer.parseInt(value);
+			check = true;
+		} catch (NumberFormatException e) {
+			check = false;
 		}
 		return check;
 	}

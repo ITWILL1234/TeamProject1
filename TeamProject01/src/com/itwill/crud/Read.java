@@ -13,9 +13,9 @@ import com.itwill.vo.UserVO;
 
 public class Read {
 
-    private static final String SQL_USER = "SELECT * FROM USERR WHERE EMAIL = ?";
-    private static final String SQL_PRODUCT_LIST = "SELECT NUM, NAME, PRICE FROM PRODUCT";
-    private static final String SQL_ITEM = "SELECT * FROM PRODUCT WHERE NUM = ?";
+    private static final String SQL_USER = "SELECT * FROM USERR WHERE EMAIL = ? ";
+    private static final String SQL_PRODUCT_LIST = "SELECT NUM, NAME, PRICE FROM PRODUCT ";
+    private static final String SQL_ITEM = "SELECT * FROM PRODUCT WHERE NUM = ? ";
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
