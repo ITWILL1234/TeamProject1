@@ -28,13 +28,14 @@ public class ItemPage {
 		System.out.println("\n상품의 상세정보입니다.");
 		System.out.println();
 		PrintImage.exe(Item.getImage());
+		System.out.println(Item.getImage());
 		System.out.println("상품번호 : " + Item.getNum() + " \n"
 						 + "상품이름 : " + Item.Name() + "\n"
 						 + "가격 : " + Item.getPrice() + "\n") ;
 		System.out.println("\n원하는 메뉴를 입력해주세요.");
 		System.out.println("<> 1. 상품구매 <>"
 				+ "\n<> 2. 리뷰보기 <> "
-				+ "\n<>3. 뒤로가기 <>");
+				+ "\n<> 3. 뒤로가기 <>");
 		System.out.println("페이지를 종료하려면 'q'를 입력해주세요.");
 		
 	}

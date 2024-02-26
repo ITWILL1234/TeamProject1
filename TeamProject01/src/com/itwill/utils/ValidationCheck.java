@@ -73,12 +73,12 @@ public class ValidationCheck {
 	public boolean checkIsNumber(String value) {
 		boolean check = false;
 		try {
-			System.out.println("숫자타입의 데이터를 넣을 수 없습니다.");
 			Integer.parseInt(value);
 			check = true;
 		} catch (NumberFormatException e) {
-			check = false;
+			return false;
 		}
+		System.out.println("숫자타입의 데이터를 넣을 수 없습니다.");
 		return check;
 	}
 }

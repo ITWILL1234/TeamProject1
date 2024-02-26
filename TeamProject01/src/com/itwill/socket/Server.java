@@ -141,7 +141,7 @@ public class Server {
         		sendToClientItemVO(name, Read.selectItem(itemNum));
         	} else if (req.equals(ORDER)) {
         		Object inObject = inData.readObject();
-        		processOrderCUD(inObject, "INSERT INTO ORDERS (NUM, ITEMNUM, EMAIL, ADDRESS, COUNT, PRICE) VALUES (num_order.nextval, ?, ?, ?, ? ,?) ");
+        		processOrderCUD(inObject, "INSERT INTO ORDERS (ITEMNUM, EMAIL, ADDRESS, COUNT, PRICE) VALUES (?, ?, ?, ? ,?) ");
         	}
         }
         

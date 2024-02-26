@@ -43,7 +43,7 @@ public class Homepage {
 				+ "<> 3.회원정보 수정 <>\n"
 				+ "<> 4.로그아웃 <>\n"
 				+ "<> 5.회원탈퇴 <>");
-		if (ManagerValidation) System.out.println("<> 6. 관리자 메뉴 <>");
+		if (ManagerValidation) System.out.println("<> 6.관리자 메뉴 <>");
 		System.out.println("<> 페이지를 종료하려면 'q'를 입력하세요.<>");
 	}
 	
@@ -97,7 +97,8 @@ public class Homepage {
 	}
 	
 	private static boolean checkManager() {
-		if(User.getMANAGER().equalsIgnoreCase("TRUE")) return true;
+		if(User.getMANAGER() == null) return false;
+		else if(User.getMANAGER().equalsIgnoreCase("TRUE")) return true;
 		return false;
 	}
 

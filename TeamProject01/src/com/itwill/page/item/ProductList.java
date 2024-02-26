@@ -40,6 +40,7 @@ public class ProductList {
 				+ ""
 				);
 		System.out.println("구매하실 상품번호를 입력해주세요.");
+		System.out.println(Item);
 	}
 	
 	private static void getUserChoice() {

@@ -61,7 +61,7 @@ public class Read {
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-            	ItemVO item = new ItemVO(rs.getInt("NUM"), rs.getString("NAME"), rs.getInt("PRICE"));
+            	ItemVO item = new ItemVO(rs.getInt("NUM"), rs.getString("NAME"), rs.getInt("PRICE"), rs.getString("IMAGE"));
             	productList.put(item.getNum(), item);
             }
         } catch (ClassNotFoundException | SQLException e) {

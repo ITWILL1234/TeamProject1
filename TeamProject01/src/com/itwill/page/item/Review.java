@@ -9,6 +9,7 @@ public class Review {
 	public void exe(UserVO user, ItemVO item) {
 		User = user;
 		Item = item;
+		item.getNum();
 		
 	}
 	

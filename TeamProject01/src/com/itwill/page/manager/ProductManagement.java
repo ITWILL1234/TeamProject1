@@ -51,7 +51,10 @@ public class ProductManagement {
 				// 해당 값에 맞는 페이지를 찾아감.
 				ItemVO selectItem = Item.get(inputRL);
 				if (selectItem != null) processManagerChoice(selectItem);
-				
+				else if (selectItem == null) {
+					System.out.println(">> 입력한 번호에 해당하는 상품이 존재하지 않습니다. <<");
+					getManagerChoice();
+				}
 			} catch (NumberFormatException e) {
 				System.out.println("\n상품번호 또는 q 를 입력해주세요.");
 			}
