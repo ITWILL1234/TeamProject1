@@ -96,8 +96,7 @@ public class Read {
 		return null;
     }
     
-    public static HashMap<Integer, PostVO> getPost(int itemNum) {
-        HashMap<Integer, PostVO> post = new HashMap<>();
+    public static ArrayList<PostVO> getPost(int itemNum) {
         String sql = SQL_POST;
         
         ArrayList<PostVO> postList = new ArrayList<>(); 
@@ -109,14 +108,13 @@ public class Read {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                PostVO postVO = new PostVO(rs.getInt("ITEMNUM"), rs.getString("TITLE"), rs.getString("DESCRIPTION"), rs.getString("EMAIL"), rs.getTimestamp("CREATEDAT"));
+                PostVO postVO = new PostVO(rs.getInt("NUM"), rs.getInt("ITEMNUM"), rs.getString("TITLE"), rs.getString("DESCRIPTION"), rs.getString("EMAIL"), rs.getTimestamp("CREATEDAT"));
                 postList.add(postVO);
-                post.put(rs.getInt("ITEMNUM"), postVO);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return post;
+        return postList;
     }
 
 

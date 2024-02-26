@@ -10,16 +10,16 @@ public class Post {
 	
 	
 	public static void exe(UserVO user, int item) {
-	User = user;
-	ItemNum = item;
-	
-	postpage();
+		ItemNum = 0;
+		User = user;
+		ItemNum = item;
+		
+		postpage();
 	
 	}
 	private static void postpage() {
 		System.out.println("\n * 사용자들의 리뷰 *");
-		Read.getPost(ItemNum);
-		
+		System.out.println(Read.getPost(ItemNum));
 	}
 	
 }
