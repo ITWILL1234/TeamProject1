@@ -1,19 +1,24 @@
 package com.itwill.page.item;
 
+import com.itwill.crud.Read;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
 public class Post {
 	private static UserVO User;
-	private static ItemVO Item;
-	public void exe(UserVO user, ItemVO item) {
-		User = user;
-		Item = item;
-		
-		postpage();
+	private static int ItemNum;
+	
+	
+	public static void exe(UserVO user, int item) {
+	User = user;
+	ItemNum = item;
+	
+	postpage();
+	
 	}
-	private void postpage() {
-		// TODO Auto-generated method stub
+	private static void postpage() {
+		System.out.println("\n * 사용자들의 리뷰 *");
+		Read.getPost(ItemNum);
 		
 	}
 	
