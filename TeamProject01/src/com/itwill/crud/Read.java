@@ -26,15 +26,15 @@ public class Read {
         String sql = SQL_USER;
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             pstmt.setString(1, email);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     String dbPassword = rs.getString("PASSWORD");
                     if (dbPassword.equals(password)) {
+                    	System.out.println("비밀번호가 일치합니다.");
                         return new UserVO(
                             rs.getString("EMAIL"),
-                            dbPassword,
+                            rs.getString("PASSWORD"),
                             rs.getString("FIRST_NAME"),
                             rs.getString("LAST_NAME"),
                             rs.getString("GENDER"),

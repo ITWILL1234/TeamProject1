@@ -27,6 +27,8 @@ public class PrintImage {
 			printTeddyBear();
 		} else if (image.equalsIgnoreCase("BITCOIN")) {
 			printBitCoin();
+		} else {
+			return;
 		}
 	}
 	

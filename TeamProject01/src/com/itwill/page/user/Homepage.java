@@ -97,7 +97,7 @@ public class Homepage {
 	}
 	
 	private static boolean checkManager() {
-		if(User.getMANAGER().equals("MANAGER")) return true;
+		if(User.getMANAGER().equalsIgnoreCase("TRUE")) return true;
 		return false;
 	}
 

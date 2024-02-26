@@ -3,12 +3,14 @@ package com.itwill.page.item;
 import java.util.Scanner;
 
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.page.utils.PrintImage;
 import com.itwill.vo.ItemVO;
 import com.itwill.vo.UserVO;
 
 public class ItemPage {
 	private static final int BUY = 1;
-	private static final int BACK = 2;
+	private static final int REVIEW = 2;
+	private static final int BACK = 3;
 	private static Scanner scan = new Scanner(System.in);
 	private static UserVO User;
 	private static ItemVO Item;
@@ -25,11 +27,14 @@ public class ItemPage {
 		
 		System.out.println("\n상품의 상세정보입니다.");
 		System.out.println();
+		PrintImage.exe(Item.getImage());
 		System.out.println("상품번호 : " + Item.getNum() + " \n"
 						 + "상품이름 : " + Item.Name() + "\n"
 						 + "가격 : " + Item.getPrice() + "\n") ;
 		System.out.println("\n원하는 메뉴를 입력해주세요.");
-		System.out.println("1. 상품구매 2. 뒤로가기");
+		System.out.println("<> 1. 상품구매 <>"
+				+ "\n<> 2. 리뷰보기 <> "
+				+ "\n<>3. 뒤로가기 <>");
 		System.out.println("페이지를 종료하려면 'q'를 입력해주세요.");
 		
 	}
@@ -41,7 +46,7 @@ public class ItemPage {
 				if (input.equalsIgnoreCase("Q")) return 0;
 				int inputRL = Integer.parseInt(input);
 				
-				if (inputRL == BUY || inputRL == BACK) {
+				if (inputRL == BUY || inputRL == REVIEW || inputRL == BACK) {
 					return inputRL;
 				} else {
 					System.out.println("\n1 또는 2를 입력해주세요.");
@@ -58,7 +63,11 @@ public class ItemPage {
 		
 		if (choice == BUY) {
 			OrderPage.exe(User, Item);
-		} else if (choice == BACK) {
+		} else if (choice == REVIEW) {
+			ConsoleClear.clear();
+			System.out.println("리뷰 페이지입니다.");
+			
+	 	} else if (choice == BACK) {
 			System.out.println("상품 페이지입니다.");
 			ProductList.exe(User);
 		} else if (choice == 0) {
