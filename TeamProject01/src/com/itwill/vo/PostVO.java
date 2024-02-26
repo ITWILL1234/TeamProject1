@@ -8,23 +8,19 @@ public class PostVO implements Serializable {
 	private String title;
 	private String description;
 	private Timestamp createdAt;
-	private Timestamp modifiedAt;
 	private String eMail;
 	
 	public PostVO() {
 		this.title = null;
 		this.description = null;
 		this.createdAt = null;
-		this.modifiedAt = null;
 		this.eMail = null;
 	}
 	
-	public PostVO(String title, String description, Timestamp createdAt,
-			Timestamp modifiedAt, String eMail) {
+	public PostVO(String title, String description, Timestamp createdAt, String eMail) {
 		this.title = title;
 		this.description = description;
 		this.createdAt = createdAt;
-		this.modifiedAt = modifiedAt;
 		this.eMail = eMail;
 	}
 
@@ -52,14 +48,6 @@ public class PostVO implements Serializable {
 		this.createdAt = createdAt;
 	}
 
-	public Timestamp getModifiedAt() {
-		return modifiedAt;
-	}
-
-	public void setModifiedAt(Timestamp modifiedAt) {
-		this.modifiedAt = modifiedAt;
-	}
-
 	public String getEMail() {
 		return eMail;
 	}
@@ -70,9 +58,8 @@ public class PostVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PostVO [title=" + title + ", description=" + description + ", createdAt=" + createdAt + ", modifiedAt="
-				+ modifiedAt + ", author=" + eMail + "]";
+		return "PostVO [title=" + title + ", description=" + description + ", createdAt=" + createdAt + ", eMail="
+				+ eMail + "]";
 	}
-	
 	
 }

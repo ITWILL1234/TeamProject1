@@ -3,6 +3,9 @@ package com.itwill.page.utils;
 public class PrintImage {
 	
 	public static void exe(String image) {
+		
+		if (image == null) return;
+		
 		if (image.equalsIgnoreCase("APPLE")) {
 			printApple();
 		} else if (image.equalsIgnoreCase("WATERMELON")) {

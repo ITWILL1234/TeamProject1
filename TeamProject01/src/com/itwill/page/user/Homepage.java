@@ -86,7 +86,7 @@ public class Homepage {
 		} else if (choice == deleteAccount) {
 			System.out.println("회원탈퇴 페이지입니다.");
 			SignOut.exe(User);
-		} else if (choice == 7 && ManagerValidation) {
+		} else if (choice == manageMode && ManagerValidation) {
 			System.out.println("관리자 페이지로 이동합니다.");
 			ManagerMain.exe(User);
 		} else if (choice == 0) {

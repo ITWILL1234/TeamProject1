@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.itwill.page.utils.ConsoleClear;
+import com.itwill.page.utils.UpdateWaitFunction;
 import com.itwill.socket.client.ClientEditAddress;
 import com.itwill.socket.client.ClientEditPassword;
 import com.itwill.utils.UserInputScanner;
@@ -94,6 +95,7 @@ public class EditProfile {
 			newData = UserInputScanner.scanPassword();
 			ClientEditPassword clientEditPassword = new ClientEditPassword();
 			clientEditPassword.start(createPair(newData));
+			waitForUpdate(clientEditPassword);
 			if (clientEditPassword.getResult()) {
 				ConsoleClear.clear();
 				User.setPASSWORD(newData);
@@ -105,6 +107,7 @@ public class EditProfile {
 			newData = UserInputScanner.scanAddress();
 			ClientEditAddress clientEditAddress = new ClientEditAddress();
 			clientEditAddress.start(createPair(newData));
+			waitForUpdate(clientEditAddress);
 			if (clientEditAddress.getResult()) {
 				ConsoleClear.clear();
 				User.setADDRESS(newData);
@@ -113,5 +116,23 @@ public class EditProfile {
 				System.out.println("데이터 업로드에 실패하였습니다!");
 			}
 		}
+	}
+	
+	private static void waitForUpdate(ClientEditPassword clientEditPassword) {
+		int i = 0;
+		while(clientEditPassword.getResult() == false) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
+	}
+	
+	private static void waitForUpdate(ClientEditAddress clientEditAddress) {
+		int i = 0;
+		while(clientEditAddress.getResult() == false) {
+			i++;
+			if (i > 100000) return;
+		}
+		return;
 	}
 }
