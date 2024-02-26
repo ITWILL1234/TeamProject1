@@ -16,7 +16,6 @@ import com.itwill.vo.UserVO;
 public class ManagementFunction {
 	
 	public static void RegisteringProduct(UserVO user) {
-		// 추후 상의
 		String name = UserInputScanner.scanProductName();
 		int price = UserInputScanner.scanProductPrice();
 		String image = UserInputScanner.scanProductImage();
@@ -29,7 +28,10 @@ public class ManagementFunction {
 		ClientRegisteringProduct clientRegisteringProduct = new ClientRegisteringProduct();
 		clientRegisteringProduct.start(sqlPair);
 		waitRegisteringProduct(clientRegisteringProduct);
+		waitSecond();
 		printResult(clientRegisteringProduct.getResult());
+		
+		System.out.println("실행이 되어야 한다...");
 		ProductManagement.exe(user);		
 	}
 
@@ -43,9 +45,12 @@ public class ManagementFunction {
 		
 		clientEditProductName.start(sqlPair);
 		waitEditProductName(clientEditProductName);
+		waitSecond();
 		printResult(clientEditProductName.getResult());
 		
 		ItemVO updatedItem = getUpdatedItemVO(item);
+		
+		System.out.println("실행이 되어야 한다...");
 		ItemManagement.exe(user, updatedItem);
 	}
 	
@@ -59,9 +64,12 @@ public class ManagementFunction {
 		
 		clientEditProductPrice.start(sqlPair);
 		waitEditProductPrice(clientEditProductPrice);
+		waitSecond();
 		printResult(clientEditProductPrice.getResult());
 		
 		ItemVO updatedItem = getUpdatedItemVO(item);
+		
+		System.out.println("실행이 되어야 한다...");
 		ItemManagement.exe(user, updatedItem);
 	}
 	
@@ -75,6 +83,7 @@ public class ManagementFunction {
 		
 		clientEditProductImage.start(sqlPair);
 		waitEditProductImage(clientEditProductImage);
+		waitSecond();
 		printResult(clientEditProductImage.getResult());
 		
 		ItemVO updatedItem = getUpdatedItemVO(item);
@@ -89,6 +98,7 @@ public class ManagementFunction {
 		ClientDeleteProduct clientDeleteProduct = new ClientDeleteProduct();
 		clientDeleteProduct.start(sqlPair);
 		waitDeleteProduct(clientDeleteProduct);
+		waitSecond();
 		printResult(clientDeleteProduct.getResult());
 		
 		ProductManagement.exe(user);
@@ -107,6 +117,7 @@ public class ManagementFunction {
 		ClientGetProductVO clientGetProductVO = new ClientGetProductVO();
 		clientGetProductVO.start(item.getNum());
 		waitGetUpdatedItemVO(clientGetProductVO);
+		waitSecond();
 		ItemVO updatedItem = clientGetProductVO.getData();
 		return updatedItem;
 	}
@@ -161,6 +172,14 @@ public class ManagementFunction {
 		while(clientRegisteringProduct.getResult() == false) {
 			i++;
 			if (i > 100000) return;
+		}
+		return;
+	}
+	
+	private static void waitSecond() {
+		int i = 0;
+		while (i < 100000) {
+			i++;
 		}
 		return;
 	}
