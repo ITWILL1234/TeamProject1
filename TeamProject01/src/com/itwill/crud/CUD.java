@@ -27,7 +27,9 @@ public class CUD {
                     pstmt.setString(entry.getKey(), entry.getValue());
                 }
             }
-            return pstmt.executeUpdate() > 0;
+            int result = pstmt.executeUpdate();
+            System.out.println(result);
+            return result > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.itwill.utils.Config;
@@ -95,20 +96,28 @@ public class Read {
 		return null;
     }
     
-    public static HashMap<Integer,PostVO> getPost() {
+    public static HashMap<Integer, PostVO> getPost(int itemNum) {
         HashMap<Integer, PostVO> post = new HashMap<>();
         String sql = SQL_POST;
+        
+        ArrayList<PostVO> postList = new ArrayList<>(); 
+
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, itemNum);
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-            	PostVO postre = new PostVO(rs.getInt("ITEMNUM"),rs.getString("TITLE"), rs.getString("DESCRIPTION"), rs.getString("EMAIL"), rs.getTimestamp("CREATEDAT"));
-            	productList.put(item.getNum(), item);
+                PostVO postVO = new PostVO(rs.getInt("ITEMNUM"), rs.getString("TITLE"), rs.getString("DESCRIPTION"), rs.getString("EMAIL"), rs.getTimestamp("CREATEDAT"));
+                postList.add(postVO);
+                post.put(rs.getInt("ITEMNUM"), postVO);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return productList;
+        return post;
     }
+
+
 }
