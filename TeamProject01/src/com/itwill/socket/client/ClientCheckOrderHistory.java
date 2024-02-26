@@ -1,9 +1,10 @@
 package com.itwill.socket.client;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import com.itwill.utils.Config;
 
@@ -35,9 +36,9 @@ public class ClientCheckOrderHistory {
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
 			clientSender.start();
 			clientSender.join();
-			
 			clientReceiver.start();
 			clientReceiver.join();
+			System.out.println("리시버 조인");
 			
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
@@ -97,13 +98,13 @@ public class ClientCheckOrderHistory {
 	//메시지 읽기 전용 쓰레드
 	private class ClientReceiver extends Thread {
 		private Socket socket;
-		private DataInputStream in;
+		private ObjectInputStream in;
 
 		public ClientReceiver(Socket socket) {
 			this.socket = socket;
 			
 			try {
-				in = new DataInputStream(socket.getInputStream());
+				in = new ObjectInputStream(socket.getInputStream());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -113,11 +114,11 @@ public class ClientCheckOrderHistory {
 		public void run() {
 			//메시지 받아서 화면 출력
 			try {
-				while (true) {
-					resultValue = in.readBoolean();
-					break;
-				}
-			} catch (IOException e) {
+				Object result = in.readObject();
+				ArrayList<String> list = (ArrayList<String>) result;
+				System.out.println(list.get(0));
+				if (list.get(0).equals("TRUE")) resultValue = true;
+			} catch (IOException | ClassNotFoundException e) {
 				//e.printStackTrace();
 				System.out.println("[예외발생] " + e.getMessage());
 			} finally {

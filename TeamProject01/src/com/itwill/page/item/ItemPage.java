@@ -53,10 +53,10 @@ public class ItemPage {
 				if (input.equalsIgnoreCase("Q")) return 0;
 				int inputRL = Integer.parseInt(input);
 				
-				if (inputRL == BUY || inputRL == REVIEW || inputRL == BACK) {
+				if (inputRL == BUY || inputRL == REVIEW || inputRL == BACK || (inputRL == WRITE_REVIEW && PurchaseHistory)) {
 					return inputRL;
 				} else {
-					System.out.println("\n1 또는 2를 입력해주세요.");
+					System.out.println("\n입력값이 유효하지 않습니다.");
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("\n숫자로 입력해주세요.");
@@ -77,7 +77,7 @@ public class ItemPage {
 	 	} else if (choice == BACK) {
 			System.out.println("상품 페이지입니다.");
 			ProductList.exe(User);
-		} else if (choice == WRITE_REVIEW) {
+		} else if (choice == WRITE_REVIEW && PurchaseHistory) {
 			System.out.println("리뷰 작성 페이지입니다.");
 			Review.exe(User, Item);
 		} else if (choice == 0) {
@@ -89,6 +89,12 @@ public class ItemPage {
 	private static boolean checkPurchaseHistory() {
 		ClientCheckOrderHistory clientCheckOrderHistory = new ClientCheckOrderHistory();
 		clientCheckOrderHistory.start(User.getEMAIL(), Item.getNum());
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return clientCheckOrderHistory.getResult();
 	}
 	
