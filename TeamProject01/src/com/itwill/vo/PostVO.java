@@ -5,23 +5,35 @@ import java.sql.Timestamp;
 
 public class PostVO implements Serializable {
 	private static final long serialVersionUID = 1L; // 직렬화 버전 관리용
+	private int num;
 	private String title;
 	private String description;
 	private Timestamp createdAt;
 	private String eMail;
 	
 	public PostVO() {
+		this.num = 0;
 		this.title = null;
 		this.description = null;
 		this.createdAt = null;
 		this.eMail = null;
 	}
 	
-	public PostVO(String title, String description, Timestamp createdAt, String eMail) {
+	public PostVO(int num, String title, String description, Timestamp createdAt, String eMail) {
+		this.num = num;
 		this.title = title;
 		this.description = description;
 		this.createdAt = createdAt;
 		this.eMail = eMail;
+	}
+
+	
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getTitle() {
@@ -58,8 +70,9 @@ public class PostVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PostVO [title=" + title + ", description=" + description + ", createdAt=" + createdAt + ", eMail="
-				+ eMail + "]";
+		return "PostVO [num=" + num + ", title=" + title + ", description=" + description + ", createdAt=" + createdAt
+				+ ", eMail=" + eMail + "]";
 	}
+
 	
 }
