@@ -14,6 +14,7 @@ import java.util.HashMap;
 import com.itwill.crud.CUD;
 import com.itwill.crud.Read;
 import com.itwill.vo.ItemVO;
+import com.itwill.vo.PostVO;
 import com.itwill.vo.UserVO;
 
 
@@ -34,6 +35,8 @@ public class Server {
 	
 	private static final String ORDER = "ORDER";
 	private static final String CHECK_ORDER_HISTORY = "CHECK_ORDER_HISTORY";
+	
+	private static final String GET_REVIEWS = "GET_REVIEWS";
 	
     private HashMap<String, OutputStream> clients;
 
@@ -79,6 +82,7 @@ public class Server {
                 inData = new ObjectInputStream(socket.getInputStream());
                 
                 out = new ObjectOutputStream(socket.getOutputStream());
+                
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -157,6 +161,9 @@ public class Server {
         		String email = inData.readUTF();
         		int itemNum = inData.readInt();
         		sendToClientOrderHistory(name, Read.checkOrderHistory(email, itemNum));
+        	} else if (req.equals(GET_REVIEWS)) {
+        		int itemNum = inData.readInt();
+        		sendToClientReviewsList(req, Read.getPost(itemNum));
         	}
         }
         
@@ -253,6 +260,19 @@ public class Server {
                     // 해당 클라이언트에게만 메시지를 전송합니다.
                     out.writeObject(list);
                     System.out.println("데이터 보내기");
+                } catch (IOException e) {
+                    System.out.println("[예외발생] " + e.getMessage());
+                }
+            }
+        }
+        
+        private void sendToClientReviewsList(String clientName, ArrayList<PostVO> list) {
+        	ObjectOutputStream out = (ObjectOutputStream) clients.get(clientName);
+        	if (out != null) {
+                try {
+                    // 해당 클라이언트에게만 메시지를 전송합니다.
+                    out.writeObject(list);
+                    
                 } catch (IOException e) {
                     System.out.println("[예외발생] " + e.getMessage());
                 }

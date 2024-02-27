@@ -7,23 +7,22 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import com.itwill.utils.Config;
+import com.itwill.vo.PostVO;
 
-public class ClientCheckOrderHistory {
-	private static final String CHECK_ORDER_HISTORY = "CHECK_ORDER_HISTORY";
+public class ClientGetReviews {
+	private static final String GET_REVIEWS = "GET_REVIEWS";
 	private static final String IP_ADDRESS = Config.getIpAddress();
-	private static String Email;
 	private static int ItemNum;
-	private boolean resultValue;
+	private ArrayList<PostVO> resultData;
 	private boolean senderFlag = false;
 	private boolean receiverFlag = false;
 	
-	public boolean getResult() {
-        return this.resultValue;
+	public ArrayList<PostVO> getData() {
+        return this.resultData;
     }
 	
-	public void start(String email, int itemNum) {
+	public void start(int itemNum) {
 		resetValue();
-		Email = email;
 		ItemNum = itemNum;
 		Socket socket = null;
 		try  {
@@ -38,6 +37,7 @@ public class ClientCheckOrderHistory {
 			clientSender.join();
 			clientReceiver.start();
 			clientReceiver.join();
+			System.out.println("리시버 조인");
 			
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
@@ -75,11 +75,8 @@ public class ClientCheckOrderHistory {
 	            return;
 	        }
 	        try {
-	            outData.writeUTF(CHECK_ORDER_HISTORY);
+	            outData.writeUTF(GET_REVIEWS);
 	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
-	            
-	            outData.writeUTF(Email);
-	            outData.flush(); // 데이터 전송 후 버퍼 비우기
 	            
 	            outData.writeInt(ItemNum);
 	            outData.flush();
@@ -114,8 +111,8 @@ public class ClientCheckOrderHistory {
 			//메시지 받아서 화면 출력
 			try {
 				Object result = in.readObject();
-				ArrayList<String> list = (ArrayList<String>) result;
-				if (list.get(0).equals("TRUE")) resultValue = true;
+				resultData = (ArrayList<PostVO>) result;
+				
 			} catch (IOException | ClassNotFoundException e) {
 				//e.printStackTrace();
 				System.out.println("[예외발생] " + e.getMessage());
@@ -127,7 +124,7 @@ public class ClientCheckOrderHistory {
 	}
 	
 	private void resetValue() {
-		resultValue = false;
+		resultData = null;
 		senderFlag = false;
 		receiverFlag = false;
 	}	
