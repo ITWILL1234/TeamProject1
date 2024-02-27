@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.itwill.page.user.Homepage;
 import com.itwill.page.utils.ConsoleClear;
 import com.itwill.socket.client.ClientProductList;
 import com.itwill.vo.ItemVO;
@@ -43,6 +44,7 @@ public class ProductManagement {
 			try {
 				String input = scan.nextLine();
 				if (input.equalsIgnoreCase("Q")) return;
+				if (input.equalsIgnoreCase("H")) Homepage.exe(User);
 				int inputRL = Integer.parseInt(input);
 				
 				// 상품 등록으로 이동
@@ -68,6 +70,7 @@ public class ProductManagement {
 	    System.out.println();
 	    System.out.println("상품을 추가하시려면 0을 눌러주세요.");
 	    System.out.println("종료하려면 q를 입력해주세요.");
+	    System.out.println("홈으로 돌아가려면 h를 입력해주세요.");
 	}
 	
 	private static void processManagerChoice(ItemVO choice) {

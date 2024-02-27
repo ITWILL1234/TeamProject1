@@ -1,5 +1,7 @@
 package com.itwill.page.item;
 
+import java.util.HashMap;
+
 import com.itwill.socket.client.ClientInsertReview;
 import com.itwill.utils.UserInputScanner;
 import com.itwill.vo.ItemVO;
@@ -18,7 +20,7 @@ public class Review {
 		Title = UserInputScanner.scanTitle();
 		Description = UserInputScanner.scanDescription();
 		ClientInsertReview clientInsertReview = new ClientInsertReview();
-		clientInsertReview.start(new PostVO(Item.getNum(), Title, Description, user.getEMAIL()));
+		clientInsertReview.start(createSqlPair());
 		ItemPage.exe(User, Item);
 	}
 	
@@ -33,6 +35,15 @@ public class Review {
 				+ "╚═╝  ╚═╝╚══════╝  ╚═══╝  ╚═╝╚══════╝ ╚══╝╚══╝ \n"
 				+ "                                              \n"
 				+ "");
+	}
+	
+	private static HashMap<Integer, String>createSqlPair() {
+		HashMap<Integer, String> pair = new HashMap<Integer, String>();
+		pair.put(1, Title);
+		pair.put(2, Description);
+		pair.put(3, User.getEMAIL());
+		pair.put(4, Item.getNum() + "");
+		return pair;
 	}
 	
 }

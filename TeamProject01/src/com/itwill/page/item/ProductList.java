@@ -40,7 +40,6 @@ public class ProductList {
 				+ ""
 				);
 		System.out.println("구매하실 상품번호를 입력해주세요.");
-		System.out.println(Item);
 	}
 	
 	private static void getUserChoice() {
@@ -49,6 +48,7 @@ public class ProductList {
 				String input = scan.nextLine();
 				if (input.equalsIgnoreCase("Q")) return;
 				else if (input.equalsIgnoreCase("H")) {
+					ConsoleClear.clear();
 					Homepage.exe(User);
 					return;
 				}

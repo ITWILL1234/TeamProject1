@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 import com.itwill.utils.Config;
 import com.itwill.vo.PostVO;
@@ -11,7 +12,7 @@ import com.itwill.vo.PostVO;
 public class ClientInsertReview {
 	private static final String INSERT_REVIEW = "INSERT_REVIEW";
 	private static final String IP_ADDRESS = Config.getIpAddress();
-	private static PostVO Post;
+	private static HashMap<Integer, String> PstmtPair;
 	
 	private boolean resultValue;
 	private boolean senderFlag = false;
@@ -21,10 +22,10 @@ public class ClientInsertReview {
         return this.resultValue;
     }
 
-	public void start(PostVO post) {
+	public void start(HashMap<Integer, String> pstmtPair) {
 		resetValue();
 		resultValue = false;
-		Post = post;
+		PstmtPair = pstmtPair;
 		
 		Socket socket = null;
 		try  {
@@ -80,7 +81,7 @@ public class ClientInsertReview {
 	            outData.writeUTF(INSERT_REVIEW);
 	            outData.flush(); // 버퍼에 있는 데이터를 모두 출력시킴
 	            
-	            outData.writeObject(Post);
+	            outData.writeObject(PstmtPair);
 	            outData.flush(); // 데이터 전송 후 버퍼 비우기
 	            
 	            ClientSender.sleep(2500);
