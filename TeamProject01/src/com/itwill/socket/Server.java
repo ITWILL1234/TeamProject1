@@ -167,7 +167,7 @@ public class Server {
         		sendToClientReviewsList(name, Read.getPost(itemNum));
         	} else if (req.equals(INSERT_REVIEW)) {
         		Object inObject = inData.readObject();
-        		processPostCUD(inObject, "INSERT INTO POST (TITLE, DESCRIPTION, EMAIL, CREATEAT, ITEMNUM) VALUES (?, ?, ?, SYSDATE, ?) ");
+        		processPostCUD(inObject, "INSERT INTO POST (TITLE, DESCRIPTION, EMAIL, CREATEDAT, ITEMNUM) VALUES (?, ?, ?, SYSDATE, ?) ");
         	}
         }
         
