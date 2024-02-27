@@ -48,6 +48,7 @@ public class ProductList {
 				String input = scan.nextLine();
 				if (input.equalsIgnoreCase("Q")) return;
 				else if (input.equalsIgnoreCase("H")) {
+					ConsoleClear.clear();
 					Homepage.exe(User);
 					return;
 				}
