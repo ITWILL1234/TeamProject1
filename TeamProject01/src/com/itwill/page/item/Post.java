@@ -25,19 +25,19 @@ public class Post {
 		ClientGetReviews clientGetReviews = new ClientGetReviews();
 		clientGetReviews.start(ItemNum);
 		waitSecond();
-		
-		
 		displayScreen(clientGetReviews.getData());
+
+		processUserChoice(getUserChoice());
 	
 	}
 	
 	private static void displayScreen(ArrayList<PostVO> list) {
 		System.out.println("\n * 사용자들의 리뷰 *");
 		for(PostVO review : list) {
-			System.out.println(review.getTitle());
-			System.out.println(review.getEMail());
-			System.out.println(review.getDescription());
-			System.out.println(review.getCreatedAt());
+			System.out.println("제목 : " + review.getTitle());
+			System.out.println("작성자 : " + review.getEMail());
+			System.out.println("본문 : " + review.getDescription());
+			System.out.println("작성일 : " + review.getCreatedAt());
 			System.out.println();
 		}
 		

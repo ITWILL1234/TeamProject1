@@ -37,7 +37,6 @@ public class ClientGetReviews {
 			clientSender.join();
 			clientReceiver.start();
 			clientReceiver.join();
-			System.out.println("리시버 조인");
 			
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
@@ -81,7 +80,7 @@ public class ClientGetReviews {
 	            outData.writeInt(ItemNum);
 	            outData.flush();
 	            
-	            ClientSender.sleep(1500);
+	            ClientSender.sleep(3000);
 	            
 	        } catch (IOException | InterruptedException e) {
 	            e.printStackTrace();

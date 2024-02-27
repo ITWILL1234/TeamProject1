@@ -37,6 +37,7 @@ public class Server {
 	private static final String CHECK_ORDER_HISTORY = "CHECK_ORDER_HISTORY";
 	
 	private static final String GET_REVIEWS = "GET_REVIEWS";
+	private static final String INSERT_REVIEW = "INSERT_REVIEW";
 	
     private HashMap<String, OutputStream> clients;
 
@@ -163,7 +164,10 @@ public class Server {
         		sendToClientOrderHistory(name, Read.checkOrderHistory(email, itemNum));
         	} else if (req.equals(GET_REVIEWS)) {
         		int itemNum = inData.readInt();
-        		sendToClientReviewsList(req, Read.getPost(itemNum));
+        		sendToClientReviewsList(name, Read.getPost(itemNum));
+        	} else if (req.equals(INSERT_REVIEW)) {
+        		Object inObject = inData.readObject();
+        		processPostCUD(inObject, "INSERT INTO POST (TITLE, DESCRIPTION, EMAIL, CREATEAT, ITEMNUM) VALUES (?, ?, ?, SYSDATE, ?) ");
         	}
         }
         
@@ -194,6 +198,17 @@ public class Server {
         		@SuppressWarnings("unchecked")
         		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
         		Boolean result = CUD.exeOrder(sql, pstmtPair);
+        		sendToClientCUDResult(name, result);
+        	} else {
+        		sendToClientCUDResult(name, false);
+        	}
+        }
+        
+        private void processPostCUD(Object inObject, String sql) {
+        	if (inObject instanceof HashMap) {
+        		@SuppressWarnings("unchecked")
+        		HashMap<Integer, String> pstmtPair = (HashMap<Integer, String>) inObject;
+        		Boolean result = CUD.exePost(sql, pstmtPair);
         		sendToClientCUDResult(name, result);
         	} else {
         		sendToClientCUDResult(name, false);
